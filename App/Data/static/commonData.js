@@ -1,0 +1,10 @@
+export const commonData = {
+  colors: {
+    BLACK_COLOR: '#111',
+    DARK_THEME_COLOR: '#223',
+    NOTES_SECTION_COLOR: '#1F4788',
+    FINANCE_SECTION_COLOR: '#3FA796',
+    HEALTH_SECTION_COLOR: '#F5B850',
+    CHECKER_SECTION_COLOR: '#A10035',
+  },
+};
