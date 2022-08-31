@@ -10,8 +10,6 @@ import {PersistGate} from 'redux-persist/integration/react';
 import storeConfig from './App/Data/redux/store';
 
 const Root = () => {
-  const theme = useSelector(state => state.ui.theme);
-  console.log('theme: ', theme);
   return (
     <FullPage color={commonData.colors.DARK_THEME_COLOR}>
       <RootNavigator />
