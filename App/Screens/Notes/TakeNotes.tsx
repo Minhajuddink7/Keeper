@@ -5,12 +5,17 @@ import DynamicIcon from '../../Components/Common/DynamicIcon';
 import FullPage from '../../Components/Layouts/FullPage';
 import {commonData} from '../../Data/static/commonData';
 import {RootStateOrAny, useDispatch, useSelector} from 'react-redux';
-import {changeCurrentNote} from '../../Data/redux/actions/notesActions';
+import {
+  changeCurrentNote,
+  changeNotes,
+} from '../../Data/redux/actions/notesActions';
+import moment from 'moment';
 
 const TakeNotes = ({navigation}) => {
   const initNote: any = useSelector<RootStateOrAny>(
     state => state.notes.current_note,
   );
+  const notes: any = useSelector<RootStateOrAny>(state => state.notes.notes);
 
   const dispatch = useDispatch();
   const actions = [
@@ -40,7 +45,11 @@ const TakeNotes = ({navigation}) => {
     }
   }, [currentNote, noteTitle]);
 
-  const saveAndAddNew = () => {};
+  const saveAndAddNew = () => {
+    const note = {id: Date.now(), title: noteTitle, body: currentNote};
+    const newNotes = [...notes, note];
+    dispatch(changeNotes(newNotes));
+  };
   return (
     <FullPage color={commonData.colors.DARK_THEME_COLOR}>
       <TextInput

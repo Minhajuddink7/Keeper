@@ -7,48 +7,44 @@ import {
   useWindowDimensions,
 } from 'react-native';
 import React from 'react';
-
+import moment from 'moment';
 //   import DynamicIcon from '../components/Common/DynamicIcon';
 // import HStack from '../components/Layouts/Hstack';
 import {TabView, SceneMap, TabBar} from 'react-native-tab-view';
 import DynamicIcon from '../../Components/Common/DynamicIcon';
 import NoteCard from '../../Components/Note-List/NoteCard';
+import {RootStateOrAny, useSelector} from 'react-redux';
 //   import NoteCard from '../components/Note-List/NoteCard';
 
-const FirstRoute = () => (
-  <View style={{flex: 1}}>
-    <ScrollView style={{backgroundColor: '#334', paddingTop: 15}}>
-      <NoteCard />
-      <NoteCard />
-      <NoteCard />
-      <NoteCard />
-      <NoteCard />
-      <NoteCard />
-      <NoteCard />
-      <NoteCard />
-      <NoteCard />
-      <NoteCard />
-      <NoteCard />
-      <NoteCard />
-      <NoteCard />
-    </ScrollView>
-  </View>
-);
-
-const SecondRoute = () => (
-  <View style={{flex: 1}}>
-    <ScrollView style={{backgroundColor: '#334', paddingTop: 15}}>
-      <NoteCard />
-    </ScrollView>
-  </View>
-);
-
+const FirstRoute = () => {
+  // const notes=useSelector(state=>state.notes.)
+  const notes: any = useSelector<RootStateOrAny>(state => state.notes.notes);
+  return (
+    <View style={{flex: 1}}>
+      <ScrollView style={{backgroundColor: '#334', paddingTop: 15}}>
+        {notes?.map((note: any) => {
+          return <NoteCard key={note.id} note={note} />;
+        })}
+      </ScrollView>
+    </View>
+  );
+};
+const SecondRoute = () => {
+  return (
+    <View style={{flex: 1}}>
+      <ScrollView style={{backgroundColor: '#334', paddingTop: 15}}>
+        {/* <NoteCard /> */}
+      </ScrollView>
+    </View>
+  );
+};
 const renderScene = SceneMap({
   first: FirstRoute,
   second: SecondRoute,
 });
 
 const NoteList = () => {
+  // console.log(moment(Date.now()).format('DD-MM-YY'));
   const layout = useWindowDimensions();
   const [index, setIndex] = React.useState(0);
   const [routes] = React.useState([

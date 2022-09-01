@@ -10,7 +10,7 @@ import HStack from '../Layouts/HStack';
 import DynamicIcon from '../Common/DynamicIcon';
 import AppText from '../Typography/AppText';
 
-const NoteCard = () => {
+const NoteCard = ({note}) => {
   const [isHeaderShown, setIsHeaderShown] = useState(true);
   return (
     <View style={styles.noteCard}>
@@ -27,7 +27,7 @@ const NoteCard = () => {
           paddingLeft: 10,
         }}>
         {isHeaderShown ? (
-          <AppText text="How to let go of things" type="Montserrat-Bold,,18" />
+          <AppText text={note.title} type="Montserrat-Bold,,18" />
         ) : (
           <ScrollView>
             <AppText
