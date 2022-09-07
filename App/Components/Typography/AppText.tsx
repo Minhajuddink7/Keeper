@@ -12,8 +12,8 @@ type AppTextProps = {
 const AppText = ({text, type, mr, ml, ta}: AppTextProps) => {
   const styleArr = type?.split(/[,]/);
   let textStyle: any = {
-    fontFamily: styleArr?.[0] || 'Inter-Regular',
-    color: styleArr?.[1] || commonData.colors.black,
+    fontFamily: styleArr?.[0] || 'Montserrat-Regular',
+    color: styleArr?.[1] || commonData.colors.BLACK_COLOR,
     fontSize: styleArr?.[2] ? JSON.parse(styleArr[2]) : 14,
     marginLeft: ml || 0,
     marginRight: mr || 0,

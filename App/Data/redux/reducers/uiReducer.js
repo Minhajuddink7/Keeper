@@ -7,7 +7,6 @@ const UiReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case actionType.ui.setTheme:
       return {...state, theme: action.payload};
-
     default:
       return state;
   }

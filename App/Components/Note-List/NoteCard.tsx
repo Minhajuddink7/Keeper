@@ -9,47 +9,53 @@ import React, {useState} from 'react';
 import HStack from '../Layouts/HStack';
 import DynamicIcon from '../Common/DynamicIcon';
 import AppText from '../Typography/AppText';
+import {useDispatch} from 'react-redux';
+import {toggleStared} from '../../Data/redux/actions/notesActions';
+import {commonData} from '../../Data/static/commonData';
 
-const NoteCard = ({note}) => {
-  const [isHeaderShown, setIsHeaderShown] = useState(true);
+const NoteCard = ({note, onDelete, onView}) => {
+  const dispatch = useDispatch();
+  // const [isHeaderShown, setIsHeaderShown] = useState(true);
+  const toggleStar = () => {
+    dispatch(toggleStared({id: note.id, isStared: true}));
+  };
   return (
     <View style={styles.noteCard}>
       <View
         style={{
-          // height: 40,
           borderRadius: 8,
           flex: 6,
           marginBottom: 10,
-          // width: ,
           backgroundColor: '#120E43',
-          justifyContent: 'center',
-          // alignItems: 'center',
+          alignItems: 'center',
+          justifyContent: 'space-between',
           paddingLeft: 10,
+          flexDirection: 'row',
         }}>
-        {isHeaderShown ? (
-          <AppText text={note.title} type="Montserrat-Bold,,18" />
-        ) : (
-          <ScrollView>
-            <AppText
-              text="This is the text for the body of this note sdf asdf asdf asd fasd fas dfas dfa sdfa sdf skld fjkls jdflkasjd fkla jsdlkf;aj sdlf;ka jskld;fj askl;dfj akls;dfj alks;dfj akls;dfj "
-              type="Montserrat-SemiBold,,"
-            />
-          </ScrollView>
-        )}
+        <TouchableOpacity onPress={onView} style={{flex: 1}}>
+          <AppText text={note.title} type="Montserrat-Bold,#fff,18" />
+        </TouchableOpacity>
         <TouchableOpacity
           style={{
-            position: 'absolute',
             right: 5,
             padding: 10,
-            // backgroundColor: 'red',
           }}
-          onPress={() => setIsHeaderShown(!isHeaderShown)}>
-          <DynamicIcon
-            name="eye"
-            family="FontAwesome5"
-            size={18}
-            color="#fff"
-          />
+          onPress={toggleStar}>
+          {note.isStared ? (
+            <DynamicIcon
+              name="star"
+              family="FontAwesome"
+              size={18}
+              color="#fff"
+            />
+          ) : (
+            <DynamicIcon
+              name="star-o"
+              family="FontAwesome"
+              size={18}
+              color="#fff"
+            />
+          )}
         </TouchableOpacity>
       </View>
 
@@ -65,8 +71,8 @@ const NoteCard = ({note}) => {
             alignItems: 'center',
             justifyContent: 'space-around',
           }}>
-          <AppText text="Aug 25 2022" type="Montserrat-SemiBold" />
-          <AppText text="10:23 AM" type="Montserrat-SemiBold" />
+          <AppText text="Aug 25 2022" type="Montserrat-SemiBold,#fff," />
+          <AppText text="10:23 AM" type="Montserrat-SemiBold,#fff," />
         </View>
         <TouchableOpacity style={styles.actionButton}>
           <DynamicIcon
@@ -79,8 +85,9 @@ const NoteCard = ({note}) => {
         <TouchableOpacity
           style={{
             ...styles.actionButton,
-            backgroundColor: '#D40000',
-          }}>
+            backgroundColor: commonData.colors.CHECKER_SECTION_COLOR,
+          }}
+          onPress={onDelete}>
           <DynamicIcon
             family="FontAwesome5"
             name="trash"
@@ -99,7 +106,8 @@ const styles = StyleSheet.create({
   noteCard: {
     marginHorizontal: '6%',
     padding: 10,
-    backgroundColor: '#eef',
+    backgroundColor: '#ccd',
+    // backgroundColor: '#eef',
     height: 120,
     borderRadius: 8,
     marginBottom: 15,

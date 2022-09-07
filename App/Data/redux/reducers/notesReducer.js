@@ -1,7 +1,7 @@
 import {actionType} from '../actions/actionType';
 const INITIAL_STATE = {
   notes: [],
-  current_note: {title: '', body: ''},
+  current_note: {title: '', body: '', isStared: false},
 };
 
 const NotesReducer = (state = INITIAL_STATE, action) => {
@@ -10,10 +10,30 @@ const NotesReducer = (state = INITIAL_STATE, action) => {
       return {...state, notes: action.payload};
     case actionType.notes.setCurrentNote:
       return {...state, current_note: action.payload};
-
+    case actionType.notes.deleteNote:
+      return deleteNotes(state, action.payload);
     default:
       return state;
   }
 };
 
 export default NotesReducer;
+
+const deleteNotes = (state, payload) => {
+  const curNotes = [...state.notes];
+  const updatedNotes = curNotes.filter(note => note.id !== payload);
+  return {...state, notes: updatedNotes};
+};
+
+const toggleStared = (state, payload) => {
+  const {id, isStared} = payload;
+  console.log(id);
+  console.log(isStared);
+  const notes = state.notes;
+  console.log(notes);
+
+  // return notes.map(note => {
+  //   if (note.id === id) return {...note, isStared: isStared};
+  //   else return note;
+  // });
+};

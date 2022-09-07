@@ -8,7 +8,7 @@ const HStack = props => {
       style={{
         flexDirection: 'row',
         justifyContent,
-        alignItems,
+        alignItems: alignItems || 'center',
         marginTop: mt,
         marginRight: mr,
         marginLeft: ml,

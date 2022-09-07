@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import FullPage from './App/Components/Layouts/FullPage';
 
 import {commonData} from './App/Data/static/commonData';
@@ -10,6 +10,10 @@ import {PersistGate} from 'redux-persist/integration/react';
 import storeConfig from './App/Data/redux/store';
 
 const Root = () => {
+  useEffect(() => {
+    // setTimeout(() => {
+    // }, 1000);
+  }, []);
   return (
     <FullPage color={commonData.colors.DARK_THEME_COLOR}>
       <RootNavigator />

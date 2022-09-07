@@ -5,10 +5,12 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import TakeNotes from '../Notes/TakeNotes';
 import {NavigationContainer} from '@react-navigation/native';
 import NoteList from '../Notes/NoteList';
+import RNBootSplash from 'react-native-bootsplash';
+
 const RootNavigator = () => {
   const Stack = createNativeStackNavigator();
   return (
-    <NavigationContainer>
+    <NavigationContainer onReady={() => RNBootSplash.hide()}>
       <Stack.Navigator>
         <Stack.Screen
           name="Home"

@@ -5,6 +5,11 @@ import com.facebook.react.ReactActivityDelegate;
 import com.facebook.react.ReactRootView;
 import android.os.Bundle;
 
+
+//splash
+import com.zoontek.rnbootsplash.RNBootSplash;
+//
+
 public class MainActivity extends ReactActivity {
 
   /**
@@ -19,7 +24,10 @@ public class MainActivity extends ReactActivity {
 //added for navigation
 @Override
 protected void onCreate(Bundle savedInstanceState) {
-  super.onCreate(null);
+  //splash
+  RNBootSplash.init(this);
+  //
+  super.onCreate(savedInstanceState);
 }
 //
   /**
