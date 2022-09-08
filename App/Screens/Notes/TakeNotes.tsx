@@ -12,14 +12,18 @@ import DynamicIcon from '../../Components/Common/DynamicIcon';
 import FullPage from '../../Components/Layouts/FullPage';
 import {commonData} from '../../Data/static/commonData';
 import {RootStateOrAny, useDispatch, useSelector} from 'react-redux';
+
 import {
   changeCurrentNote,
   changeNotes,
 } from '../../Data/redux/actions/notesActions';
 import moment from 'moment';
 import {showToast} from '../../Helpers/utils';
+import HomeButton from '../../Components/Buttons/HomeButton';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import NoteList from './NoteList';
 
-const TakeNotes = ({navigation}) => {
+const Root = ({navigation}) => {
   const initNote: any = useSelector<RootStateOrAny>(
     state => state.notes.current_note,
   );
@@ -111,8 +115,8 @@ const TakeNotes = ({navigation}) => {
           width: 50,
           borderRadius: 50,
           position: 'absolute',
-          right: 35,
-          bottom: 100,
+          right: 30,
+          bottom: 30,
           backgroundColor: commonData.colors.FINANCE_SECTION_COLOR,
           alignItems: 'center',
           justifyContent: 'center',
@@ -120,7 +124,23 @@ const TakeNotes = ({navigation}) => {
         onPress={() => navigation.navigate('NoteList')}>
         <DynamicIcon family="Feather" name="list" size={18} />
       </TouchableOpacity>
-      <FloatingAction
+      <HomeButton onPress={() => navigation.navigate('Home')} />
+      <TouchableOpacity
+        style={{
+          height: 50,
+          width: 50,
+          borderRadius: 50,
+          position: 'absolute',
+          right: 30,
+          bottom: 90,
+          backgroundColor: commonData.colors.NOTES_SECTION_COLOR,
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+        onPress={saveAndAddNew}>
+        <DynamicIcon family="Entypo" name="plus" size={18} />
+      </TouchableOpacity>
+      {/* <FloatingAction
         actions={actions}
         color={commonData.colors.NOTES_SECTION_COLOR}
         onPressItem={name => {
@@ -128,11 +148,31 @@ const TakeNotes = ({navigation}) => {
             saveAndAddNew();
           }
         }}
-      />
+      /> */}
     </FullPage>
   );
 };
-
+const TakeNotes = ({navigation}) => {
+  // const Stack = createNativeStackNavigator();
+  // return (
+  //   <>
+  //     <Stack.Navigator>
+  //       <Stack.Screen
+  //         name="Root"
+  //         component={Root}
+  //         options={{headerShown: false}}
+  //       />
+  //       <Stack.Screen
+  //         name="NoteList"
+  //         component={NoteList}
+  //         options={{headerShown: false}}
+  //         // options={{headerShown: false}}
+  //       />
+  //     </Stack.Navigator>
+  //   </>
+  // );
+  return <Root navigation={navigation} />;
+};
 export default TakeNotes;
 
 const styles = StyleSheet.create({});

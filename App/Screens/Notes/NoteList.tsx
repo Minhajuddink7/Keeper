@@ -25,8 +25,10 @@ import HStack from '../../Components/Layouts/HStack';
 import ActionButton from '../../Components/Buttons/ActionButton';
 import {showToast} from '../../Helpers/utils';
 import NoItem from '../../Components/Common/NoItem';
+import HomeButton from '../../Components/Buttons/HomeButton';
+import BackButton from '../../Components/Buttons/BackButton';
 //   import NoteCard from '../components/Note-List/NoteCard';
-const NoteList = () => {
+const NoteList = ({navigation}) => {
   const dispatch = useDispatch();
   const {BLACK_COLOR, DARK_THEME_COLOR, FINANCE_SECTION_COLOR} =
     commonData.colors;
@@ -142,6 +144,7 @@ const NoteList = () => {
         initialLayout={{width: layout.width}}
         renderTabBar={renderTabBar}
       />
+      <BackButton onPress={() => navigation.goBack()} />
       <BottomModal
         modalOpen={deleteModalOpen}
         setModalOpen={setDeleteModalOpen}>
@@ -198,6 +201,10 @@ const NoteList = () => {
             justifyContent: 'center',
             alignItems: 'center',
             borderRadius: 50,
+          }}
+          onPress={() => {
+            setModalOpen(false);
+            navigation.navigate('NoteView');
           }}>
           <DynamicIcon
             family="FontAwesome5"
