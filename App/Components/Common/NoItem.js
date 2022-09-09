@@ -11,6 +11,7 @@ const NoItem = ({text, color}) => {
           textAlign: 'center',
           fontFamily: 'Montserrat-Medium',
           fontSize: 16,
+          color: '#fff',
         }}>
         {text}
       </Text>

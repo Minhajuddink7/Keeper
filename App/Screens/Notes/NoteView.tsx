@@ -2,13 +2,19 @@ import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React from 'react';
 import FullPage from '../../Components/Layouts/FullPage';
 import AppText from '../../Components/Typography/AppText';
+import BackButton from '../../Components/Buttons/BackButton';
+import Container from '../../Components/Layouts/Container';
 
-const NoteView = ({navigation}) => {
+const NoteView = ({navigation, route}) => {
+  const {viewedNote} = route.params;
+  console.log(viewedNote);
   return (
-    <FullPage>
-      <TouchableOpacity onPress={() => navigation.goBack()}>
-        <AppText text="Note View" type=",#000," />
-      </TouchableOpacity>
+    <FullPage color={'#000'}>
+      <View style={{margin: 5}}>
+        <AppText text={viewedNote} type="Montserrat-SemiBold,#fff,18" />
+      </View>
+
+      <BackButton onPress={() => navigation.goBack()} />
     </FullPage>
   );
 };

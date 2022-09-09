@@ -8,5 +8,6 @@ export const commonData = {
     HEALTH_SECTION_COLOR: '#F5B850',
     CHECKER_SECTION_COLOR: '#A10035',
     DANGER_COLOR: '#D40000',
+    LIGHT_TEXT_COLOR: '#ddf',
   },
 };

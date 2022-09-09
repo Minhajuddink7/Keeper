@@ -3,8 +3,12 @@ require_relative '../node_modules/@react-native-community/cli-platform-ios/nativ
 
 platform :ios, '12.4'
 install! 'cocoapods', :deterministic_uuids => false
-
+pod 'Firebase', :modular_headers => true
+     pod 'FirebaseCore', :modular_headers => true
+     pod 'GoogleUtilities', :modular_headers => true
+     $RNFirebaseAsStaticFramework = true
 production = ENV["PRODUCTION"] == "1"
+use_flipper!()
 
 target 'Keeper' do
   config = use_native_modules!

@@ -204,7 +204,7 @@ const NoteList = ({navigation}) => {
           }}
           onPress={() => {
             setModalOpen(false);
-            navigation.navigate('NoteView');
+            navigation.navigate('NoteView', {viewedNote});
           }}>
           <DynamicIcon
             family="FontAwesome5"

@@ -8,6 +8,7 @@ import {Provider, useSelector} from 'react-redux';
 
 import {PersistGate} from 'redux-persist/integration/react';
 import storeConfig from './App/Data/redux/store';
+import {SafeAreaView, StatusBar, StyleSheet, View} from 'react-native';
 
 const Root = () => {
   useEffect(() => {
@@ -16,10 +17,23 @@ const Root = () => {
   }, []);
   return (
     <FullPage color={commonData.colors.DARK_THEME_COLOR}>
+      <MyStatusBar
+        backgroundColor={commonData.colors.DARK_THEME_COLOR}
+        barStyle="light-content"
+      />
       <RootNavigator />
     </FullPage>
   );
 };
+
+const MyStatusBar = ({backgroundColor, ...props}) => (
+  <View style={[styles.statusBar, {backgroundColor}]}>
+    <SafeAreaView>
+      <StatusBar translucent backgroundColor={backgroundColor} {...props} />
+    </SafeAreaView>
+  </View>
+);
+
 const App = () => {
   const {store, persistor} = storeConfig();
   return (
@@ -32,3 +46,8 @@ const App = () => {
 };
 
 export default App;
+const styles = StyleSheet.create({
+  statusBar: {
+    height: StatusBar.currentHeight,
+  },
+});

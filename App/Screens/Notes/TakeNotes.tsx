@@ -23,7 +23,7 @@ import HomeButton from '../../Components/Buttons/HomeButton';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import NoteList from './NoteList';
 
-const Root = ({navigation}) => {
+const TakeNotes = ({navigation}) => {
   const initNote: any = useSelector<RootStateOrAny>(
     state => state.notes.current_note,
   );
@@ -91,6 +91,7 @@ const Root = ({navigation}) => {
           textDecorationLine: 'underline',
           backgroundColor: commonData.colors.DARK_THEME_COLOR,
         }}
+        placeholderTextColor="#556"
         value={noteTitle}
         onChangeText={text => setNoteTitle(text)}
         placeholder="Note title"
@@ -152,27 +153,7 @@ const Root = ({navigation}) => {
     </FullPage>
   );
 };
-const TakeNotes = ({navigation}) => {
-  // const Stack = createNativeStackNavigator();
-  // return (
-  //   <>
-  //     <Stack.Navigator>
-  //       <Stack.Screen
-  //         name="Root"
-  //         component={Root}
-  //         options={{headerShown: false}}
-  //       />
-  //       <Stack.Screen
-  //         name="NoteList"
-  //         component={NoteList}
-  //         options={{headerShown: false}}
-  //         // options={{headerShown: false}}
-  //       />
-  //     </Stack.Navigator>
-  //   </>
-  // );
-  return <Root navigation={navigation} />;
-};
+
 export default TakeNotes;
 
 const styles = StyleSheet.create({});

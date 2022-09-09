@@ -7,7 +7,7 @@ import DynamicIcon from '../Common/DynamicIcon';
 import HStack from '../Layouts/HStack';
 
 const ActionButton = ({text, action, onPress}) => {
-  const {FINANCE_SECTION_COLOR, DANGER_COLOR, CHECKER_SECTION_COLOR} =
+  const {FINANCE_SECTION_COLOR, LIGHT_TEXT_COLOR, CHECKER_SECTION_COLOR} =
     commonData.colors;
   return (
     <TouchableOpacity
@@ -23,12 +23,14 @@ const ActionButton = ({text, action, onPress}) => {
             family="MaterialCommunityIcons"
             name="delete"
             size={20}
+            color={LIGHT_TEXT_COLOR}
           />
         ) : (
           <DynamicIcon
             family="MaterialCommunityIcons"
             name="cancel"
             size={20}
+            color={LIGHT_TEXT_COLOR}
           />
         )}
         <AppText text={text} type="Montserrat-Bold,#fff," ml={5} />
