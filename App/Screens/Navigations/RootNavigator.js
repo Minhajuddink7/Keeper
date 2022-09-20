@@ -7,6 +7,8 @@ import {NavigationContainer} from '@react-navigation/native';
 import NoteList from '../Notes/NoteList';
 import RNBootSplash from 'react-native-bootsplash';
 import NoteView from '../Notes/NoteView';
+import Checkers from '../Checker/Checkers';
+import EditNote from '../Notes/EditNote';
 
 const RootNavigator = () => {
   const Stack = createNativeStackNavigator();
@@ -35,6 +37,20 @@ const RootNavigator = () => {
           component={NoteView}
           options={{headerShown: false}}
         />
+        <Stack.Screen
+          name="EditNote"
+          component={EditNote}
+          options={{headerShown: false}}
+        />
+        {/*  */}
+
+        {/* Checker */}
+        <Stack.Screen
+          name="Checkers"
+          component={Checkers}
+          options={{headerShown: false}}
+        />
+
         {/*  */}
       </Stack.Navigator>
     </NavigationContainer>

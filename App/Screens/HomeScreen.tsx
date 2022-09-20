@@ -20,7 +20,7 @@ const MenuItem = ({family, name, text, size = 20}) => {
     <>
       <DynamicIcon family={family} name={name} size={size} color="#fff" />
       <Gap gap={8} />
-      <AppText text={text} type="Montserrat-Bold,#fff,17" />
+      <AppText text={text} type={`${commonData.fonts.BOLD},#fff,17`} />
     </>
   );
 };
@@ -82,12 +82,12 @@ const HomeScreen = ({navigation}) => {
               backgroundColor: CHECKER_SECTION_COLOR,
               borderBottomRightRadius: 8,
             }}
-            onPress={comingSoon}>
+            onPress={() => navigation.navigate('Checkers')}>
             <MenuItem
               family="FontAwesome5"
               // name="check-square-o"
               name="tasks"
-              text="Checker"
+              text="Checkers"
               size={23}
             />
           </TouchableOpacity>

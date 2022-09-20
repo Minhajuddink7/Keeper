@@ -12,12 +12,13 @@ import AppText from '../Typography/AppText';
 import {useDispatch} from 'react-redux';
 import {toggleStared} from '../../Data/redux/actions/notesActions';
 import {commonData} from '../../Data/static/commonData';
+import moment from 'moment';
 
-const NoteCard = ({note, onDelete, onView}) => {
+const NoteCard = ({note, onDelete, onPeek, onSelect, onEdit}) => {
   const dispatch = useDispatch();
   // const [isHeaderShown, setIsHeaderShown] = useState(true);
   const toggleStar = () => {
-    dispatch(toggleStared({id: note.id, isStared: true}));
+    dispatch(toggleStared({id: note.id}));
   };
   return (
     <View style={styles.noteCard}>
@@ -32,9 +33,34 @@ const NoteCard = ({note, onDelete, onView}) => {
           paddingLeft: 10,
           flexDirection: 'row',
         }}>
-        <TouchableOpacity onPress={onView} style={{flex: 1}}>
-          <AppText text={note.title} type="Montserrat-Bold,#fff,18" />
+        <TouchableOpacity onPress={onSelect} style={{flex: 1}}>
+          {note?.title ? (
+            <AppText
+              text={note.title}
+              type={`${commonData.fonts.REGULAR},#fff,18`}
+            />
+          ) : (
+            <AppText
+              text={`${note.body.substr(0, 25)}.......`}
+              type={`${commonData.fonts.REGULAR},#fff,`}
+            />
+          )}
         </TouchableOpacity>
+
+        <TouchableOpacity
+          style={{
+            right: 5,
+            padding: 10,
+          }}
+          onPress={onPeek}>
+          <DynamicIcon
+            name="eye"
+            family="FontAwesome5"
+            size={18}
+            color="#fff"
+          />
+        </TouchableOpacity>
+
         <TouchableOpacity
           style={{
             right: 5,
@@ -71,10 +97,16 @@ const NoteCard = ({note, onDelete, onView}) => {
             alignItems: 'center',
             justifyContent: 'space-around',
           }}>
-          <AppText text="Aug 25 2022" type="Montserrat-SemiBold,#fff," />
-          <AppText text="10:23 AM" type="Montserrat-SemiBold,#fff," />
+          <AppText
+            text={moment(note.id).format('MMM DD YYYY')}
+            type={`${commonData.fonts.REGULAR},#fff,`}
+          />
+          <AppText
+            text={moment(note.id).format('hh:mm A')}
+            type={`${commonData.fonts.REGULAR},#fff,`}
+          />
         </View>
-        <TouchableOpacity style={styles.actionButton}>
+        <TouchableOpacity style={styles.actionButton} onPress={onEdit}>
           <DynamicIcon
             family="FontAwesome5"
             name="pen"
@@ -85,7 +117,7 @@ const NoteCard = ({note, onDelete, onView}) => {
         <TouchableOpacity
           style={{
             ...styles.actionButton,
-            backgroundColor: commonData.colors.CHECKER_SECTION_COLOR,
+            backgroundColor: commonData.colors.DANGER_COLOR,
           }}
           onPress={onDelete}>
           <DynamicIcon

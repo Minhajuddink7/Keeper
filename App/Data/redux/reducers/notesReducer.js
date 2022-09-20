@@ -12,6 +12,8 @@ const NotesReducer = (state = INITIAL_STATE, action) => {
       return {...state, current_note: action.payload};
     case actionType.notes.deleteNote:
       return deleteNotes(state, action.payload);
+    case actionType.notes.toggleStared:
+      return toggleStared(state, action.payload);
     default:
       return state;
   }
@@ -21,16 +23,23 @@ export default NotesReducer;
 
 const deleteNotes = (state, payload) => {
   const curNotes = [...state.notes];
+  console.log('hello');
   const updatedNotes = curNotes.filter(note => note.id !== payload);
   return {...state, notes: updatedNotes};
 };
 
 const toggleStared = (state, payload) => {
-  const {id, isStared} = payload;
-  console.log(id);
-  console.log(isStared);
-  const notes = state.notes;
-  console.log(notes);
+  const {id} = payload;
+  const notes = {...state}.notes;
+  const updatedNotes = notes.map(note => {
+    const isStared = note.isStared;
+    if (note.id === id) {
+      return {...note, isStared: !isStared};
+    } else return note;
+  });
+
+  // console.log('state:', notes);
+  return {...state, notes: updatedNotes};
 
   // return notes.map(note => {
   //   if (note.id === id) return {...note, isStared: isStared};

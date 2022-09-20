@@ -30,6 +30,9 @@
 		B8B5E2D7187E493F994A672B /* Montserrat-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C99DB4E1CCD349B0898EBB61 /* Montserrat-Thin.ttf */; };
 		C3279DD86A5D49248B43FD3D /* Montserrat-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 56548798E94A4591BFFF817C /* Montserrat-Medium.ttf */; };
 		DD06E70FE95F4D55AED6EB99 /* Montserrat-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AB094D1C8800474F8EBFFE12 /* Montserrat-Italic.ttf */; };
+		E7C3F14028D06ED700BA3E5C /* Kalam-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E7C3F13D28D06ED700BA3E5C /* Kalam-Light.ttf */; };
+		E7C3F14128D06ED700BA3E5C /* Kalam-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E7C3F13E28D06ED700BA3E5C /* Kalam-Regular.ttf */; };
+		E7C3F14228D06ED700BA3E5C /* Kalam-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E7C3F13F28D06ED700BA3E5C /* Kalam-Bold.ttf */; };
 		F5FFF5C161114186919BA582 /* Montserrat-ExtraBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 09C12052060B4A4D81C921F7 /* Montserrat-ExtraBoldItalic.ttf */; };
 /* End PBXBuildFile section */
 
@@ -92,6 +95,9 @@
 		E735429F28CB1ABE009DF612 /* Foundation.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Foundation.ttf; sourceTree = "<group>"; };
 		E73542A028CB1ABE009DF612 /* Fontisto.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Fontisto.ttf; sourceTree = "<group>"; };
 		E73542A128CB1ABE009DF612 /* Octicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Octicons.ttf; sourceTree = "<group>"; };
+		E7C3F13D28D06ED700BA3E5C /* Kalam-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Kalam-Light.ttf"; path = "../assets/fonts/Kalam-Light.ttf"; sourceTree = "<group>"; };
+		E7C3F13E28D06ED700BA3E5C /* Kalam-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Kalam-Regular.ttf"; path = "../assets/fonts/Kalam-Regular.ttf"; sourceTree = "<group>"; };
+		E7C3F13F28D06ED700BA3E5C /* Kalam-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Kalam-Bold.ttf"; path = "../assets/fonts/Kalam-Bold.ttf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		EF450279AF234877ACFDB3B2 /* Montserrat-BoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-BoldItalic.ttf"; path = "../assets/fonts/Montserrat-BoldItalic.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -190,6 +196,9 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				E7C3F13F28D06ED700BA3E5C /* Kalam-Bold.ttf */,
+				E7C3F13D28D06ED700BA3E5C /* Kalam-Light.ttf */,
+				E7C3F13E28D06ED700BA3E5C /* Kalam-Regular.ttf */,
 				E735429128CB1A23009DF612 /* Fonts */,
 				13B07FAE1A68108700A75B9A /* Keeper */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
@@ -342,6 +351,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E7C3F14028D06ED700BA3E5C /* Kalam-Light.ttf in Resources */,
+				E7C3F14128D06ED700BA3E5C /* Kalam-Regular.ttf in Resources */,
+				E7C3F14228D06ED700BA3E5C /* Kalam-Bold.ttf in Resources */,
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				5C09202A1536423B8E359935 /* Montserrat-Bold.ttf in Resources */,

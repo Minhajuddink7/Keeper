@@ -27,15 +27,21 @@ import {showToast} from '../../Helpers/utils';
 import NoItem from '../../Components/Common/NoItem';
 import HomeButton from '../../Components/Buttons/HomeButton';
 import BackButton from '../../Components/Buttons/BackButton';
+import BottomActions from '../../Components/BottomActions/BottomActions';
+import FullPage from '../../Components/Layouts/FullPage';
 //   import NoteCard from '../components/Note-List/NoteCard';
 const NoteList = ({navigation}) => {
   const dispatch = useDispatch();
-  const {BLACK_COLOR, DARK_THEME_COLOR, FINANCE_SECTION_COLOR} =
-    commonData.colors;
+  const {
+    BLACK_COLOR,
+    DARK_THEME_COLOR,
+    FINANCE_SECTION_COLOR,
+    NOTES_SECTION_COLOR,
+  } = commonData.colors;
   const layout = useWindowDimensions();
   const [index, setIndex] = React.useState(0);
   const [modalOpen, setModalOpen] = useState(false);
-  const [viewedNote, setViewedNote] = useState('');
+  const [viewedNote, setViewedNote] = useState({title: '', body: ''});
   const [selectedNote, setSelectedNote] = useState({id: ''});
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
   const [routes] = React.useState([
@@ -53,32 +59,40 @@ const NoteList = ({navigation}) => {
             backgroundColor: BLACK_COLOR,
             paddingTop: 15,
           }}>
-          {notes?.length === 0 ? (
-            <NoItem text="No Notes Found!" color={FINANCE_SECTION_COLOR} />
-          ) : (
-            notes.map((note: any) => {
-              return (
-                <NoteCard
-                  key={note.id}
-                  note={note}
-                  onView={() => {
-                    setViewedNote(note.body);
-                    setModalOpen(true);
-                  }}
-                  onDelete={() => {
-                    setDeleteModalOpen(true);
-                    setSelectedNote(note);
-                  }}
-                />
-              );
-            })
-          )}
+          <View style={{paddingBottom: 15}}>
+            {notes?.length === 0 ? (
+              <NoItem text="No Notes Found!" color={FINANCE_SECTION_COLOR} />
+            ) : (
+              notes.map((note: any) => {
+                return (
+                  <NoteCard
+                    key={note.id}
+                    onEdit={() => navigation.navigate('EditNote', {note})}
+                    note={note}
+                    onPeek={() => {
+                      setViewedNote(note);
+                      setModalOpen(true);
+                    }}
+                    onDelete={() => {
+                      setDeleteModalOpen(true);
+                      setSelectedNote(note);
+                    }}
+                    onSelect={() => {
+                      navigation.navigate('NoteView', {viewedNote: note});
+                    }}
+                  />
+                );
+              })
+            )}
+          </View>
         </ScrollView>
       </View>
     );
   };
+
   const SecondRoute = () => {
     const notes: any = useSelector<RootStateOrAny>(state => state.notes.notes);
+    const staredNotes = notes.filter(note => note.isStared);
     return (
       <View style={{flex: 1}}>
         <ScrollView
@@ -86,26 +100,35 @@ const NoteList = ({navigation}) => {
             backgroundColor: BLACK_COLOR,
             paddingTop: 15,
           }}>
-          {notes?.length === 0 ? (
-            <NoItem text="No Notes Found!" color={FINANCE_SECTION_COLOR} />
-          ) : (
-            notes.map((note: any) => {
-              return (
-                <NoteCard
-                  key={note.id}
-                  note={note}
-                  onView={() => {
-                    setViewedNote(note.body);
-                    setModalOpen(true);
-                  }}
-                  onDelete={() => {
-                    setDeleteModalOpen(true);
-                    setSelectedNote(note);
-                  }}
-                />
-              );
-            })
-          )}
+          <View style={{paddingBottom: 15}}>
+            {staredNotes?.length === 0 ? (
+              <NoItem
+                text="No Stared Notes Found!"
+                color={FINANCE_SECTION_COLOR}
+              />
+            ) : (
+              staredNotes.map((note: any) => {
+                return (
+                  <NoteCard
+                    key={note.id}
+                    note={note}
+                    onPeek={() => {
+                      setViewedNote(note);
+                      setModalOpen(true);
+                    }}
+                    onDelete={() => {
+                      setDeleteModalOpen(true);
+                      setSelectedNote(note);
+                    }}
+                    onEdit={() => navigation.navigate('EditNote', {note})}
+                    onSelect={() => {
+                      navigation.navigate('NoteView', {viewedNote: note});
+                    }}
+                  />
+                );
+              })
+            )}
+          </View>
         </ScrollView>
       </View>
     );
@@ -115,13 +138,11 @@ const NoteList = ({navigation}) => {
     second: SecondRoute,
   });
 
-  // console.log(moment(Date.now()).format('DD-MM-YY'));
-
   const renderTabBar = props => {
     return (
       <TabBar
         {...props}
-        indicatorStyle={{backgroundColor: 'white'}}
+        indicatorStyle={{backgroundColor: NOTES_SECTION_COLOR}}
         style={{backgroundColor: DARK_THEME_COLOR}}
         renderIcon={({route, focused, color}) => {
           return (
@@ -132,11 +153,16 @@ const NoteList = ({navigation}) => {
             />
           );
         }}
+        renderLabel={({route, focused, color}) => (
+          <Text style={{color, fontSize: 18, fontFamily: 'Kalam-Bold'}}>
+            {route.title}
+          </Text>
+        )}
       />
     );
   };
   return (
-    <>
+    <FullPage color={commonData.colors.BLACK_COLOR}>
       <TabView
         navigationState={{index, routes}}
         renderScene={renderScene}
@@ -144,14 +170,41 @@ const NoteList = ({navigation}) => {
         initialLayout={{width: layout.width}}
         renderTabBar={renderTabBar}
       />
-      <BackButton onPress={() => navigation.goBack()} />
+
+      {/* <BackButton
+        navigation={navigation}
+        color={commonData.colors.NOTES_SECTION_COLOR}
+      /> */}
+      <BottomActions
+        actions={[
+          {
+            name: 'back',
+            onPress: function () {
+              navigation.goBack();
+            },
+          },
+          {
+            name: 'home',
+            onPress: function () {
+              navigation.navigate('Home');
+            },
+          },
+          // {},
+          // {
+          //   name: 'lists',
+          //   onPress: function () {
+          //     navigation.navigate('NoteList');
+          //   },
+          // },
+        ]}
+      />
       <BottomModal
         modalOpen={deleteModalOpen}
         setModalOpen={setDeleteModalOpen}>
         <View style={[styles.modalAddRoom]}>
           <Gap />
           <Container>
-            <AppText text="Confirm Delete?" type="Montserrat-Bold,#000,18" />
+            <AppText text="Confirm Delete?" type="Kalam-Bold,#000,18" />
             <Gap />
             <HStack justifyContent="space-between">
               <View style={{flex: 0.47}}>
@@ -178,18 +231,19 @@ const NoteList = ({navigation}) => {
           </Container>
         </View>
       </BottomModal>
+
       <NormalModal visible={modalOpen} setVisible={setModalOpen}>
         {/* <Text style={{color: '#000'}}> {viewedNote}</Text> */}
         <ScrollView>
           <View style={{padding: 10}}>
             <AppText
-              text={viewedNote}
-              type="Montserrat-SemiBold,#000,20"
+              text={viewedNote?.body}
+              type="Kalam-Regular,#000,20"
               ta="justify"
             />
           </View>
         </ScrollView>
-        <TouchableOpacity
+        {/* <TouchableOpacity
           style={{
             position: 'absolute',
             bottom: 15,
@@ -204,17 +258,16 @@ const NoteList = ({navigation}) => {
           }}
           onPress={() => {
             setModalOpen(false);
-            navigation.navigate('NoteView', {viewedNote});
           }}>
           <DynamicIcon
-            family="FontAwesome5"
+            family="Ionicons"
             name="expand"
             size={20}
             // color={}
           />
-        </TouchableOpacity>
+        </TouchableOpacity> */}
       </NormalModal>
-    </>
+    </FullPage>
   );
 };
 
@@ -222,7 +275,7 @@ export default NoteList;
 const styles = StyleSheet.create({
   modalAddRoom: {
     maxHeight: '70%',
-    backgroundColor: '#ccc',
+    backgroundColor: '#bbb',
     borderTopLeftRadius: 16,
     borderTopRightRadius: 16,
     paddingBottom: 30,

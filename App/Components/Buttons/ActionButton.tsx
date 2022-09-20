@@ -7,14 +7,22 @@ import DynamicIcon from '../Common/DynamicIcon';
 import HStack from '../Layouts/HStack';
 
 const ActionButton = ({text, action, onPress}) => {
-  const {FINANCE_SECTION_COLOR, LIGHT_TEXT_COLOR, CHECKER_SECTION_COLOR} =
-    commonData.colors;
+  const {
+    FINANCE_SECTION_COLOR,
+    LIGHT_TEXT_COLOR,
+    CHECKER_SECTION_COLOR,
+    DANGER_COLOR,
+  } = commonData.colors;
   return (
     <TouchableOpacity
       style={{
         ...styles.button,
         backgroundColor:
-          action === 'delete' ? CHECKER_SECTION_COLOR : FINANCE_SECTION_COLOR,
+          action === 'delete'
+            ? DANGER_COLOR
+            : action === 'save'
+            ? CHECKER_SECTION_COLOR
+            : 'gray',
       }}
       onPress={onPress}>
       <HStack>
@@ -25,6 +33,13 @@ const ActionButton = ({text, action, onPress}) => {
             size={20}
             color={LIGHT_TEXT_COLOR}
           />
+        ) : action === 'save' ? (
+          <DynamicIcon
+            family="FontAwesome5"
+            name="check"
+            size={16}
+            color={LIGHT_TEXT_COLOR}
+          />
         ) : (
           <DynamicIcon
             family="MaterialCommunityIcons"
@@ -33,7 +48,7 @@ const ActionButton = ({text, action, onPress}) => {
             color={LIGHT_TEXT_COLOR}
           />
         )}
-        <AppText text={text} type="Montserrat-Bold,#fff," ml={5} />
+        <AppText text={text} type="Kalam-Bold,#fff,18" ml={5} />
       </HStack>
     </TouchableOpacity>
   );

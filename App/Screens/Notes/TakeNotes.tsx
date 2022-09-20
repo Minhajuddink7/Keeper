@@ -1,4 +1,5 @@
 import {
+  Keyboard,
   ScrollView,
   StyleSheet,
   Text,
@@ -22,8 +23,19 @@ import {showToast} from '../../Helpers/utils';
 import HomeButton from '../../Components/Buttons/HomeButton';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import NoteList from './NoteList';
+import NoteWriter from './NoteWriter';
+import BottomActions from '../../Components/BottomActions/BottomActions';
 
 const TakeNotes = ({navigation}) => {
+  const {
+    fonts: {MEDIUM, BOLD},
+    colors: {
+      DARK_THEME_COLOR,
+      BLACK_COLOR,
+      FINANCE_SECTION_COLOR,
+      NOTES_SECTION_COLOR,
+    },
+  } = commonData;
   const initNote: any = useSelector<RootStateOrAny>(
     state => state.notes.current_note,
   );
@@ -51,12 +63,49 @@ const TakeNotes = ({navigation}) => {
   const [noteTitle, setNoteTitle] = useState(initNote.title);
   const [currentNote, setCurrentNote] = useState(initNote.body);
 
+  const writerProps = {
+    noteTitle,
+    setNoteTitle,
+    currentNote,
+    setCurrentNote,
+    autoFocus: false,
+  };
+
+  const [keyboardShow, setKeyboardShow] = useState(false);
+  useEffect(() => {
+    const keyboardDidShowListener = Keyboard.addListener(
+      'keyboardDidShow',
+      () => {
+        setKeyboardShow(true);
+      },
+    );
+    const keyboardDidHideListener = Keyboard.addListener(
+      'keyboardDidHide',
+      () => {
+        setKeyboardShow(false);
+      },
+    );
+
+    return () => {
+      keyboardDidHideListener.remove();
+      keyboardDidShowListener.remove();
+    };
+  }, []);
+
   useEffect(() => {
     if (currentNote || noteTitle) {
       dispatch(
         changeCurrentNote({
           title: noteTitle,
           body: currentNote,
+          isStared: false,
+        }),
+      );
+    } else {
+      dispatch(
+        changeCurrentNote({
+          title: '',
+          body: '',
           isStared: false,
         }),
       );
@@ -81,66 +130,45 @@ const TakeNotes = ({navigation}) => {
     setNoteTitle('');
   };
   return (
-    <FullPage color={commonData.colors.DARK_THEME_COLOR}>
-      <TextInput
-        style={{
-          color: '#fff',
-          fontSize: 22,
-          fontFamily: 'Montserrat-SemiBold',
-          textAlign: 'center',
-          textDecorationLine: 'underline',
-          backgroundColor: commonData.colors.DARK_THEME_COLOR,
-        }}
-        placeholderTextColor="#556"
-        value={noteTitle}
-        onChangeText={text => setNoteTitle(text)}
-        placeholder="Note title"
-      />
-      <ScrollView
-        style={{backgroundColor: commonData.colors.BLACK_COLOR, padding: 5}}>
-        <TextInput
-          multiline={true}
-          style={{
-            color: '#fff',
-            fontSize: 20,
-            fontFamily: 'Montserrat-Medium',
-          }}
-          autoFocus={true}
-          value={currentNote}
-          onChangeText={text => setCurrentNote(text)}
-        />
-      </ScrollView>
-      <TouchableOpacity
-        style={{
-          height: 50,
-          width: 50,
-          borderRadius: 50,
-          position: 'absolute',
-          right: 30,
-          bottom: 30,
-          backgroundColor: commonData.colors.FINANCE_SECTION_COLOR,
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}
-        onPress={() => navigation.navigate('NoteList')}>
-        <DynamicIcon family="Feather" name="list" size={18} />
-      </TouchableOpacity>
-      <HomeButton onPress={() => navigation.navigate('Home')} />
-      <TouchableOpacity
-        style={{
-          height: 50,
-          width: 50,
-          borderRadius: 50,
-          position: 'absolute',
-          right: 30,
-          bottom: 90,
-          backgroundColor: commonData.colors.NOTES_SECTION_COLOR,
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}
-        onPress={saveAndAddNew}>
-        <DynamicIcon family="Entypo" name="plus" size={18} />
-      </TouchableOpacity>
+    <FullPage color={BLACK_COLOR}>
+      <NoteWriter {...writerProps} />
+      {/* {!keyboardShow ? (
+        <>
+          <TouchableOpacity
+            style={{
+              height: 50,
+              width: 50,
+              borderRadius: 50,
+              position: 'absolute',
+              right: 30,
+              bottom: 30,
+              backgroundColor: FINANCE_SECTION_COLOR,
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
+            onPress={() => navigation.navigate('NoteList')}>
+            <DynamicIcon family="Feather" name="list" size={18} />
+          </TouchableOpacity>
+
+          <HomeButton onPress={() => navigation.navigate('Home')} />
+
+          <TouchableOpacity
+            style={{
+              height: 50,
+              width: 50,
+              borderRadius: 50,
+              position: 'absolute',
+              right: 30,
+              bottom: 90,
+              backgroundColor: NOTES_SECTION_COLOR,
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
+            onPress={saveAndAddNew}>
+            <DynamicIcon family="Entypo" name="plus" size={18} />
+          </TouchableOpacity>
+        </>
+      ) : null} */}
       {/* <FloatingAction
         actions={actions}
         color={commonData.colors.NOTES_SECTION_COLOR}
@@ -150,6 +178,28 @@ const TakeNotes = ({navigation}) => {
           }
         }}
       /> */}
+      {!keyboardShow ? (
+        <BottomActions
+          actions={[
+            {
+              name: 'home',
+              onPress: function () {
+                navigation.navigate('Home');
+              },
+            },
+            {
+              name: 'lists',
+              onPress: function () {
+                navigation.navigate('NoteList');
+              },
+            },
+            {
+              name: 'add',
+              onPress: saveAndAddNew,
+            },
+          ]}
+        />
+      ) : null}
     </FullPage>
   );
 };

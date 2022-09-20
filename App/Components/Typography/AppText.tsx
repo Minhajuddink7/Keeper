@@ -7,20 +7,27 @@ type AppTextProps = {
   mr?: number;
   ml?: number;
   ta?: string;
+  selectable?: boolean;
+  td?: string;
 };
 
-const AppText = ({text, type, mr, ml, ta}: AppTextProps) => {
+const AppText = ({text, type, mr, ml, ta, selectable, td}: AppTextProps) => {
   const styleArr = type?.split(/[,]/);
   let textStyle: any = {
-    fontFamily: styleArr?.[0] || 'Montserrat-Regular',
+    fontFamily: styleArr?.[0] || commonData.fonts.REGULAR,
     color: styleArr?.[1] || commonData.colors.BLACK_COLOR,
     fontSize: styleArr?.[2] ? JSON.parse(styleArr[2]) : 14,
     marginLeft: ml || 0,
     marginRight: mr || 0,
     textAlign: ta || 'auto',
+    textDecorationLine: td || 'none',
   };
 
-  return <Text style={textStyle}>{text}</Text>;
+  return (
+    <Text style={textStyle} selectable={selectable || true}>
+      {text}
+    </Text>
+  );
 };
 
 export default AppText;
