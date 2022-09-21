@@ -32,6 +32,8 @@ import Quotes from './Quotes/Quotes';
 import TextBox from '../../Components/Inputs/TextBox';
 import BottomActions from '../../Components/BottomActions/BottomActions';
 import FullPage from '../../Components/Layouts/FullPage';
+import Todos from './Quotes/Todos';
+import {changeTodos} from '../../Data/redux/actions/checkerActions';
 //   import NoteCard from '../components/Note-List/NoteCard';
 const Checkers = ({navigation}) => {
   const dispatch = useDispatch();
@@ -42,7 +44,9 @@ const Checkers = ({navigation}) => {
     NOTES_SECTION_COLOR,
   } = commonData.colors;
   const layout = useWindowDimensions();
+  const todos: any = useSelector<RootStateOrAny>(state => state.checker.todos);
   const [index, setIndex] = useState(0);
+  const [todo, setTodo] = useState('');
   const [modalOpen, setModalOpen] = useState(false);
   const [viewedNote, setViewedNote] = useState({title: '', body: ''});
   const [selectedNote, setSelectedNote] = useState({id: ''});
@@ -61,16 +65,24 @@ const Checkers = ({navigation}) => {
   ]);
 
   const save = () => {
-    console.log(index);
+    if (!todo) {
+      showToast('Please enter your todo!');
+      return;
+    }
+    const newTodo = {
+      id: Date.now(),
+      title: todo,
+      isCompleted: false,
+    };
+    const newTodos = [...todos, newTodo];
+    dispatch(changeTodos(newTodos));
+    showToast('Todo Added!');
+    setTodo('');
   };
   const FirstRoute = () => {
     return (
       <View style={{flex: 1}}>
-        <ScrollView
-          style={{
-            backgroundColor: BLACK_COLOR,
-            paddingTop: 15,
-          }}></ScrollView>
+        <Todos />
       </View>
     );
   };
@@ -162,13 +174,21 @@ const Checkers = ({navigation}) => {
             <TextInput
               multiline={true}
               placeholder={placeholder}
+              placeholderTextColor="#777"
+              value={index === 0 ? todos : null}
+              onChangeText={text => {
+                if (index === 0) {
+                  setTodo(text);
+                }
+              }}
               style={{
                 borderWidth: 1,
-                borderRadius: 10,
+                borderRadius: 8,
                 paddingLeft: 10,
-                backgroundColor: BLACK_COLOR,
-                fontFamily: 'Kalam-Bold',
+                backgroundColor: DARK_THEME_COLOR,
+                fontFamily: 'Kalam-Regular',
                 fontSize: 20,
+                color: '#ddd',
               }}
               autoFocus={true}
               // numberOfLines={2}
@@ -200,25 +220,40 @@ const Checkers = ({navigation}) => {
         </View>
       </BottomModal>
       <BottomActions
-        actions={[
-          {
-            name: 'back',
-            onPress: function () {
-              navigation.goBack();
-            },
-          },
-          {
-            name: 'add',
-            onPress: addNew,
-          },
-          // {},
-          // {
-          //   name: 'lists',
-          //   onPress: function () {
-          //     navigation.navigate('NoteList');
-          //   },
-          // },
-        ]}
+        actions={
+          index === 1
+            ? [
+                {
+                  name: 'back',
+                  onPress: function () {
+                    navigation.goBack();
+                  },
+                },
+                {
+                  name: 'play',
+                  onPress: function () {
+                    navigation.goBack();
+                  },
+                },
+                {
+                  name: 'add',
+                  onPress: addNew,
+                },
+              ]
+            : [
+                {
+                  name: 'back',
+                  onPress: function () {
+                    navigation.goBack();
+                  },
+                },
+
+                {
+                  name: 'add',
+                  onPress: addNew,
+                },
+              ]
+        }
       />
       <NormalModal visible={modalOpen} setVisible={setModalOpen}>
         {/* <Text style={{color: '#000'}}> {viewedNote}</Text> */}
@@ -239,8 +274,10 @@ const Checkers = ({navigation}) => {
 export default Checkers;
 const styles = StyleSheet.create({
   modalAddRoom: {
+    borderWidth: 0.5,
+    borderColor: commonData.colors.CHECKER_SECTION_COLOR,
     maxHeight: '70%',
-    backgroundColor: '#bbb',
+    backgroundColor: '#000',
     borderTopLeftRadius: 16,
     borderTopRightRadius: 16,
     paddingBottom: 30,

@@ -2,6 +2,7 @@ const fontFamily = 'Kalam';
 export const commonData = {
   colors: {
     BLACK_COLOR: '#222',
+    // BLACK_COLOR: '#444',
     // DARK_THEME_COLOR: '#223',
     DARK_THEME_COLOR: '#000',
     NOTES_SECTION_COLOR: '#1F4788',

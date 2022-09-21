@@ -6,4 +6,12 @@ export const actionType = {
     deleteNote: 'DELETE_NOTE',
     toggleStared: 'TOGGLE_STARED',
   },
+  checkers: {
+    setQuotes: 'SET_QUOTES',
+    togglePinnedQuote: 'TOGGLE_PINNED_QUOTE',
+    deleteQuote: 'DELETE_QUOTE',
+    setTodos: 'SET_TODOS',
+    toggleTodo: 'TOGGLE_TODO',
+    deleteTodo: 'DELETE_TODO',
+  },
 };

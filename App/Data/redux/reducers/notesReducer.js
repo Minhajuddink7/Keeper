@@ -23,7 +23,7 @@ export default NotesReducer;
 
 const deleteNotes = (state, payload) => {
   const curNotes = [...state.notes];
-  console.log('hello');
+
   const updatedNotes = curNotes.filter(note => note.id !== payload);
   return {...state, notes: updatedNotes};
 };
@@ -37,12 +37,5 @@ const toggleStared = (state, payload) => {
       return {...note, isStared: !isStared};
     } else return note;
   });
-
-  // console.log('state:', notes);
   return {...state, notes: updatedNotes};
-
-  // return notes.map(note => {
-  //   if (note.id === id) return {...note, isStared: isStared};
-  //   else return note;
-  // });
 };

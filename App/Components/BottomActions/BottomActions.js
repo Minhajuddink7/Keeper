@@ -6,18 +6,41 @@ import DynamicIcon from '../Common/DynamicIcon';
 import {commonData} from '../../Data/static/commonData';
 
 const BottomActions = ({actions}) => {
+  const iconSizeAndColor = {size: 20, color: '#ccc'};
   function getActionButton(action) {
     switch (action) {
       case 'home':
-        return <DynamicIcon family="FontAwesome5" name="home" size={20} />;
+        return (
+          <DynamicIcon
+            family="FontAwesome5"
+            name="home"
+            {...iconSizeAndColor}
+          />
+        );
       case 'back':
         return (
-          <DynamicIcon family="FontAwesome5" name="chevron-left" size={20} />
+          <DynamicIcon
+            family="FontAwesome5"
+            name="chevron-left"
+            {...iconSizeAndColor}
+          />
         );
       case 'lists':
-        return <DynamicIcon family="Feather" name="list" size={20} />;
+        return (
+          <DynamicIcon family="Feather" name="list" {...iconSizeAndColor} />
+        );
       case 'add':
-        return <DynamicIcon family="Entypo" name="plus" size={20} />;
+        return (
+          <DynamicIcon family="Entypo" name="plus" {...iconSizeAndColor} />
+        );
+      case 'play':
+        return (
+          <DynamicIcon
+            family="MaterialIcons"
+            name="slideshow"
+            {...iconSizeAndColor}
+          />
+        );
     }
   }
   return (

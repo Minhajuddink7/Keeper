@@ -1,7 +1,15 @@
-import {StyleSheet, Text, View} from 'react-native';
+import {
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import React, {useState} from 'react';
 import AppText from '../../../Components/Typography/AppText';
 import {commonData} from '../../../Data/static/commonData';
+import DynamicIcon from '../../../Components/Common/DynamicIcon';
+import HStack from '../../../Components/Layouts/HStack';
 
 const Quotes = () => {
   const [quotes, setQuotes] = useState([
@@ -10,9 +18,33 @@ const Quotes = () => {
     {
       name: 'Yesterday I was clever, so I wanted to change the world. Today I am wise, so I am changing myself.',
     },
+    {
+      name: 'Yesterday I was clever, so I wanted to change the world. Today I am wise, so I am changing myself.',
+    },
+    {
+      name: 'Yesterday I was clever, so I wanted to change the world. Today I am wise, so I am changing myself.',
+    },
+    {
+      name: 'Yesterday I was clever, so I wanted to change the world. Today I am wise, so I am changing myself.',
+    },
+    {
+      name: 'Yesterday I was clever, so I wanted to change the world. Today I am wise, so I am changing myself.',
+    },
+    {
+      name: 'Yesterday I was clever, so I wanted to change the world. Today I am wise, so I am changing myself.',
+    },
+    {
+      name: 'Yesterday I was clever, so I wanted to change the world. Today I am wise, so I am changing myself.',
+    },
+    {
+      name: 'Yesterday I was clever, so I wanted to change the world. Today I am wise, so I am changing myself.',
+    },
+    {
+      name: 'Yesterday I was clever, so I wanted to change the world. Today I am wise, so I am changing myself.',
+    },
   ]);
   return (
-    <View>
+    <ScrollView>
       {quotes?.map((quote, i) => {
         return (
           <View
@@ -28,10 +60,29 @@ const Quotes = () => {
               text={`"${quote.name}"`}
               type={`${commonData.fonts.BOLD},#fff,18`}
             />
+            <HStack justifyContent="flex-end">
+              <TouchableOpacity>
+                <DynamicIcon
+                  color="#ccc"
+                  family="AntDesign"
+                  name="pushpino"
+                  size={16}
+                />
+              </TouchableOpacity>
+              <AppText text="   " />
+              <TouchableOpacity>
+                <DynamicIcon
+                  color="#ccc"
+                  family="FontAwesome5"
+                  name="trash"
+                  size={16}
+                />
+              </TouchableOpacity>
+            </HStack>
           </View>
         );
       })}
-    </View>
+    </ScrollView>
   );
 };
 

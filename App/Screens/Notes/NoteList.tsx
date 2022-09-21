@@ -204,7 +204,7 @@ const NoteList = ({navigation}) => {
         <View style={[styles.modalAddRoom]}>
           <Gap />
           <Container>
-            <AppText text="Confirm Delete?" type="Kalam-Bold,#000,18" />
+            <AppText text="Confirm Delete?" type="Kalam-Bold,#ccc,18" />
             <Gap />
             <HStack justifyContent="space-between">
               <View style={{flex: 0.47}}>
@@ -275,7 +275,9 @@ export default NoteList;
 const styles = StyleSheet.create({
   modalAddRoom: {
     maxHeight: '70%',
-    backgroundColor: '#bbb',
+    backgroundColor: '#000',
+    borderWidth: 0.5,
+    borderColor: commonData.colors.NOTES_SECTION_COLOR,
     borderTopLeftRadius: 16,
     borderTopRightRadius: 16,
     paddingBottom: 30,
