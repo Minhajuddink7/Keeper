@@ -24,8 +24,8 @@ const deleteTodo = (state, payload) => {
 };
 
 const toggleCompleted = (state, payload) => {
-  console.log('ss');
-  const {id} = payload;
+  const id = payload;
+  console.log(id);
   const todos = {...state}.todos;
   const updatedTodos = todos.map(todo => {
     const isCompleted = todo.isCompleted;

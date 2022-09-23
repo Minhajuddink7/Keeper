@@ -1,5 +1,5 @@
 export const actionType = {
-  ui: {setTheme: 'SET_THEME'},
+  ui: {setTheme: 'SET_THEME', changeUserState: 'CHANGE_USER_STATE'},
   notes: {
     setNotes: 'SET_NOTES',
     setCurrentNote: 'SET_CURRENT_NOTE',

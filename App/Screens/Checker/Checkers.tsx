@@ -34,6 +34,7 @@ import BottomActions from '../../Components/BottomActions/BottomActions';
 import FullPage from '../../Components/Layouts/FullPage';
 import Todos from './Quotes/Todos';
 import {changeTodos} from '../../Data/redux/actions/checkerActions';
+import RecycleTestComponent from '../../Components/Common/DraggableList';
 //   import NoteCard from '../components/Note-List/NoteCard';
 const Checkers = ({navigation}) => {
   const dispatch = useDispatch();
@@ -83,6 +84,7 @@ const Checkers = ({navigation}) => {
     return (
       <View style={{flex: 1}}>
         <Todos />
+        {/* <RecycleTestComponent /> */}
       </View>
     );
   };

@@ -45,12 +45,22 @@ const Todos = () => {
               borderRadius: 6,
               borderColor: commonData.colors.CHECKER_SECTION_COLOR,
             }}>
-            <AppText
-              td={todo.isCompleted ? 'line-through' : 'none'}
-              text={todo.title}
-              //   text={`"${quote.name}"`}
-              type={`${commonData.fonts.BOLD},#fff,18`}
-            />
+            <HStack alignItems="flex-start">
+              <TouchableOpacity style={{marginTop: 5, marginRight: 15}}>
+                <DynamicIcon
+                  family="FontAwesome"
+                  name="reorder"
+                  color="#ccc"
+                  size={20}
+                />
+              </TouchableOpacity>
+              <AppText
+                td={todo.isCompleted ? 'line-through' : 'none'}
+                text={todo.title}
+                //   text={`"${quote.name}"`}
+                type={`${commonData.fonts.BOLD},#fff,18`}
+              />
+            </HStack>
             <HStack justifyContent="flex-end">
               <TouchableOpacity onPress={() => toggleCompletedTodo(todo.id)}>
                 {todo.isCompleted ? (

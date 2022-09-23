@@ -9,17 +9,44 @@ import RNBootSplash from 'react-native-bootsplash';
 import NoteView from '../Notes/NoteView';
 import Checkers from '../Checker/Checkers';
 import EditNote from '../Notes/EditNote';
+import LoginScreen from '../LoginScreen';
+import {useSelector} from 'react-redux';
 
 const RootNavigator = () => {
+  const userLoggedIn = useSelector(state => state.ui.userLoggedIn);
+  console.log('logged in: ', userLoggedIn);
   const Stack = createNativeStackNavigator();
+
   return (
     <NavigationContainer onReady={() => RNBootSplash.hide()}>
       <Stack.Navigator>
-        <Stack.Screen
-          name="Home"
-          component={HomeScreen}
-          options={{headerShown: false}}
-        />
+        {userLoggedIn ? (
+          <>
+            <Stack.Screen
+              name="Home"
+              component={HomeScreen}
+              options={{headerShown: false}}
+            />
+            <Stack.Screen
+              name="LoginScreen"
+              component={LoginScreen}
+              options={{headerShown: false}}
+            />
+          </>
+        ) : (
+          <>
+            <Stack.Screen
+              name="LoginScreen"
+              component={LoginScreen}
+              options={{headerShown: false}}
+            />
+            <Stack.Screen
+              name="Home"
+              component={HomeScreen}
+              options={{headerShown: false}}
+            />
+          </>
+        )}
 
         {/* Notes */}
         <Stack.Screen

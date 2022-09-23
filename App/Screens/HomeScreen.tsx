@@ -1,5 +1,5 @@
 import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import HStack from '../Components/Layouts/HStack';
 import DynamicIcon from '../Components/Common/DynamicIcon';
 import Gap from '../Components/Common/Gap';
@@ -7,6 +7,13 @@ import AppText from '../Components/Typography/AppText';
 import {showToast} from '../Helpers/utils';
 import {commonData} from '../Data/static/commonData';
 import FullPage from '../Components/Layouts/FullPage';
+import MaterialMenu from '../Components/Common/MaterialMenu';
+import {MenuDivider, MenuItem} from 'react-native-material-menu';
+import {signOut} from 'firebase/auth';
+import {authentication, db} from '../../firebase/firebase-config';
+import {RootStateOrAny, useDispatch, useSelector} from 'react-redux';
+import {changeUserState} from '../Data/redux/actions/uiActions';
+import {collection, getDocs} from 'firebase/firestore/lite';
 const {
   colors: {
     NOTES_SECTION_COLOR,
@@ -15,7 +22,7 @@ const {
     CHECKER_SECTION_COLOR,
   },
 } = commonData;
-const MenuItem = ({family, name, text, size = 20}) => {
+const Menu = ({family, name, text, size = 20}) => {
   return (
     <>
       <DynamicIcon family={family} name={name} size={size} color="#fff" />
@@ -29,8 +36,50 @@ function comingSoon() {
   showToast('This feature is coming soon!');
 }
 const HomeScreen = ({navigation}) => {
+  const [menuVisible, setMenuVisible] = useState(false);
+  const dispatch = useDispatch();
+  const userLoggedIn: any = useSelector<RootStateOrAny>(
+    state => state.ui.userLoggedIn,
+  );
+
+  const signOutUser = () => {
+    signOut(authentication)
+      .then(res => {
+        dispatch(changeUserState(false));
+        navigation.navigate('LoginScreen');
+      })
+      .catch(e => console.log(e));
+  };
+  const getData = async () => {
+    try {
+      const citiesCol = collection(db, 'notes');
+      const citySnapShot = await getDocs(citiesCol);
+      const cityList = citySnapShot.docs.map(doc => doc.data());
+      console.log(cityList);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  useEffect(() => {
+    getData();
+  }, []);
   return (
     <FullPage color={commonData.colors.DARK_THEME_COLOR}>
+      <View style={{alignItems: 'flex-end', marginRight: 15, marginTop: 15}}>
+        <MaterialMenu visible={menuVisible} setVisible={setMenuVisible}>
+          <MenuItem onPress={signOutUser} textStyle={{color: '#000'}}>
+            Sign Out
+          </MenuItem>
+          <MenuDivider />
+          <MenuItem onPress={() => {}} textStyle={{color: '#000'}}>
+            Fetch
+          </MenuItem>
+          <MenuDivider />
+          <MenuItem onPress={() => {}} textStyle={{color: '#000'}}>
+            Push Data
+          </MenuItem>
+        </MaterialMenu>
+      </View>
       <View
         style={{
           flex: 1,
@@ -45,7 +94,7 @@ const HomeScreen = ({navigation}) => {
               borderTopLeftRadius: 8,
             }}
             onPress={() => navigation.navigate('TakeNotes')}>
-            <MenuItem family="FontAwesome5" name="pen" text="Notes" />
+            <Menu family="FontAwesome5" name="pen" text="Notes" />
           </TouchableOpacity>
           <TouchableOpacity
             style={{
@@ -54,11 +103,7 @@ const HomeScreen = ({navigation}) => {
               borderTopRightRadius: 8,
             }}
             onPress={comingSoon}>
-            <MenuItem
-              family="FontAwesome5"
-              name="money-bill-wave"
-              text="Finance"
-            />
+            <Menu family="FontAwesome5" name="money-bill-wave" text="Finance" />
           </TouchableOpacity>
         </HStack>
         <HStack>
@@ -69,7 +114,7 @@ const HomeScreen = ({navigation}) => {
               borderBottomLeftRadius: 8,
             }}
             onPress={comingSoon}>
-            <MenuItem
+            <Menu
               family="FontAwesome5"
               name="heartbeat"
               text="Health"
@@ -83,7 +128,7 @@ const HomeScreen = ({navigation}) => {
               borderBottomRightRadius: 8,
             }}
             onPress={() => navigation.navigate('Checkers')}>
-            <MenuItem
+            <Menu
               family="FontAwesome5"
               // name="check-square-o"
               name="tasks"
