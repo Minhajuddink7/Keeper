@@ -61,10 +61,10 @@ const BottomActions = ({actions}) => {
         borderWidth: 0.5,
       }}>
       <HStack justifyContent="space-around">
-        {actions?.map(action => {
+        {actions?.map((action, i) => {
           return (
             <TouchableOpacity
-              key={action.name}
+              key={i}
               onPress={action.onPress}
               style={{padding: 10}}>
               {getActionButton(action.name)}

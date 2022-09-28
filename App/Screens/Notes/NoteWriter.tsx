@@ -27,22 +27,25 @@ const NoteWriter = ({
         onChangeText={text => setNoteTitle(text)}
         placeholder="Note title"
       />
-      <KeyboardAwareScrollView
-        style={{backgroundColor: BLACK_COLOR, padding: 5}}>
+      <ScrollView style={{backgroundColor: BLACK_COLOR, padding: 5}}>
         <TextInput
           multiline={true}
-          // numberOfLines={100}
+          numberOfLines={70}
           style={{
             color: '#fff',
+            // marginTop: -910,
             fontSize: 20,
             // fontFamily: MEDIUM,
+            // borderWidth: 1,
+            // borderColor: '#000',
             fontFamily: 'Kalam-Regular',
+            // backgroundColor: 'red',
           }}
           autoFocus={autoFocus}
           value={currentNote}
           onChangeText={text => setCurrentNote(text)}
         />
-      </KeyboardAwareScrollView>
+      </ScrollView>
     </>
   );
 };
