@@ -7,6 +7,7 @@ import UpdateButton from '../../Components/Buttons/UpdateButton';
 import {RootStateOrAny, useDispatch, useSelector} from 'react-redux';
 import {changeNotes} from '../../Data/redux/actions/notesActions';
 import {showToast} from '../../Helpers/utils';
+import BottomActions from '../../Components/BottomActions/BottomActions';
 
 const EditNote = ({navigation, route}) => {
   const {note} = route.params;
@@ -65,11 +66,32 @@ const EditNote = ({navigation, route}) => {
     <FullPage color="#000">
       <NoteWriter {...writerProps} />
       {!keyboardShow ? (
-        <>
-          <BackButton navigation={navigation} color="red" />
-          <UpdateButton navigation={navigation} onUpdate={updateNote} />
-        </>
-      ) : null}
+        <BottomActions
+          actions={[
+            {
+              name: 'back',
+              onPress: function () {
+                navigation.goBack();
+              },
+            },
+            {
+              name: 'home',
+              onPress: function () {
+                navigation.navigate('Home');
+              },
+            },
+            // {},
+            {
+              name: 'update',
+              onPress: updateNote,
+            },
+          ]}
+        />
+      ) : // <>
+      //   <BackButton navigation={navigation} color="red" />
+      //   <UpdateButton navigation={navigation} onUpdate={updateNote} />
+      // </>
+      null}
     </FullPage>
   );
 };
