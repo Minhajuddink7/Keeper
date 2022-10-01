@@ -15,8 +15,8 @@ import {commonData} from '../Data/static/commonData';
 import FullPage from '../Components/Layouts/FullPage';
 import MaterialMenu from '../Components/Common/MaterialMenu';
 import {MenuDivider, MenuItem} from 'react-native-material-menu';
-import {signOut} from 'firebase/auth';
-import {authentication, db} from '../../firebase/firebase-config';
+// import {signOut} from 'firebase/auth';
+// import {authentication, db} from '../../firebase/firebase-config';
 import {RootStateOrAny, useDispatch, useSelector, useStore} from 'react-redux';
 import {changeUserState} from '../Data/redux/actions/uiActions';
 // import {collection, getDocs} from 'firebase/firestore/lite';
@@ -71,12 +71,12 @@ const HomeScreen = ({navigation}) => {
   );
 
   const signOutUser = () => {
-    signOut(authentication)
-      .then(res => {
-        dispatch(changeUserState(false));
-        navigation.navigate('LoginScreen');
-      })
-      .catch(e => console.log(e));
+    // signOut(authentication)
+    //   .then(res => {
+    //     dispatch(changeUserState(false));
+    //     navigation.navigate('LoginScreen');
+    //   })
+    //   .catch(e => console.log(e));
   };
   // const getData = async () => {
   //   try {

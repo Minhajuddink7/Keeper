@@ -10,12 +10,12 @@ import React, {useState} from 'react';
 import FullPage from '../Components/Layouts/FullPage';
 import AppText from '../Components/Typography/AppText';
 import {commonData} from '../Data/static/commonData';
-import {
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  signOut,
-} from 'firebase/auth';
-import {authentication} from '../../firebase/firebase-config';
+// import {
+//   createUserWithEmailAndPassword,
+//   signInWithEmailAndPassword,
+//   signOut,
+// } from 'firebase/auth';
+// import {authentication} from '../../firebase/firebase-config';
 import TextLink from '../Components/Typography/TextLink';
 import Gap from '../Components/Common/Gap';
 import {useDispatch} from 'react-redux';
@@ -27,23 +27,23 @@ const LoginScreen = ({navigation}) => {
 
   const [password, setPassword] = useState('');
   const dispatch = useDispatch();
-  const register = () => {
-    if (email && password) {
-      createUserWithEmailAndPassword(authentication, email, password)
-        .then(res => {
-          setCurrentScreen('signin');
-        })
-        .catch(e => console.log(e));
-    }
-  };
-  const signin = () => {
-    signInWithEmailAndPassword(authentication, email, password)
-      .then(res => {
-        dispatch(changeUserState(true));
-        navigation.navigate('Home');
-      })
-      .catch(e => console.log(e));
-  };
+  // const register = () => {
+  //   if (email && password) {
+  //     createUserWithEmailAndPassword(authentication, email, password)
+  //       .then(res => {
+  //         setCurrentScreen('signin');
+  //       })
+  //       .catch(e => console.log(e));
+  //   }
+  // };
+  // const signin = () => {
+  //   signInWithEmailAndPassword(authentication, email, password)
+  //     .then(res => {
+  //       dispatch(changeUserState(true));
+  //       navigation.navigate('Home');
+  //     })
+  //     .catch(e => console.log(e));
+  // };
   return (
     <FullPage color={'#000'}>
       <View
@@ -81,7 +81,8 @@ const LoginScreen = ({navigation}) => {
               marginTop: 10,
               paddingVertical: 15,
             }}
-            onPress={register}>
+            // onPress={register}
+          >
             <AppText text="Register" type=",#ccc,18" />
           </TouchableOpacity>
         ) : (
@@ -95,7 +96,8 @@ const LoginScreen = ({navigation}) => {
               marginTop: 10,
               paddingVertical: 15,
             }}
-            onPress={signin}>
+            // onPress={signin}
+          >
             <AppText text="Sign In" type=",#ccc,18" />
           </TouchableOpacity>
         )}

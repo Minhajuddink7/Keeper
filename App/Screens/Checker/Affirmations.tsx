@@ -46,7 +46,7 @@ const Affirmations = () => {
                 borderColor: commonData.colors.CHECKER_SECTION_COLOR,
               }}>
               <AppText
-                text={`"${affirmation.affirmation}"`}
+                text={affirmation.affirmation}
                 type={`${commonData.fonts.BOLD},#fff,18`}
               />
               <HStack justifyContent="flex-end">

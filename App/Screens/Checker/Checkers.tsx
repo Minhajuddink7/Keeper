@@ -65,6 +65,8 @@ const Checkers = ({navigation}) => {
   const [modalOpen, setModalOpen] = useState(false);
   const [viewedNote, setViewedNote] = useState({title: '', body: ''});
   const [selectedNote, setSelectedNote] = useState({id: ''});
+  const [affirmationMode, setAffirmationMode] = useState(false);
+  const [affirmationIndex, setAffirmationIndex] = useState(0);
   const placeholder =
     index === 0
       ? 'Enter your todo!'
@@ -144,7 +146,77 @@ const Checkers = ({navigation}) => {
   const SecondRoute = () => {
     return (
       <View style={{flex: 1}}>
-        <Affirmations />
+        {affirmationMode ? (
+          <>
+            <View
+              style={{
+                // backgroundColor: 'red',
+                flex: 1,
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}>
+              <AppText
+                text={affirmations[affirmationIndex].affirmation}
+                type={`${commonData.fonts.BOLD},#fff,25`}
+                ml={10}
+                mr={10}
+                ta="center"
+              />
+            </View>
+            <View
+              style={{
+                flexDirection: 'row',
+                // backgroundColor: 'red',
+                alignItems: 'center',
+                justifyContent: 'center',
+                // marginTop: 'auto',
+              }}>
+              <TouchableOpacity
+                style={{
+                  ...styles.actionButton,
+                  borderTopLeftRadius: 25,
+                  borderBottomLeftRadius: 25,
+                  borderTopRightRadius: 10,
+                  borderBottomRightRadius: 10,
+                  marginRight: 15,
+                }}
+                onPress={() => {
+                  if (affirmationIndex < affirmations?.length - 1)
+                    setAffirmationIndex(affirmationIndex - 1);
+                  else {
+                    setAffirmationIndex(0);
+                    showToast('You completed one cycle');
+                  }
+                }}>
+                <DynamicIcon
+                  family="FontAwesome"
+                  name="chevron-left"
+                  color="#bbb"
+                />
+                {/* <AppText text="Next" type=",#ccc,16" /> */}
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.actionButton}
+                onPress={() => {
+                  if (affirmationIndex < affirmations?.length - 1)
+                    setAffirmationIndex(affirmationIndex + 1);
+                  else {
+                    setAffirmationIndex(0);
+                    showToast('You completed your cycle');
+                  }
+                }}>
+                <DynamicIcon
+                  family="FontAwesome"
+                  name="chevron-right"
+                  color="#bbb"
+                />
+                {/* <AppText text="Next" type=",#ccc,16" /> */}
+              </TouchableOpacity>
+            </View>
+          </>
+        ) : (
+          <Affirmations />
+        )}
       </View>
     );
   };
@@ -284,9 +356,9 @@ const Checkers = ({navigation}) => {
                   },
                 },
                 {
-                  name: 'play',
+                  name: affirmationMode ? 'lists' : 'play',
                   onPress: function () {
-                    navigation.goBack();
+                    setAffirmationMode(!affirmationMode);
                   },
                 },
                 {
@@ -335,5 +407,20 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 16,
     borderTopRightRadius: 16,
     paddingBottom: 30,
+  },
+  actionButton: {
+    // width: '36%',
+    backgroundColor: commonData.colors.CHECKER_SECTION_COLOR,
+    borderTopRightRadius: 50,
+    borderBottomRightRadius: 50,
+    borderTopLeftRadius: 10,
+    borderBottomLeftRadius: 10,
+    height: 45,
+    width: 75,
+    alignItems: 'center',
+    justifyContent: 'center',
+    // marginTop: 'auto',
+    // alignSelf: 'center',
+    marginBottom: 15,
   },
 });

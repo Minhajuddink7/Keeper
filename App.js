@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import FullPage from './App/Components/Layouts/FullPage';
-import {authentication, db} from './firebase/firebase-config';
+// import {authentication, db} from './firebase/firebase-config';
 import {commonData} from './App/Data/static/commonData';
 import 'react-native-gesture-handler';
 import RootNavigator from './App/Screens/Navigations/RootNavigator';
@@ -10,7 +10,7 @@ import {PersistGate} from 'redux-persist/integration/react';
 import storeConfig from './App/Data/redux/store';
 import {SafeAreaView, StatusBar, StyleSheet, View} from 'react-native';
 
-import {collection, getDocs} from 'firebase/firestore/lite';
+// import {collection, getDocs} from 'firebase/firestore/lite';
 const Root = () => {
   useEffect(() => {
     // setTimeout(() => {
