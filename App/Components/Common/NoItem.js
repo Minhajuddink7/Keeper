@@ -9,8 +9,8 @@ const NoItem = ({text, color}) => {
         style={{
           marginTop: 15,
           textAlign: 'center',
-          fontFamily: 'Montserrat-Medium',
-          fontSize: 16,
+          fontFamily: 'Kalam-Bold',
+          fontSize: 22,
           color: '#fff',
         }}>
         {text}

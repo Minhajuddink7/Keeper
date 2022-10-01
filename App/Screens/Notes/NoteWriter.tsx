@@ -30,7 +30,9 @@ const NoteWriter = ({
       <ScrollView style={{backgroundColor: BLACK_COLOR, padding: 5}}>
         <TextInput
           multiline={true}
-          numberOfLines={70}
+          // numberOfLines={70}
+          placeholderTextColor="#556"
+          placeholder="Start taking notes...."
           style={{
             color: '#fff',
             // marginTop: -910,

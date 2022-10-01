@@ -20,7 +20,7 @@ const RootNavigator = () => {
   return (
     <NavigationContainer onReady={() => RNBootSplash.hide()}>
       <Stack.Navigator>
-        {userLoggedIn ? (
+        {/* {userLoggedIn ? (
           <>
             <Stack.Screen
               name="Home"
@@ -46,8 +46,12 @@ const RootNavigator = () => {
               options={{headerShown: false}}
             />
           </>
-        )}
-
+        )} */}
+        <Stack.Screen
+          name="Home"
+          component={HomeScreen}
+          options={{headerShown: false}}
+        />
         {/* Notes */}
         <Stack.Screen
           name="TakeNotes"

@@ -7,11 +7,17 @@ export const actionType = {
     toggleStared: 'TOGGLE_STARED',
   },
   checkers: {
-    setQuotes: 'SET_QUOTES',
-    togglePinnedQuote: 'TOGGLE_PINNED_QUOTE',
-    deleteQuote: 'DELETE_QUOTE',
+    //todos
     setTodos: 'SET_TODOS',
     toggleTodo: 'TOGGLE_TODO',
     deleteTodo: 'DELETE_TODO',
+    //affirmation
+    setAffirmations: 'SET_AFFIRMATIONs',
+    deleteAffirmation: 'DELETE_AFFIRMATION',
+
+    //quotes
+    setQuotes: 'SET_QUOTES',
+    togglePinnedQuote: 'TOGGLE_PINNED_QUOTE',
+    deleteQuote: 'DELETE_QUOTE',
   },
 };

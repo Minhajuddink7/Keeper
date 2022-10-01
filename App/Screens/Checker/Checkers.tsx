@@ -28,13 +28,18 @@ import {showToast} from '../../Helpers/utils';
 import NoItem from '../../Components/Common/NoItem';
 import HomeButton from '../../Components/Buttons/HomeButton';
 import BackButton from '../../Components/Buttons/BackButton';
-import Quotes from './Quotes/Quotes';
+import Quotes from './Quotes';
 import TextBox from '../../Components/Inputs/TextBox';
 import BottomActions from '../../Components/BottomActions/BottomActions';
 import FullPage from '../../Components/Layouts/FullPage';
-import Todos from './Quotes/Todos';
-import {changeTodos} from '../../Data/redux/actions/checkerActions';
-import RecycleTestComponent from '../../Components/Common/DraggableList';
+import Todos from './Todos';
+import {
+  changeAffirmations,
+  changeQuotes,
+  changeTodos,
+} from '../../Data/redux/actions/checkerActions';
+import Affirmations from './Affirmations';
+// import RecycleTestComponent from '../../Components/Common/DraggableList';
 //   import NoteCard from '../components/Note-List/NoteCard';
 const Checkers = ({navigation}) => {
   const dispatch = useDispatch();
@@ -46,8 +51,17 @@ const Checkers = ({navigation}) => {
   } = commonData.colors;
   const layout = useWindowDimensions();
   const todos: any = useSelector<RootStateOrAny>(state => state.checker.todos);
+  const quotes: any = useSelector<RootStateOrAny>(
+    state => state.checker.quotes,
+  );
+  const affirmations: any = useSelector<RootStateOrAny>(
+    state => state.checker.affirmations,
+  );
+
   const [index, setIndex] = useState(0);
   const [todo, setTodo] = useState('');
+  const [affirmation, setAffirmation] = useState('');
+  const [quote, setQuote] = useState('');
   const [modalOpen, setModalOpen] = useState(false);
   const [viewedNote, setViewedNote] = useState({title: '', body: ''});
   const [selectedNote, setSelectedNote] = useState({id: ''});
@@ -65,7 +79,7 @@ const Checkers = ({navigation}) => {
     {key: 'third', title: 'Quotes'},
   ]);
 
-  const save = () => {
+  const addTodo = () => {
     if (!todo) {
       showToast('Please enter your todo!');
       return;
@@ -80,11 +94,49 @@ const Checkers = ({navigation}) => {
     showToast('Todo Added!');
     setTodo('');
   };
+  const addAffirmation = () => {
+    if (!affirmation) {
+      showToast('Please enter a new affirmation!');
+      return;
+    }
+    const newAffirmation = {id: Date.now(), affirmation};
+    const newAffirmations = [...affirmations, newAffirmation];
+    dispatch(changeAffirmations(newAffirmations));
+    showToast('Affirmation Added');
+    setAffirmation('');
+  };
+  const addQuote = () => {
+    if (!quote) {
+      showToast('Please enter a quote!');
+      return;
+    }
+    const newQuote = {id: Date.now(), quote};
+    const newQuotes = [...quotes, newQuote];
+    dispatch(changeQuotes(newQuotes));
+    showToast('Quote Added');
+    setQuote('');
+  };
+  const save = () => {
+    switch (index) {
+      case 0:
+        addTodo();
+        break;
+      case 1:
+        addAffirmation();
+        break;
+      case 2:
+        addQuote();
+        break;
+
+      default:
+        break;
+    }
+    return;
+  };
   const FirstRoute = () => {
     return (
       <View style={{flex: 1}}>
         <Todos />
-        {/* <RecycleTestComponent /> */}
       </View>
     );
   };
@@ -92,11 +144,7 @@ const Checkers = ({navigation}) => {
   const SecondRoute = () => {
     return (
       <View style={{flex: 1}}>
-        <ScrollView
-          style={{
-            backgroundColor: BLACK_COLOR,
-            paddingTop: 15,
-          }}></ScrollView>
+        <Affirmations />
       </View>
     );
   };
@@ -177,10 +225,14 @@ const Checkers = ({navigation}) => {
               multiline={true}
               placeholder={placeholder}
               placeholderTextColor="#777"
-              value={index === 0 ? todos : null}
+              value={index === 0 ? todo : index === 1 ? affirmation : quote}
               onChangeText={text => {
                 if (index === 0) {
                   setTodo(text);
+                } else if (index === 1) {
+                  setAffirmation(text);
+                } else {
+                  setQuote(text);
                 }
               }}
               style={{

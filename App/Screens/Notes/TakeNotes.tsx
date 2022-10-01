@@ -132,52 +132,7 @@ const TakeNotes = ({navigation}) => {
   return (
     <FullPage color={BLACK_COLOR}>
       <NoteWriter {...writerProps} />
-      {/* {!keyboardShow ? (
-        <>
-          <TouchableOpacity
-            style={{
-              height: 50,
-              width: 50,
-              borderRadius: 50,
-              position: 'absolute',
-              right: 30,
-              bottom: 30,
-              backgroundColor: FINANCE_SECTION_COLOR,
-              alignItems: 'center',
-              justifyContent: 'center',
-            }}
-            onPress={() => navigation.navigate('NoteList')}>
-            <DynamicIcon family="Feather" name="list" size={18} />
-          </TouchableOpacity>
 
-          <HomeButton onPress={() => navigation.navigate('Home')} />
-
-          <TouchableOpacity
-            style={{
-              height: 50,
-              width: 50,
-              borderRadius: 50,
-              position: 'absolute',
-              right: 30,
-              bottom: 90,
-              backgroundColor: NOTES_SECTION_COLOR,
-              alignItems: 'center',
-              justifyContent: 'center',
-            }}
-            onPress={saveAndAddNew}>
-            <DynamicIcon family="Entypo" name="plus" size={18} />
-          </TouchableOpacity>
-        </>
-      ) : null} */}
-      {/* <FloatingAction
-        actions={actions}
-        color={commonData.colors.NOTES_SECTION_COLOR}
-        onPressItem={name => {
-          if (name === 'ADD_NOTE') {
-            saveAndAddNew();
-          }
-        }}
-      /> */}
       {!keyboardShow ? (
         <BottomActions
           actions={[

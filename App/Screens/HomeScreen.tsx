@@ -25,6 +25,11 @@ import {
   changeCurrentNote,
   changeNotes,
 } from '../Data/redux/actions/notesActions';
+import {
+  changeAffirmations,
+  changeQuotes,
+  changeTodos,
+} from '../Data/redux/actions/checkerActions';
 // import store from '../Data/redux/store';
 // import {useFocusEffect} from '@react-navigation/native';
 
@@ -114,7 +119,7 @@ const HomeScreen = ({navigation}) => {
   };
   useEffect(() => {
     if (localData) {
-      console.log('local data :', localData.notes.current_note);
+      // console.log('local data :', localData.checker.todos);
       // return;
       dispatch(changeNotes(localData.notes.notes));
       const {title, body, isStared} = localData.notes.current_note;
@@ -125,6 +130,10 @@ const HomeScreen = ({navigation}) => {
           isStared,
         }),
       );
+      dispatch(changeQuotes(localData.checker.quotes));
+      dispatch(changeTodos(localData.checker.todos));
+      dispatch(changeAffirmations(localData.checker.affirmations));
+
       // dispatch(changeCurrentNote(localData.notes.notes));
     }
     // getData();
