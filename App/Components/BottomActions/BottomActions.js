@@ -49,6 +49,14 @@ const BottomActions = ({actions}) => {
             {...iconSizeAndColor}
           />
         );
+      case 'filter':
+        return (
+          <DynamicIcon
+            family="FontAwesome"
+            name="filter"
+            {...iconSizeAndColor}
+          />
+        );
     }
   }
   return (

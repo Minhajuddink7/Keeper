@@ -54,8 +54,8 @@ const NoteCard = ({note, onDelete, onPeek, onSelect, onEdit}) => {
           }}
           onPress={onPeek}>
           <DynamicIcon
-            name="eye"
-            family="FontAwesome5"
+            name="label-important"
+            family="MaterialIcons"
             size={18}
             color="#fff"
           />

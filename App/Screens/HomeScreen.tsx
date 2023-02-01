@@ -4,6 +4,7 @@ import {
   TouchableOpacity,
   StyleSheet,
   PermissionsAndroid,
+  Linking,
 } from 'react-native';
 import React, {useCallback, useEffect, useState} from 'react';
 import HStack from '../Components/Layouts/HStack';
@@ -61,7 +62,8 @@ const HomeScreen = ({navigation}) => {
   //     console.log('store: ', JSON.stringify(getStore.getState()));
   //   }, []),
   // );
-  const path = RNFS.ExternalStorageDirectoryPath + '/keeper_app_db.json';
+  // const path = RNFS.ExternalStorageDirectoryPath + '/keeper_app_db.json';
+  const path = RNFS.DownloadDirectoryPath + '/keeper_app_db.json';
 
   const [menuVisible, setMenuVisible] = useState(false);
   const [localData, setLocalData]: any = useState();
@@ -101,8 +103,32 @@ const HomeScreen = ({navigation}) => {
     }
     console.log('path: ', path);
   };
+  // const requestPermission = async () => {
+  //   console.log('hello');
+  //   try {
+  //     const granted = await PermissionsAndroid.request(
+  //       PermissionsAndroid.PERMISSIONS.CAMERA,
+  //       {
+  //         title: 'Cool Photo App Camera Permission',
+  //         message:
+  //           'Cool Photo App needs access to your camera ' +
+  //           'so you can take awesome pictures.',
+  //         buttonNeutral: 'Ask Me Later',
+  //         buttonNegative: 'Cancel',
+  //         buttonPositive: 'OK',
+  //       },
+  //     );
+  //     if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+  //       console.log('You can use the camera');
+  //     } else {
+  //       console.log('Camera permission denied');
+  //     }
+  //   } catch (err) {
+  //     console.warn(err);
+  //   }
+  // };
   const readFromPhone = async () => {
-    RNFS.readFile('/storage/emulated/0/keeper_app_db.json', 'ascii')
+    RNFS.readFile(RNFS.DownloadDirectoryPath + '/keeper_app_db.json', 'ascii')
       .then(res => {
         // console.log(res);
         // const d = JSON.parse(res);
@@ -113,6 +139,7 @@ const HomeScreen = ({navigation}) => {
         // this.setState({ co/ntent: res, fruitType: d.type });
       })
       .catch(err => {
+        // Linking.openSettings();
         showToast('Error Occured');
         console.log(err.message, err.code);
       });

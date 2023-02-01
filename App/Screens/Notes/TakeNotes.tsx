@@ -123,7 +123,7 @@ const TakeNotes = ({navigation}) => {
       body: currentNote,
       isStared: false,
     };
-    const newNotes = [...notes, note];
+    const newNotes = [note, ...notes];
     dispatch(changeNotes(newNotes));
     showToast('Note Saved!');
     setCurrentNote('');

@@ -27,7 +27,7 @@ const NoteWriter = ({
         onChangeText={text => setNoteTitle(text)}
         placeholder="Note title"
       />
-      <ScrollView style={{backgroundColor: BLACK_COLOR, padding: 5}}>
+      <View style={{backgroundColor: BLACK_COLOR, padding: 5, flex: 1}}>
         <TextInput
           multiline={true}
           // numberOfLines={70}
@@ -47,7 +47,7 @@ const NoteWriter = ({
           value={currentNote}
           onChangeText={text => setCurrentNote(text)}
         />
-      </ScrollView>
+      </View>
     </>
   );
 };

@@ -8,6 +8,7 @@ buildscript {
         minSdkVersion = 23
         compileSdkVersion = 31
         targetSdkVersion = 31
+        multiDexEnabled = true
 
         if (System.properties['os.arch'] == "aarch64") {
             // For M1 Users we need to use the NDK 24 which added support for aarch64
@@ -29,6 +30,12 @@ buildscript {
         // in the individual module build.gradle files
     }
 }
+
+// android{
+//     dexOptions {
+//    javaMaxHeapSize "4g"
+//    }
+// }
 
 allprojects {
     repositories {

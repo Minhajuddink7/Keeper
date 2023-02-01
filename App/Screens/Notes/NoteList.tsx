@@ -29,6 +29,8 @@ import HomeButton from '../../Components/Buttons/HomeButton';
 import BackButton from '../../Components/Buttons/BackButton';
 import BottomActions from '../../Components/BottomActions/BottomActions';
 import FullPage from '../../Components/Layouts/FullPage';
+import {MenuDivider} from 'react-native-material-menu';
+import Divider from '../../Components/Common/Divider';
 //   import NoteCard from '../components/Note-List/NoteCard';
 const NoteList = ({navigation}) => {
   const dispatch = useDispatch();
@@ -44,7 +46,8 @@ const NoteList = ({navigation}) => {
   const [viewedNote, setViewedNote] = useState({title: '', body: ''});
   const [selectedNote, setSelectedNote] = useState({id: ''});
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
-  const [routes] = React.useState([
+  const [labelModalOpen, setLabelModalOpen] = useState(false);
+  const [routes, setRoutes] = React.useState([
     {key: 'first', title: 'All Notes'},
     {key: 'second', title: 'Stared'},
   ]);
@@ -133,6 +136,15 @@ const NoteList = ({navigation}) => {
       </View>
     );
   };
+
+  const FilterItem = ({text}) => {
+    return (
+      <TouchableOpacity onPress={() => {}}>
+        <AppText text={text} type="Kalam-Regular,,18" ta="center" />
+        <MenuDivider />
+      </TouchableOpacity>
+    );
+  };
   const renderScene = SceneMap({
     first: FirstRoute,
     second: SecondRoute,
@@ -184,6 +196,13 @@ const NoteList = ({navigation}) => {
             },
           },
           {
+            name: 'filter',
+            onPress: function () {
+              setLabelModalOpen(true);
+              // navigation.navigate('Home');
+            },
+          },
+          {
             name: 'home',
             onPress: function () {
               navigation.navigate('Home');
@@ -231,6 +250,21 @@ const NoteList = ({navigation}) => {
           </Container>
         </View>
       </BottomModal>
+      <NormalModal
+        flex={0}
+        visible={labelModalOpen}
+        setVisible={setLabelModalOpen}>
+        {/* <Gap /> */}
+        <AppText text="Select Filter" type="Kalam-Bold,,24" ta="center" />
+        <MenuDivider />
+        <MenuDivider />
+        <MenuDivider />
+        <FilterItem text="All Notes" />
+        <FilterItem text="Spiritual" />
+        <FilterItem text="Life" />
+        <FilterItem text="Useful" />
+        <FilterItem text="Finance" />
+      </NormalModal>
 
       <NormalModal visible={modalOpen} setVisible={setModalOpen}>
         {/* <Text style={{color: '#000'}}> {viewedNote}</Text> */}

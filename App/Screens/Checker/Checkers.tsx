@@ -400,10 +400,10 @@ const Checkers = ({navigation}) => {
 export default Checkers;
 const styles = StyleSheet.create({
   modalAddRoom: {
-    borderWidth: 0.5,
+    borderWidth: 0.2,
     borderColor: commonData.colors.CHECKER_SECTION_COLOR,
     maxHeight: '70%',
-    backgroundColor: '#000',
+    backgroundColor: '#222',
     borderTopLeftRadius: 16,
     borderTopRightRadius: 16,
     paddingBottom: 30,
