@@ -60,16 +60,8 @@ const TakeNotes = ({navigation}) => {
     //   name: 'NOTES_LIST',
     // },
   ];
-  const [noteTitle, setNoteTitle] = useState(initNote.title);
-  const [currentNote, setCurrentNote] = useState(initNote.body);
-
-  const writerProps = {
-    noteTitle,
-    setNoteTitle,
-    currentNote,
-    setCurrentNote,
-    autoFocus: false,
-  };
+  // const [noteTitle, setNoteTitle] = useState(initNote.title);
+  // const [currentNote, setCurrentNote] = useState(initNote.body);
 
   const [keyboardShow, setKeyboardShow] = useState(false);
   useEffect(() => {
@@ -92,46 +84,48 @@ const TakeNotes = ({navigation}) => {
     };
   }, []);
 
-  useEffect(() => {
-    if (currentNote || noteTitle) {
-      dispatch(
-        changeCurrentNote({
-          title: noteTitle,
-          body: currentNote,
-          isStared: false,
-        }),
-      );
-    } else {
-      dispatch(
-        changeCurrentNote({
-          title: '',
-          body: '',
-          isStared: false,
-        }),
-      );
-    }
-  }, [currentNote, noteTitle]);
+  // useEffect(() => {
+  //   if (currentNote || noteTitle) {
+  //     dispatch(
+  //       changeCurrentNote({
+  //         title: noteTitle,
+  //         body: currentNote,
+  //         isStared: false,
+  //       }),
+  //     );
+  //   } else {
+  //     dispatch(
+  //       changeCurrentNote({
+  //         title: '',
+  //         body: '',
+  //         isStared: false,
+  //       }),
+  //     );
+  //   }
+  // }, [currentNote, noteTitle]);
 
-  const saveAndAddNew = async () => {
-    if (!currentNote) {
-      showToast('Please take notes first!');
-      return;
-    }
-    const note = {
-      id: Date.now(),
-      title: noteTitle,
-      body: currentNote,
-      isStared: false,
-    };
-    const newNotes = [note, ...notes];
-    dispatch(changeNotes(newNotes));
-    showToast('Note Saved!');
-    setCurrentNote('');
-    setNoteTitle('');
-  };
+  // const saveAndAddNew = async () => {
+  //   if (!currentNote) {
+  //     showToast('Please take notes first!');
+  //     return;
+  //   }
+  //   const note = {
+  //     id: Date.now(),
+  //     title: noteTitle,
+  //     body: currentNote,
+  //     isStared: false,
+  //   };
+  //   const newNotes = [note, ...notes];
+  //   dispatch(changeNotes(newNotes));
+  //   showToast('Note Saved!');
+  //   setCurrentNote('');
+  //   setNoteTitle('');
+  // };
   return (
     <FullPage color={BLACK_COLOR}>
-      <NoteWriter {...writerProps} />
+      <NoteWriter
+      // {...writerProps}
+      />
 
       {!keyboardShow ? (
         <BottomActions
@@ -150,7 +144,7 @@ const TakeNotes = ({navigation}) => {
             },
             {
               name: 'add',
-              onPress: saveAndAddNew,
+              // onPress: saveAndAddNew,
             },
           ]}
         />
