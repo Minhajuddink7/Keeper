@@ -40,6 +40,8 @@ const {
     FINANCE_SECTION_COLOR,
     HEALTH_SECTION_COLOR,
     CHECKER_SECTION_COLOR,
+    MANAGE_SECTION_COLOR,
+    LIFE_SECTION_COLOR,
   },
 } = commonData;
 const Menu = ({family, name, text, size = 20}) => {
@@ -221,7 +223,7 @@ const HomeScreen = ({navigation}) => {
             style={{
               ...styles.box,
               backgroundColor: HEALTH_SECTION_COLOR,
-              borderBottomLeftRadius: 8,
+              // borderBottomLeftRadius: 8,
             }}
             onPress={comingSoon}>
             <Menu
@@ -235,7 +237,7 @@ const HomeScreen = ({navigation}) => {
             style={{
               ...styles.box,
               backgroundColor: CHECKER_SECTION_COLOR,
-              borderBottomRightRadius: 8,
+              // borderBottomRightRadius: 8,
             }}
             onPress={() => navigation.navigate('Checkers')}>
             <Menu
@@ -243,6 +245,34 @@ const HomeScreen = ({navigation}) => {
               // name="check-square-o"
               name="tasks"
               text="Checkers"
+              size={23}
+            />
+          </TouchableOpacity>
+        </HStack>
+        <HStack>
+          <TouchableOpacity
+            style={{
+              ...styles.box,
+              backgroundColor: LIFE_SECTION_COLOR,
+              borderBottomLeftRadius: 8,
+            }}
+            onPress={comingSoon}>
+            <Menu family="FontAwesome" name="heart" text="Love" size={23} />
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={{
+              ...styles.box,
+              backgroundColor: MANAGE_SECTION_COLOR,
+              borderBottomRightRadius: 8,
+            }}
+            onPress={comingSoon}
+            //  onPress={() => navigation.navigate('Checkers')}
+          >
+            <Menu
+              family="FontAwesome5"
+              // name="check-square-o"
+              name="cogs"
+              text="Manage"
               size={23}
             />
           </TouchableOpacity>

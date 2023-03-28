@@ -1,7 +1,8 @@
 import {actionType} from '../actions/actionType';
 const INITIAL_STATE = {
   notes: [],
-  current_note: {title: '', body: '', isStared: false},
+  current_note: {title: '', body: '', isStared: false, label: ''},
+  labels: [],
 };
 
 const NotesReducer = (state = INITIAL_STATE, action) => {
@@ -14,6 +15,8 @@ const NotesReducer = (state = INITIAL_STATE, action) => {
       return deleteNotes(state, action.payload);
     case actionType.notes.toggleStared:
       return toggleStared(state, action.payload);
+    case actionType.notes.addNoteLabel:
+      return addNoteLabel(state, action.payload);
     default:
       return state;
   }
@@ -38,4 +41,10 @@ const toggleStared = (state, payload) => {
     } else return note;
   });
   return {...state, notes: updatedNotes};
+};
+
+const addNoteLabel = (state, payload) => {
+  const curLabels = [...state.labels];
+  const updatedLabels = [...curLabels, payload];
+  return {...state, labels: updatedLabels};
 };

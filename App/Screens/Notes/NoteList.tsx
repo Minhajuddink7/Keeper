@@ -51,10 +51,11 @@ const NoteList = ({navigation}) => {
     {key: 'first', title: 'All Notes'},
     {key: 'second', title: 'Stared'},
   ]);
-
+  const labels: any = useSelector<RootStateOrAny>(state => state.notes.labels);
+  const notes: any = useSelector<RootStateOrAny>(state => state.notes.notes);
+  const [filteredNotes, setFilteredNotes] = useState(notes);
   const FirstRoute = () => {
     // const notes=useSelector(state=>state.notes.)
-    const notes: any = useSelector<RootStateOrAny>(state => state.notes.notes);
     return (
       <View style={{flex: 1}}>
         <ScrollView
@@ -63,10 +64,11 @@ const NoteList = ({navigation}) => {
             paddingTop: 15,
           }}>
           <View style={{paddingBottom: 15}}>
-            {notes?.length === 0 ? (
+            {filterNotes?.length === 0 ? (
               <NoItem text="No Notes Found!" color={FINANCE_SECTION_COLOR} />
             ) : (
-              notes.map((note: any) => {
+              filteredNotes.map((note: any) => {
+                console.log(note);
                 return (
                   <NoteCard
                     key={note.id}
@@ -137,9 +139,9 @@ const NoteList = ({navigation}) => {
     );
   };
 
-  const FilterItem = ({text}) => {
+  const FilterItem = ({text, onPress}) => {
     return (
-      <TouchableOpacity onPress={() => {}}>
+      <TouchableOpacity onPress={onPress}>
         <AppText text={text} type="Kalam-Regular,,18" ta="center" />
         <MenuDivider />
       </TouchableOpacity>
@@ -172,6 +174,13 @@ const NoteList = ({navigation}) => {
         )}
       />
     );
+  };
+
+  const filterNotes = (label: string) => {
+    const notesCopy = [...notes];
+    const updatedList = notesCopy.filter(note => note.label === label);
+    setFilteredNotes(updatedList);
+    setLabelModalOpen(false);
   };
   return (
     <FullPage color={commonData.colors.BLACK_COLOR}>
@@ -259,11 +268,20 @@ const NoteList = ({navigation}) => {
         <MenuDivider />
         <MenuDivider />
         <MenuDivider />
-        <FilterItem text="All Notes" />
+        {labels.map((label: string, i: number) => {
+          return (
+            <FilterItem
+              text={label}
+              key={i}
+              onPress={() => filterNotes(label)}
+            />
+          );
+        })}
+        {/* <FilterItem text="All Notes" />
         <FilterItem text="Spiritual" />
         <FilterItem text="Life" />
         <FilterItem text="Useful" />
-        <FilterItem text="Finance" />
+        <FilterItem text="Finance" /> */}
       </NormalModal>
 
       <NormalModal visible={modalOpen} setVisible={setModalOpen}>

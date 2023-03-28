@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
   button: {
     backgroundColor: commonData.colors.CHECKER_SECTION_COLOR,
     width: '100%',
-    borderRadius: 25,
+    borderRadius: 8,
     height: 42,
     alignItems: 'center',
     justifyContent: 'center',

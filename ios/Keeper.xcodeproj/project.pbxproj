@@ -9,20 +9,20 @@
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* KeeperTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* KeeperTests.m */; };
 		06DB0EC7221B4E8DA9D6B508 /* Montserrat-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EF450279AF234877ACFDB3B2 /* Montserrat-BoldItalic.ttf */; };
-		0B465400017D7B6D4FCB48FF /* libPods-Keeper.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CDCBDE629001078F04E31F12 /* libPods-Keeper.a */; };
 		1026771452A54A23BDAB04AA /* Montserrat-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 57D81B88D39F4E059D0AFA09 /* Montserrat-SemiBold.ttf */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		1EEE6E6CBEE445909A8DC1DA /* Montserrat-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9BD55D760CA34A88857EE579 /* Montserrat-ExtraBold.ttf */; };
 		21A55CA1FAB44C10BC6BA76B /* Montserrat-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 813B35EA1B7B49B589DCFE68 /* Montserrat-Light.ttf */; };
-		35C7CC8CAB6E995E6279F51B /* libPods-Keeper-KeeperTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A2623C7FF17BCD5518C70F8A /* libPods-Keeper-KeeperTests.a */; };
 		3B4040F1C71D496187627199 /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = E56130184DC944DAACC996EF /* LICENSE.txt */; };
+		3D07918BBA7EF54242642039 /* libPods-Keeper.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1729A79C322EC6C8546C0B82 /* libPods-Keeper.a */; };
 		466394822C574591B5C1D317 /* Montserrat-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4E4142502D144F2796926F35 /* Montserrat-ThinItalic.ttf */; };
 		483E32C13C35404EB2542117 /* Montserrat-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8F61F50D5FB0436395BF8ABA /* Montserrat-ExtraLight.ttf */; };
 		4FFCEF7527EE4A7886933906 /* Montserrat-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 82338CCB54114D9AA8030BE7 /* Montserrat-LightItalic.ttf */; };
 		516A78605A0548C2A7B97C2E /* Montserrat-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7DBB7DA27FDC4825BB76EE87 /* Montserrat-MediumItalic.ttf */; };
 		5C09202A1536423B8E359935 /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 24F3AAB651804A508A00EEC4 /* Montserrat-Bold.ttf */; };
+		5DF1F8C734E77F8196BEFE65 /* libPods-Keeper-KeeperTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EA0CA2C28CDC1EA4F477C3B6 /* libPods-Keeper-KeeperTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		854369ABDD3A4F3DB295D872 /* Montserrat-ExtraLightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 039D379D977A4718ADFCC6C1 /* Montserrat-ExtraLightItalic.ttf */; };
 		A383339A196A452C9C493759 /* Montserrat-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C66EFBE7F5554517BDA812AE /* Montserrat-Regular.ttf */; };
@@ -52,32 +52,31 @@
 		00E356F21AD99517003FC87E /* KeeperTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KeeperTests.m; sourceTree = "<group>"; };
 		039D379D977A4718ADFCC6C1 /* Montserrat-ExtraLightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-ExtraLightItalic.ttf"; path = "../assets/fonts/Montserrat-ExtraLightItalic.ttf"; sourceTree = "<group>"; };
 		09C12052060B4A4D81C921F7 /* Montserrat-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-ExtraBoldItalic.ttf"; path = "../assets/fonts/Montserrat-ExtraBoldItalic.ttf"; sourceTree = "<group>"; };
+		117117D156FC1BB80D79C861 /* Pods-Keeper-KeeperTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Keeper-KeeperTests.release.xcconfig"; path = "Target Support Files/Pods-Keeper-KeeperTests/Pods-Keeper-KeeperTests.release.xcconfig"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* Keeper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Keeper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Keeper/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = AppDelegate.mm; path = Keeper/AppDelegate.mm; sourceTree = "<group>"; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Keeper/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Keeper/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Keeper/main.m; sourceTree = "<group>"; };
+		1729A79C322EC6C8546C0B82 /* libPods-Keeper.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Keeper.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		24F3AAB651804A508A00EEC4 /* Montserrat-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-Bold.ttf"; path = "../assets/fonts/Montserrat-Bold.ttf"; sourceTree = "<group>"; };
 		2F78BC3BBDA548728387D730 /* Montserrat-SemiBoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-SemiBoldItalic.ttf"; path = "../assets/fonts/Montserrat-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
 		4E4142502D144F2796926F35 /* Montserrat-ThinItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-ThinItalic.ttf"; path = "../assets/fonts/Montserrat-ThinItalic.ttf"; sourceTree = "<group>"; };
 		56548798E94A4591BFFF817C /* Montserrat-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-Medium.ttf"; path = "../assets/fonts/Montserrat-Medium.ttf"; sourceTree = "<group>"; };
 		57D81B88D39F4E059D0AFA09 /* Montserrat-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-SemiBold.ttf"; path = "../assets/fonts/Montserrat-SemiBold.ttf"; sourceTree = "<group>"; };
-		6B56E8CDDE480A97C76A1621 /* Pods-Keeper.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Keeper.debug.xcconfig"; path = "Target Support Files/Pods-Keeper/Pods-Keeper.debug.xcconfig"; sourceTree = "<group>"; };
+		5CD6FFB3A79A7FC76A51CBAD /* Pods-Keeper.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Keeper.release.xcconfig"; path = "Target Support Files/Pods-Keeper/Pods-Keeper.release.xcconfig"; sourceTree = "<group>"; };
+		67F73FA6BB268FC565A33121 /* Pods-Keeper.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Keeper.debug.xcconfig"; path = "Target Support Files/Pods-Keeper/Pods-Keeper.debug.xcconfig"; sourceTree = "<group>"; };
+		761B5BFE2608158EBA9C064B /* Pods-Keeper-KeeperTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Keeper-KeeperTests.debug.xcconfig"; path = "Target Support Files/Pods-Keeper-KeeperTests/Pods-Keeper-KeeperTests.debug.xcconfig"; sourceTree = "<group>"; };
 		7DBB7DA27FDC4825BB76EE87 /* Montserrat-MediumItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-MediumItalic.ttf"; path = "../assets/fonts/Montserrat-MediumItalic.ttf"; sourceTree = "<group>"; };
 		813B35EA1B7B49B589DCFE68 /* Montserrat-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-Light.ttf"; path = "../assets/fonts/Montserrat-Light.ttf"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = Keeper/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		82338CCB54114D9AA8030BE7 /* Montserrat-LightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-LightItalic.ttf"; path = "../assets/fonts/Montserrat-LightItalic.ttf"; sourceTree = "<group>"; };
 		8F61F50D5FB0436395BF8ABA /* Montserrat-ExtraLight.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-ExtraLight.ttf"; path = "../assets/fonts/Montserrat-ExtraLight.ttf"; sourceTree = "<group>"; };
 		9BD55D760CA34A88857EE579 /* Montserrat-ExtraBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-ExtraBold.ttf"; path = "../assets/fonts/Montserrat-ExtraBold.ttf"; sourceTree = "<group>"; };
-		9F9716D8AD548C11189D9BA3 /* Pods-Keeper-KeeperTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Keeper-KeeperTests.release.xcconfig"; path = "Target Support Files/Pods-Keeper-KeeperTests/Pods-Keeper-KeeperTests.release.xcconfig"; sourceTree = "<group>"; };
-		A2623C7FF17BCD5518C70F8A /* libPods-Keeper-KeeperTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Keeper-KeeperTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		AAF56D3A46A3D874AC7BAE5F /* Pods-Keeper.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Keeper.release.xcconfig"; path = "Target Support Files/Pods-Keeper/Pods-Keeper.release.xcconfig"; sourceTree = "<group>"; };
 		AB094D1C8800474F8EBFFE12 /* Montserrat-Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-Italic.ttf"; path = "../assets/fonts/Montserrat-Italic.ttf"; sourceTree = "<group>"; };
 		C66EFBE7F5554517BDA812AE /* Montserrat-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-Regular.ttf"; path = "../assets/fonts/Montserrat-Regular.ttf"; sourceTree = "<group>"; };
 		C99DB4E1CCD349B0898EBB61 /* Montserrat-Thin.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-Thin.ttf"; path = "../assets/fonts/Montserrat-Thin.ttf"; sourceTree = "<group>"; };
-		CDCBDE629001078F04E31F12 /* libPods-Keeper.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Keeper.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		E09031B5C6A9A327C3D149DE /* Pods-Keeper-KeeperTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Keeper-KeeperTests.debug.xcconfig"; path = "Target Support Files/Pods-Keeper-KeeperTests/Pods-Keeper-KeeperTests.debug.xcconfig"; sourceTree = "<group>"; };
 		E56130184DC944DAACC996EF /* LICENSE.txt */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = LICENSE.txt; path = ../assets/fonts/LICENSE.txt; sourceTree = "<group>"; };
 		E735429228CB1ABD009DF612 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SimpleLineIcons.ttf; sourceTree = "<group>"; };
 		E735429328CB1ABD009DF612 /* Entypo.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Entypo.ttf; sourceTree = "<group>"; };
@@ -98,6 +97,7 @@
 		E7C3F13D28D06ED700BA3E5C /* Kalam-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Kalam-Light.ttf"; path = "../assets/fonts/Kalam-Light.ttf"; sourceTree = "<group>"; };
 		E7C3F13E28D06ED700BA3E5C /* Kalam-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Kalam-Regular.ttf"; path = "../assets/fonts/Kalam-Regular.ttf"; sourceTree = "<group>"; };
 		E7C3F13F28D06ED700BA3E5C /* Kalam-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Kalam-Bold.ttf"; path = "../assets/fonts/Kalam-Bold.ttf"; sourceTree = "<group>"; };
+		EA0CA2C28CDC1EA4F477C3B6 /* libPods-Keeper-KeeperTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Keeper-KeeperTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		EF450279AF234877ACFDB3B2 /* Montserrat-BoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-BoldItalic.ttf"; path = "../assets/fonts/Montserrat-BoldItalic.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -107,7 +107,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				35C7CC8CAB6E995E6279F51B /* libPods-Keeper-KeeperTests.a in Frameworks */,
+				5DF1F8C734E77F8196BEFE65 /* libPods-Keeper-KeeperTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -115,7 +115,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0B465400017D7B6D4FCB48FF /* libPods-Keeper.a in Frameworks */,
+				3D07918BBA7EF54242642039 /* libPods-Keeper.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -180,8 +180,8 @@
 			isa = PBXGroup;
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				CDCBDE629001078F04E31F12 /* libPods-Keeper.a */,
-				A2623C7FF17BCD5518C70F8A /* libPods-Keeper-KeeperTests.a */,
+				1729A79C322EC6C8546C0B82 /* libPods-Keeper.a */,
+				EA0CA2C28CDC1EA4F477C3B6 /* libPods-Keeper-KeeperTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -225,10 +225,10 @@
 		BBD78D7AC51CEA395F1C20DB /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				6B56E8CDDE480A97C76A1621 /* Pods-Keeper.debug.xcconfig */,
-				AAF56D3A46A3D874AC7BAE5F /* Pods-Keeper.release.xcconfig */,
-				E09031B5C6A9A327C3D149DE /* Pods-Keeper-KeeperTests.debug.xcconfig */,
-				9F9716D8AD548C11189D9BA3 /* Pods-Keeper-KeeperTests.release.xcconfig */,
+				67F73FA6BB268FC565A33121 /* Pods-Keeper.debug.xcconfig */,
+				5CD6FFB3A79A7FC76A51CBAD /* Pods-Keeper.release.xcconfig */,
+				761B5BFE2608158EBA9C064B /* Pods-Keeper-KeeperTests.debug.xcconfig */,
+				117117D156FC1BB80D79C861 /* Pods-Keeper-KeeperTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -263,12 +263,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "KeeperTests" */;
 			buildPhases = (
-				26C524E7959DAEE729E922D5 /* [CP] Check Pods Manifest.lock */,
+				FBD0043B2911D21E9EADE910 /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
-				087D500411870714FA45DC0E /* [CP] Embed Pods Frameworks */,
-				5776912D65B61E38DF3CB6E2 /* [CP] Copy Pods Resources */,
+				8904161AE60942D790629CB3 /* [CP] Embed Pods Frameworks */,
+				028887F71F267DE9955C8248 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -284,14 +284,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "Keeper" */;
 			buildPhases = (
-				AB6471C5A2BDB61E2A4771DB /* [CP] Check Pods Manifest.lock */,
+				F05225D3BA83A5DDC9817A28 /* [CP] Check Pods Manifest.lock */,
 				FD10A7F022414F080027D42C /* Start Packager */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
-				E553AC3405CBCE31306DF632 /* [CP] Embed Pods Frameworks */,
-				E8608F10484F733C08C7731A /* [CP] Copy Pods Resources */,
+				33DE82020E5693287C3C2EB0 /* [CP] Embed Pods Frameworks */,
+				26C397186CEF1D3B6D526617 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -394,46 +394,7 @@
 			shellPath = /bin/sh;
 			shellScript = "set -e\n\nWITH_ENVIRONMENT=\"../node_modules/react-native/scripts/xcode/with-environment.sh\"\nREACT_NATIVE_XCODE=\"../node_modules/react-native/scripts/react-native-xcode.sh\"\n\n/bin/sh -c \"$WITH_ENVIRONMENT $REACT_NATIVE_XCODE\"\n";
 		};
-		087D500411870714FA45DC0E /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Keeper-KeeperTests/Pods-Keeper-KeeperTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Keeper-KeeperTests/Pods-Keeper-KeeperTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Keeper-KeeperTests/Pods-Keeper-KeeperTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		26C524E7959DAEE729E922D5 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Keeper-KeeperTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		5776912D65B61E38DF3CB6E2 /* [CP] Copy Pods Resources */ = {
+		028887F71F267DE9955C8248 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -450,7 +411,58 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Keeper-KeeperTests/Pods-Keeper-KeeperTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		AB6471C5A2BDB61E2A4771DB /* [CP] Check Pods Manifest.lock */ = {
+		26C397186CEF1D3B6D526617 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Keeper/Pods-Keeper-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Keeper/Pods-Keeper-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Keeper/Pods-Keeper-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		33DE82020E5693287C3C2EB0 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Keeper/Pods-Keeper-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Keeper/Pods-Keeper-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Keeper/Pods-Keeper-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8904161AE60942D790629CB3 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Keeper-KeeperTests/Pods-Keeper-KeeperTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Keeper-KeeperTests/Pods-Keeper-KeeperTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Keeper-KeeperTests/Pods-Keeper-KeeperTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F05225D3BA83A5DDC9817A28 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -472,38 +484,26 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		E553AC3405CBCE31306DF632 /* [CP] Embed Pods Frameworks */ = {
+		FBD0043B2911D21E9EADE910 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Keeper/Pods-Keeper-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			name = "[CP] Embed Pods Frameworks";
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Keeper/Pods-Keeper-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Keeper-KeeperTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Keeper/Pods-Keeper-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		E8608F10484F733C08C7731A /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Keeper/Pods-Keeper-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Keeper/Pods-Keeper-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Keeper/Pods-Keeper-resources.sh\"\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FD10A7F022414F080027D42C /* Start Packager */ = {
@@ -558,7 +558,7 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E09031B5C6A9A327C3D149DE /* Pods-Keeper-KeeperTests.debug.xcconfig */;
+			baseConfigurationReference = 761B5BFE2608158EBA9C064B /* Pods-Keeper-KeeperTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -585,7 +585,7 @@
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9F9716D8AD548C11189D9BA3 /* Pods-Keeper-KeeperTests.release.xcconfig */;
+			baseConfigurationReference = 117117D156FC1BB80D79C861 /* Pods-Keeper-KeeperTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
@@ -609,7 +609,7 @@
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6B56E8CDDE480A97C76A1621 /* Pods-Keeper.debug.xcconfig */;
+			baseConfigurationReference = 67F73FA6BB268FC565A33121 /* Pods-Keeper.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
@@ -638,7 +638,7 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AAF56D3A46A3D874AC7BAE5F /* Pods-Keeper.release.xcconfig */;
+			baseConfigurationReference = 5CD6FFB3A79A7FC76A51CBAD /* Pods-Keeper.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;

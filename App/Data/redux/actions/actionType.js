@@ -5,6 +5,7 @@ export const actionType = {
     setCurrentNote: 'SET_CURRENT_NOTE',
     deleteNote: 'DELETE_NOTE',
     toggleStared: 'TOGGLE_STARED',
+    addNoteLabel: 'ADD_NOTE_LABEL',
   },
   checkers: {
     //todos
