@@ -14,6 +14,7 @@ import {toggleStared} from '../../Data/redux/actions/notesActions';
 import {commonData} from '../../Data/static/commonData';
 import moment from 'moment';
 
+const {NOTES_SECTION_COLOR} = commonData.colors;
 const NoteCard = ({note, onDelete, onPeek, onSelect, onEdit}) => {
   const dispatch = useDispatch();
   // const [isHeaderShown, setIsHeaderShown] = useState(true);
@@ -28,6 +29,7 @@ const NoteCard = ({note, onDelete, onPeek, onSelect, onEdit}) => {
           flex: 6,
           marginBottom: 10,
           backgroundColor: '#120E43',
+          // backgroundColor: NOTES_SECTION_COLOR,
           alignItems: 'center',
           justifyContent: 'space-between',
           paddingLeft: 10,
@@ -54,8 +56,8 @@ const NoteCard = ({note, onDelete, onPeek, onSelect, onEdit}) => {
           }}
           onPress={onPeek}>
           <DynamicIcon
-            name="label-important"
-            family="MaterialIcons"
+            name="eye"
+            family="FontAwesome5"
             size={18}
             color="#fff"
           />
@@ -93,6 +95,7 @@ const NoteCard = ({note, onDelete, onPeek, onSelect, onEdit}) => {
             flex: 6,
             // width: ,
             backgroundColor: '#120E43',
+            // backgroundColor: NOTES_SECTION_COLOR,
             flexDirection: 'row',
             alignItems: 'center',
             justifyContent: 'space-around',
@@ -114,19 +117,21 @@ const NoteCard = ({note, onDelete, onPeek, onSelect, onEdit}) => {
             color="#fff"
           />
         </TouchableOpacity>
-        <TouchableOpacity
-          style={{
-            ...styles.actionButton,
-            backgroundColor: commonData.colors.DANGER_COLOR,
-          }}
-          onPress={onDelete}>
-          <DynamicIcon
-            family="FontAwesome5"
-            name="trash"
-            size={16}
-            color="#fff"
-          />
-        </TouchableOpacity>
+        {!note.isStared ? (
+          <TouchableOpacity
+            style={{
+              ...styles.actionButton,
+              backgroundColor: commonData.colors.DANGER_COLOR,
+            }}
+            onPress={onDelete}>
+            <DynamicIcon
+              family="FontAwesome5"
+              name="trash"
+              size={16}
+              color="#fff"
+            />
+          </TouchableOpacity>
+        ) : null}
       </HStack>
     </View>
   );
@@ -136,19 +141,20 @@ export default NoteCard;
 
 const styles = StyleSheet.create({
   noteCard: {
-    marginHorizontal: '6%',
-    padding: 10,
+    marginHorizontal: 10,
+    padding: 7,
     backgroundColor: '#ccd',
     // backgroundColor: '#eef',
     height: 120,
     borderRadius: 8,
-    marginBottom: 15,
+    marginBottom: 2,
   },
   actionButton: {
     flex: 1,
     marginLeft: 10,
     height: 40,
     backgroundColor: '#120E43',
+    // backgroundColor: NOTES_SECTION_COLOR,
     borderRadius: 8,
     alignItems: 'center',
     justifyContent: 'center',

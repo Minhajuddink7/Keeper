@@ -16,6 +16,7 @@ import {
   deleteAffirmation,
   deleteQuote,
 } from '../../Data/redux/actions/checkerActions';
+import commonStyles from './commonStyles';
 
 const Affirmations = () => {
   const affirmations: any = useSelector<RootStateOrAny>(
@@ -27,7 +28,7 @@ const Affirmations = () => {
     dispatch(deleteAffirmation(id));
   };
   return (
-    <ScrollView>
+    <ScrollView style={{paddingTop: 10}}>
       {affirmations?.length === 0 ? (
         <NoItem
           text="No Affirmation found!"
@@ -36,15 +37,7 @@ const Affirmations = () => {
       ) : (
         affirmations?.map((affirmation, i) => {
           return (
-            <View
-              key={i}
-              style={{
-                padding: 10,
-                borderWidth: 0.5,
-                margin: 6,
-                borderRadius: 6,
-                borderColor: commonData.colors.CHECKER_SECTION_COLOR,
-              }}>
+            <View key={i} style={commonStyles.card}>
               <AppText
                 text={affirmation.affirmation}
                 type={`${commonData.fonts.BOLD},#fff,18`}

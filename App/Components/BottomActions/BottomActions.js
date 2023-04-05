@@ -33,6 +33,14 @@ const BottomActions = ({actions}) => {
         return (
           <DynamicIcon family="Entypo" name="plus" {...iconSizeAndColor} />
         );
+      case 'write':
+        return (
+          <DynamicIcon
+            family="FontAwesome5"
+            name="pen-alt"
+            {...iconSizeAndColor}
+          />
+        );
       case 'update':
         return (
           <DynamicIcon

@@ -172,6 +172,7 @@ const TakeNotes = ({navigation}) => {
     setCurrentNote('');
     setNoteTitle('');
     setEnteredLabel('');
+    setSelectedLabel('');
     setLabelModalOpen(false);
   };
 
@@ -270,7 +271,12 @@ const TakeNotes = ({navigation}) => {
               placeholder="Enter New Label"
               placeholderTextColor="#777"
               autoFocus
-              style={{fontFamily: 'Kalam-Bold', fontSize: 18, color: '#ddd'}}
+              style={{
+                fontFamily: 'Kalam-Bold',
+                fontSize: 18,
+                color: '#ddd',
+                flex: 1,
+              }}
               value={enteredLabel}
               onChangeText={text => {
                 setEnteredLabel(text);
@@ -279,11 +285,12 @@ const TakeNotes = ({navigation}) => {
           </View>
           <Gap gap={10} />
 
-          {labels?.map((label: string) => {
+          {labels?.map((label: string, i: number) => {
             console.log(label);
             return (
               <LabelSelector
                 text={label}
+                key={i}
                 selected={selectedLabel}
                 setSelected={setSelectedLabel}
               />

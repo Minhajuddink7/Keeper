@@ -1,6 +1,7 @@
 import {actionType} from '../actions/actionType';
 const INITIAL_STATE = {
   todos: [],
+  lists: [],
   affirmations: [],
   quotes: [],
 };

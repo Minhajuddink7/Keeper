@@ -15,30 +15,30 @@ const NoteWriter = ({
   //   state => state.notes.current_note,
   // );
   // const notes: any = useSelector<RootStateOrAny>(state => state.notes.notes);
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   // const [noteTitle, setNoteTitle] = useState(initNote.title);
   // const [currentNote, setCurrentNote] = useState(initNote.body);
   const {DARK_THEME_COLOR, BLACK_COLOR} = commonData.colors;
 
-  useEffect(() => {
-    if (currentNote || noteTitle) {
-      dispatch(
-        changeCurrentNote({
-          title: noteTitle,
-          body: currentNote,
-          isStared: false,
-        }),
-      );
-    } else {
-      dispatch(
-        changeCurrentNote({
-          title: '',
-          body: '',
-          isStared: false,
-        }),
-      );
-    }
-  }, [currentNote, noteTitle]);
+  // useEffect(() => {
+  //   if (currentNote || noteTitle) {
+  //     dispatch(
+  //       changeCurrentNote({
+  //         title: noteTitle,
+  //         body: currentNote,
+  //         isStared: false,
+  //       }),
+  //     );
+  //   } else {
+  //     dispatch(
+  //       changeCurrentNote({
+  //         title: '',
+  //         body: '',
+  //         isStared: false,
+  //       }),
+  //     );
+  //   }
+  // }, [currentNote, noteTitle]);
   return (
     <>
       <TextInput

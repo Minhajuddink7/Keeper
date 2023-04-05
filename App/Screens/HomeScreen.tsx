@@ -70,9 +70,9 @@ const HomeScreen = ({navigation}) => {
   const [menuVisible, setMenuVisible] = useState(false);
   const [localData, setLocalData]: any = useState();
   const dispatch = useDispatch();
-  const userLoggedIn: any = useSelector<RootStateOrAny>(
-    state => state.ui.userLoggedIn,
-  );
+  // const userLoggedIn: any = useSelector<RootStateOrAny>(
+  //   state => state.ui.userLoggedIn,
+  // );
 
   const signOutUser = () => {
     // signOut(authentication)
@@ -100,7 +100,7 @@ const HomeScreen = ({navigation}) => {
       showToast('Data saved in your phone!');
       // console.log('Success!');
     } catch (error) {
-      showToast('Error Occured!');
+      showToast(JSON.stringify(error));
       console.log(error);
     }
     console.log('path: ', path);
@@ -142,7 +142,8 @@ const HomeScreen = ({navigation}) => {
       })
       .catch(err => {
         // Linking.openSettings();
-        showToast('Error Occured');
+        // showToast('Error Occured');
+        showToast(JSON.stringify(err));
         console.log(err.message, err.code);
       });
   };
@@ -223,9 +224,9 @@ const HomeScreen = ({navigation}) => {
             style={{
               ...styles.box,
               backgroundColor: HEALTH_SECTION_COLOR,
-              // borderBottomLeftRadius: 8,
+              borderBottomLeftRadius: 8,
             }}
-            onPress={comingSoon}>
+            onPress={() => navigation.navigate('Health')}>
             <Menu
               family="FontAwesome5"
               name="heartbeat"
@@ -237,7 +238,7 @@ const HomeScreen = ({navigation}) => {
             style={{
               ...styles.box,
               backgroundColor: CHECKER_SECTION_COLOR,
-              // borderBottomRightRadius: 8,
+              borderBottomRightRadius: 8,
             }}
             onPress={() => navigation.navigate('Checkers')}>
             <Menu
@@ -249,7 +250,7 @@ const HomeScreen = ({navigation}) => {
             />
           </TouchableOpacity>
         </HStack>
-        <HStack>
+        {/* <HStack>
           <TouchableOpacity
             style={{
               ...styles.box,
@@ -276,7 +277,7 @@ const HomeScreen = ({navigation}) => {
               size={23}
             />
           </TouchableOpacity>
-        </HStack>
+        </HStack> */}
       </View>
     </FullPage>
   );

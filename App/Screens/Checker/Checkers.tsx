@@ -39,6 +39,7 @@ import {
   changeTodos,
 } from '../../Data/redux/actions/checkerActions';
 import Affirmations from './Affirmations';
+import Lists from './Lists';
 // import RecycleTestComponent from '../../Components/Common/DraggableList';
 //   import NoteCard from '../components/Note-List/NoteCard';
 const Checkers = ({navigation}) => {
@@ -63,6 +64,7 @@ const Checkers = ({navigation}) => {
   const [affirmation, setAffirmation] = useState('');
   const [quote, setQuote] = useState('');
   const [modalOpen, setModalOpen] = useState(false);
+  const [listModalOpen, setListModalOpen] = useState(false);
   const [viewedNote, setViewedNote] = useState({title: '', body: ''});
   const [selectedNote, setSelectedNote] = useState({id: ''});
   const [affirmationMode, setAffirmationMode] = useState(false);
@@ -70,15 +72,16 @@ const Checkers = ({navigation}) => {
   const placeholder =
     index === 0
       ? 'Enter your todo!'
-      : index === 1
+      : index === 2
       ? 'Enter a new Affirmation!'
       : 'Enter a new Quote!';
 
   const [addModalOpen, setAddModalOpen] = useState(false);
   const [routes] = React.useState([
     {key: 'first', title: 'Todos'},
-    {key: 'second', title: 'Affirmations'},
-    {key: 'third', title: 'Quotes'},
+    {key: 'second', title: 'Lists'},
+    {key: 'third', title: 'Affirm'},
+    {key: 'fourth', title: 'Quotes'},
   ]);
 
   const addTodo = () => {
@@ -123,10 +126,10 @@ const Checkers = ({navigation}) => {
       case 0:
         addTodo();
         break;
-      case 1:
+      case 2:
         addAffirmation();
         break;
-      case 2:
+      case 3:
         addQuote();
         break;
 
@@ -144,6 +147,13 @@ const Checkers = ({navigation}) => {
   };
 
   const SecondRoute = () => {
+    return (
+      <View style={{flex: 1, backgroundColor: BLACK_COLOR}}>
+        <Lists />
+      </View>
+    );
+  };
+  const ThirdRoute = () => {
     return (
       <View style={{flex: 1}}>
         {affirmationMode ? (
@@ -220,7 +230,7 @@ const Checkers = ({navigation}) => {
       </View>
     );
   };
-  const ThirdRoute = () => {
+  const FourthRoute = () => {
     return (
       <View style={{flex: 1, backgroundColor: BLACK_COLOR}}>
         <Quotes />
@@ -231,10 +241,13 @@ const Checkers = ({navigation}) => {
     first: FirstRoute,
     second: SecondRoute,
     third: ThirdRoute,
+    fourth: FourthRoute,
   });
 
   const addNew = () => {
-    setAddModalOpen(true);
+    if (index === 1) {
+      setListModalOpen(true);
+    } else setAddModalOpen(true);
   };
 
   const renderTabBar = props => {
@@ -297,11 +310,13 @@ const Checkers = ({navigation}) => {
               multiline={true}
               placeholder={placeholder}
               placeholderTextColor="#777"
-              value={index === 0 ? todo : index === 1 ? affirmation : quote}
+              value={index === 0 ? todo : index === 2 ? affirmation : quote}
               onChangeText={text => {
                 if (index === 0) {
                   setTodo(text);
                 } else if (index === 1) {
+                  // setAffirmation(text);
+                } else if (index === 2) {
                   setAffirmation(text);
                 } else {
                   setQuote(text);
@@ -345,12 +360,13 @@ const Checkers = ({navigation}) => {
           </Container>
         </View>
       </BottomModal>
+
       <BottomActions
         actions={
-          index === 1
+          index === 2
             ? [
                 {
-                  name: 'back',
+                  name: 'home',
                   onPress: function () {
                     navigation.goBack();
                   },
@@ -361,23 +377,23 @@ const Checkers = ({navigation}) => {
                     setAffirmationMode(!affirmationMode);
                   },
                 },
-                {
-                  name: 'add',
-                  onPress: addNew,
-                },
+                // {
+                //   name: 'add',
+                //   onPress: addNew,
+                // },
               ]
             : [
                 {
-                  name: 'back',
+                  name: 'home',
                   onPress: function () {
                     navigation.goBack();
                   },
                 },
 
-                {
-                  name: 'add',
-                  onPress: addNew,
-                },
+                // {
+                //   name: 'add',
+                //   onPress: addNew,
+                // },
               ]
         }
       />

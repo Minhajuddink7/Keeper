@@ -11,6 +11,9 @@ import Checkers from '../Checker/Checkers';
 import EditNote from '../Notes/EditNote';
 import LoginScreen from '../LoginScreen';
 import {useSelector} from 'react-redux';
+import Fitness from '../Health/Health';
+import Health from '../Health/Health';
+import HealthDetails from '../Health/HealthDetails';
 
 const RootNavigator = () => {
   const userLoggedIn = useSelector(state => state.ui.userLoggedIn);
@@ -79,6 +82,18 @@ const RootNavigator = () => {
         <Stack.Screen
           name="Checkers"
           component={Checkers}
+          options={{headerShown: false}}
+        />
+
+        {/* Health */}
+        <Stack.Screen
+          name="Health"
+          component={Health}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="HealthDetails"
+          component={HealthDetails}
           options={{headerShown: false}}
         />
 

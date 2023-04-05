@@ -6,7 +6,7 @@ import {
   View,
   useWindowDimensions,
 } from 'react-native';
-import React, {useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import moment from 'moment';
 //   import DynamicIcon from '../components/Common/DynamicIcon';
 // import HStack from '../components/Layouts/Hstack';
@@ -31,6 +31,9 @@ import BottomActions from '../../Components/BottomActions/BottomActions';
 import FullPage from '../../Components/Layouts/FullPage';
 import {MenuDivider} from 'react-native-material-menu';
 import Divider from '../../Components/Common/Divider';
+import {useFocusEffect} from '@react-navigation/native';
+import FirstRoute from './FirstRoute';
+// import FirstRoute from './FirstRoute';
 //   import NoteCard from '../components/Note-List/NoteCard';
 const NoteList = ({navigation}) => {
   const dispatch = useDispatch();
@@ -47,53 +50,36 @@ const NoteList = ({navigation}) => {
   const [selectedNote, setSelectedNote] = useState({id: ''});
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
   const [labelModalOpen, setLabelModalOpen] = useState(false);
+  const [activeFilter, setActiveFilter] = useState('All Notes');
+  useFocusEffect(
+    useCallback(() => {
+      setFilteredNotes(notes);
+    }, []),
+  );
   const [routes, setRoutes] = React.useState([
-    {key: 'first', title: 'All Notes'},
+    {key: 'first', title: activeFilter},
     {key: 'second', title: 'Stared'},
   ]);
+
+  useEffect(() => {
+    setRoutes([
+      {key: 'first', title: activeFilter},
+      {key: 'second', title: 'Stared'},
+    ]);
+  }, [activeFilter]);
+
   const labels: any = useSelector<RootStateOrAny>(state => state.notes.labels);
   const notes: any = useSelector<RootStateOrAny>(state => state.notes.notes);
   const [filteredNotes, setFilteredNotes] = useState(notes);
-  const FirstRoute = () => {
-    // const notes=useSelector(state=>state.notes.)
+  function firstRoute() {
     return (
-      <View style={{flex: 1}}>
-        <ScrollView
-          style={{
-            backgroundColor: BLACK_COLOR,
-            paddingTop: 15,
-          }}>
-          <View style={{paddingBottom: 15}}>
-            {filterNotes?.length === 0 ? (
-              <NoItem text="No Notes Found!" color={FINANCE_SECTION_COLOR} />
-            ) : (
-              filteredNotes.map((note: any) => {
-                console.log(note);
-                return (
-                  <NoteCard
-                    key={note.id}
-                    onEdit={() => navigation.navigate('EditNote', {note})}
-                    note={note}
-                    onPeek={() => {
-                      setViewedNote(note);
-                      setModalOpen(true);
-                    }}
-                    onDelete={() => {
-                      setDeleteModalOpen(true);
-                      setSelectedNote(note);
-                    }}
-                    onSelect={() => {
-                      navigation.navigate('NoteView', {viewedNote: note});
-                    }}
-                  />
-                );
-              })
-            )}
-          </View>
-        </ScrollView>
-      </View>
+      <FirstRoute
+        navigation={navigation}
+        activeFilter={activeFilter}
+        setActiveFilter={setActiveFilter}
+      />
     );
-  };
+  }
 
   const SecondRoute = () => {
     const notes: any = useSelector<RootStateOrAny>(state => state.notes.notes);
@@ -135,6 +121,23 @@ const NoteList = ({navigation}) => {
             )}
           </View>
         </ScrollView>
+        <BottomActions
+          actions={[
+            {
+              name: 'write',
+              onPress: function () {
+                navigation.goBack();
+              },
+            },
+
+            {
+              name: 'home',
+              onPress: function () {
+                navigation.navigate('Home');
+              },
+            },
+          ]}
+        />
       </View>
     );
   };
@@ -148,7 +151,7 @@ const NoteList = ({navigation}) => {
     );
   };
   const renderScene = SceneMap({
-    first: FirstRoute,
+    first: firstRoute,
     second: SecondRoute,
   });
 
@@ -179,7 +182,13 @@ const NoteList = ({navigation}) => {
   const filterNotes = (label: string) => {
     const notesCopy = [...notes];
     const updatedList = notesCopy.filter(note => note.label === label);
-    setFilteredNotes(updatedList);
+    if (label === '') {
+      setFilteredNotes(notesCopy);
+      setActiveFilter('All Notes');
+    } else {
+      setFilteredNotes(updatedList);
+      setActiveFilter(label);
+    }
     setLabelModalOpen(false);
   };
   return (
@@ -196,7 +205,7 @@ const NoteList = ({navigation}) => {
         navigation={navigation}
         color={commonData.colors.NOTES_SECTION_COLOR}
       /> */}
-      <BottomActions
+      {/* <BottomActions
         actions={[
           {
             name: 'back',
@@ -225,8 +234,8 @@ const NoteList = ({navigation}) => {
           //   },
           // },
         ]}
-      />
-      <BottomModal
+      /> */}
+      {/* <BottomModal
         modalOpen={deleteModalOpen}
         setModalOpen={setDeleteModalOpen}>
         <View style={[styles.modalAddRoom]}>
@@ -258,16 +267,16 @@ const NoteList = ({navigation}) => {
             </HStack>
           </Container>
         </View>
-      </BottomModal>
-      <NormalModal
+      </BottomModal> */}
+      {/* <NormalModal
         flex={0}
         visible={labelModalOpen}
         setVisible={setLabelModalOpen}>
-        {/* <Gap /> */}
         <AppText text="Select Filter" type="Kalam-Bold,,24" ta="center" />
         <MenuDivider />
         <MenuDivider />
         <MenuDivider />
+        <FilterItem text={'All Notes'} onPress={() => filterNotes('')} />
         {labels.map((label: string, i: number) => {
           return (
             <FilterItem
@@ -277,15 +286,9 @@ const NoteList = ({navigation}) => {
             />
           );
         })}
-        {/* <FilterItem text="All Notes" />
-        <FilterItem text="Spiritual" />
-        <FilterItem text="Life" />
-        <FilterItem text="Useful" />
-        <FilterItem text="Finance" /> */}
-      </NormalModal>
+      </NormalModal> */}
 
-      <NormalModal visible={modalOpen} setVisible={setModalOpen}>
-        {/* <Text style={{color: '#000'}}> {viewedNote}</Text> */}
+      {/* <NormalModal visible={modalOpen} setVisible={setModalOpen}>
         <ScrollView>
           <View style={{padding: 10}}>
             <AppText
@@ -295,30 +298,7 @@ const NoteList = ({navigation}) => {
             />
           </View>
         </ScrollView>
-        {/* <TouchableOpacity
-          style={{
-            position: 'absolute',
-            bottom: 15,
-            right: 15,
-            backgroundColor: commonData.colors.NOTES_SECTION_COLOR,
-            // padding: 20,
-            height: 50,
-            width: 50,
-            justifyContent: 'center',
-            alignItems: 'center',
-            borderRadius: 50,
-          }}
-          onPress={() => {
-            setModalOpen(false);
-          }}>
-          <DynamicIcon
-            family="Ionicons"
-            name="expand"
-            size={20}
-            // color={}
-          />
-        </TouchableOpacity> */}
-      </NormalModal>
+      </NormalModal> */}
     </FullPage>
   );
 };
