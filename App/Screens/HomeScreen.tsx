@@ -24,10 +24,12 @@ import {changeUserState} from '../Data/redux/actions/uiActions';
 import RNFS from 'react-native-fs';
 import {
   changeCurrentNote,
+  changeNoteLabels,
   changeNotes,
 } from '../Data/redux/actions/notesActions';
 import {
   changeAffirmations,
+  changeList,
   changeQuotes,
   changeTodos,
 } from '../Data/redux/actions/checkerActions';
@@ -149,9 +151,8 @@ const HomeScreen = ({navigation}) => {
   };
   useEffect(() => {
     if (localData) {
-      // console.log('local data :', localData.checker.todos);
-      // return;
       dispatch(changeNotes(localData.notes.notes));
+      dispatch(changeNoteLabels(localData.notes.labels));
       const {title, body, isStared} = localData.notes.current_note;
       dispatch(
         changeCurrentNote({
@@ -163,7 +164,7 @@ const HomeScreen = ({navigation}) => {
       dispatch(changeQuotes(localData.checker.quotes));
       dispatch(changeTodos(localData.checker.todos));
       dispatch(changeAffirmations(localData.checker.affirmations));
-
+      dispatch(changeList(localData.checker.lists));
       // dispatch(changeCurrentNote(localData.notes.notes));
     }
     // getData();

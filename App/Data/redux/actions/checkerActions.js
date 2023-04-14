@@ -33,3 +33,13 @@ export const deleteQuote = payload => ({
   type: actionType.checkers.deleteQuote,
   payload: payload,
 });
+
+//list actions
+export const changeList = payload => ({
+  type: actionType.checkers.setLists,
+  payload: payload,
+});
+export const deleteList = payload => ({
+  type: actionType.checkers.deleteList,
+  payload: payload,
+});

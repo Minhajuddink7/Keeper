@@ -5,6 +5,7 @@ export const actionType = {
     setCurrentNote: 'SET_CURRENT_NOTE',
     deleteNote: 'DELETE_NOTE',
     toggleStared: 'TOGGLE_STARED',
+    changeNoteLabels: 'CHANGE_LABELS',
     addNoteLabel: 'ADD_NOTE_LABEL',
   },
   checkers: {
@@ -20,5 +21,9 @@ export const actionType = {
     setQuotes: 'SET_QUOTES',
     togglePinnedQuote: 'TOGGLE_PINNED_QUOTE',
     deleteQuote: 'DELETE_QUOTE',
+
+    //lists
+    setLists: 'SET_LISTS',
+    deleteList: 'DELETE_LIST',
   },
 };

@@ -79,8 +79,8 @@ const Checkers = ({navigation}) => {
   const [addModalOpen, setAddModalOpen] = useState(false);
   const [routes] = React.useState([
     {key: 'first', title: 'Todos'},
-    {key: 'second', title: 'Lists'},
-    {key: 'third', title: 'Affirm'},
+    {key: 'second', title: 'Affirm'},
+    {key: 'third', title: 'Lists'},
     {key: 'fourth', title: 'Quotes'},
   ]);
 
@@ -148,13 +148,6 @@ const Checkers = ({navigation}) => {
 
   const SecondRoute = () => {
     return (
-      <View style={{flex: 1, backgroundColor: BLACK_COLOR}}>
-        <Lists />
-      </View>
-    );
-  };
-  const ThirdRoute = () => {
-    return (
       <View style={{flex: 1}}>
         {affirmationMode ? (
           <>
@@ -166,7 +159,7 @@ const Checkers = ({navigation}) => {
                 justifyContent: 'center',
               }}>
               <AppText
-                text={affirmations[affirmationIndex].affirmation}
+                text={affirmations?.[affirmationIndex]?.affirmation}
                 type={`${commonData.fonts.BOLD},#fff,25`}
                 ml={10}
                 mr={10}
@@ -230,6 +223,13 @@ const Checkers = ({navigation}) => {
       </View>
     );
   };
+  const ThirdRoute = () => {
+    return (
+      <View style={{flex: 1, backgroundColor: BLACK_COLOR}}>
+        <Lists />
+      </View>
+    );
+  };
   const FourthRoute = () => {
     return (
       <View style={{flex: 1, backgroundColor: BLACK_COLOR}}>
@@ -244,11 +244,11 @@ const Checkers = ({navigation}) => {
     fourth: FourthRoute,
   });
 
-  const addNew = () => {
-    if (index === 1) {
-      setListModalOpen(true);
-    } else setAddModalOpen(true);
-  };
+  // const addNew = () => {
+  //   if (index === 1) {
+  //     setListModalOpen(true);
+  //   } else setAddModalOpen(true);
+  // };
 
   const renderTabBar = props => {
     return (
@@ -363,7 +363,7 @@ const Checkers = ({navigation}) => {
 
       <BottomActions
         actions={
-          index === 2
+          index === 1
             ? [
                 {
                   name: 'home',
@@ -374,7 +374,9 @@ const Checkers = ({navigation}) => {
                 {
                   name: affirmationMode ? 'lists' : 'play',
                   onPress: function () {
-                    setAffirmationMode(!affirmationMode);
+                    if (affirmations.length > 0)
+                      setAffirmationMode(!affirmationMode);
+                    else showToast('Add affirmations to read!');
                   },
                 },
                 // {

@@ -16,6 +16,10 @@ export const toggleStared = payload => ({
   type: actionType.notes.toggleStared,
   payload: payload,
 });
+export const changeNoteLabels = payload => ({
+  type: actionType.notes.changeNoteLabels,
+  payload: payload,
+});
 export const addNoteLabel = payload => ({
   type: actionType.notes.addNoteLabel,
   payload: payload,

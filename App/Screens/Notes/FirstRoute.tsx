@@ -67,7 +67,7 @@ const FirstRoute = ({navigation, activeFilter, setActiveFilter}) => {
       <ScrollView
         style={{
           backgroundColor: BLACK_COLOR,
-          paddingTop: 15,
+          paddingTop: 7,
         }}>
         <View style={{paddingBottom: 15}}>
           {filteredNotes?.length === 0 ? (
@@ -100,34 +100,34 @@ const FirstRoute = ({navigation, activeFilter, setActiveFilter}) => {
       <BottomModal
         modalOpen={deleteModalOpen}
         setModalOpen={setDeleteModalOpen}>
-        <View style={[styles.modalAddRoom]}>
+        <View style={[styles.modal]}>
+          <Gap gap={5} />
+          {/* <Container> */}
+          <AppText text="Confirm Delete?" type="Kalam-Bold,#ccc,18" />
           <Gap />
-          <Container>
-            <AppText text="Confirm Delete?" type="Kalam-Bold,#ccc,18" />
-            <Gap />
-            <HStack justifyContent="space-between">
-              <View style={{flex: 0.47}}>
-                <ActionButton
-                  text="Delete"
-                  action="delete"
-                  onPress={() => {
-                    dispatch(deleteNote(selectedNote?.id));
-                    setDeleteModalOpen(false);
-                    showToast('Note Deleted!');
-                  }}
-                />
-              </View>
-              <View style={{flex: 0.47}}>
-                <ActionButton
-                  text="Cancel"
-                  action="cancel"
-                  onPress={() => {
-                    setDeleteModalOpen(false);
-                  }}
-                />
-              </View>
-            </HStack>
-          </Container>
+          <HStack justifyContent="space-between">
+            <View style={{flex: 0.47}}>
+              <ActionButton
+                text="Delete"
+                action="delete"
+                onPress={() => {
+                  dispatch(deleteNote(selectedNote?.id));
+                  setDeleteModalOpen(false);
+                  showToast('Note Deleted!');
+                }}
+              />
+            </View>
+            <View style={{flex: 0.47}}>
+              <ActionButton
+                text="Cancel"
+                action="cancel"
+                onPress={() => {
+                  setDeleteModalOpen(false);
+                }}
+              />
+            </View>
+          </HStack>
+          {/* </Container> */}
         </View>
       </BottomModal>
       <NormalModal
@@ -214,13 +214,13 @@ const FirstRoute = ({navigation, activeFilter, setActiveFilter}) => {
 export default FirstRoute;
 
 const styles = StyleSheet.create({
-  modalAddRoom: {
+  modal: {
     maxHeight: '70%',
-    backgroundColor: '#000',
+    backgroundColor: commonData.colors.BLACK_COLOR,
     borderWidth: 0.5,
     borderColor: commonData.colors.NOTES_SECTION_COLOR,
-    borderTopLeftRadius: 16,
-    borderTopRightRadius: 16,
-    paddingBottom: 30,
+    borderTopLeftRadius: 8,
+    borderTopRightRadius: 8,
+    padding: 10,
   },
 });

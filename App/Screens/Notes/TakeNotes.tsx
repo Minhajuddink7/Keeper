@@ -32,38 +32,50 @@ import FullButton from '../../Components/Buttons/FullButton';
 import Gap from '../../Components/Common/Gap';
 import Container from '../../Components/Layouts/Container';
 import BottomModal from '../../Components/Common/modals/BottomModal';
+import HStack from '../../Components/Layouts/HStack';
 const {NOTES_SECTION_COLOR} = commonData.colors;
 const LabelSelector = ({text, selected, setSelected}) => {
   return (
     <>
-      <TouchableOpacity
+      <View
         style={{
           flexDirection: 'row',
           paddingVertical: 10,
           marginHorizontal: '6%',
           justifyContent: 'space-between',
-        }}
-        onPress={() => {
-          setSelected(text);
         }}>
         <AppText text={text} type="Kalam-Regular,#fff,18" ta="center" mr={10} />
         {/* {selected === text ? ( */}
-        <View
-          style={{
-            height: 25,
-            width: 25,
-            borderRadius: 6,
-            // borderRadius: 25 / 2,
-            alignItems: 'center',
-            justifyContent: 'center',
-            borderWidth: 1,
-            borderColor: NOTES_SECTION_COLOR,
-            backgroundColor: selected === text ? NOTES_SECTION_COLOR : '#fff',
-          }}>
-          <DynamicIcon color="#fff" family="FontAwesome5" name="check" />
-        </View>
+        <HStack>
+          {/* <TouchableOpacity>
+            <DynamicIcon
+              color="#fff"
+              family="FontAwesome5"
+              name="trash"
+              size={18}
+            />
+          </TouchableOpacity> */}
+          <TouchableOpacity
+            style={{
+              height: 25,
+              width: 25,
+              borderRadius: 6,
+              marginLeft: 15,
+              // borderRadius: 25 / 2,
+              alignItems: 'center',
+              justifyContent: 'center',
+              borderWidth: 1,
+              borderColor: NOTES_SECTION_COLOR,
+              backgroundColor: selected === text ? NOTES_SECTION_COLOR : '#fff',
+            }}
+            onPress={() => {
+              setSelected(text);
+            }}>
+            <DynamicIcon color="#fff" family="FontAwesome5" name="check" />
+          </TouchableOpacity>
+        </HStack>
         {/* ) : null} */}
-      </TouchableOpacity>
+      </View>
       <MenuDivider color="#fff" />
     </>
   );
@@ -196,6 +208,7 @@ const TakeNotes = ({navigation}) => {
   return (
     <FullPage color={BLACK_COLOR}>
       <NoteWriter
+        autoFocus={false}
         noteTitle={noteTitle}
         setNoteTitle={setNoteTitle}
         currentNote={currentNote}
@@ -240,7 +253,7 @@ const TakeNotes = ({navigation}) => {
             backgroundColor: '#222',
             borderTopLeftRadius: 16,
             borderTopRightRadius: 16,
-            paddingVertical: 20,
+            paddingTop: 10,
           }}>
           <AppText text="Add Label" type="Kalam-Bold,#bbb,24" ta="center" />
           <MenuDivider />
@@ -273,7 +286,7 @@ const TakeNotes = ({navigation}) => {
               autoFocus
               style={{
                 fontFamily: 'Kalam-Bold',
-                fontSize: 18,
+                fontSize: 16,
                 color: '#ddd',
                 flex: 1,
               }}
@@ -286,7 +299,6 @@ const TakeNotes = ({navigation}) => {
           <Gap gap={10} />
 
           {labels?.map((label: string, i: number) => {
-            console.log(label);
             return (
               <LabelSelector
                 text={label}

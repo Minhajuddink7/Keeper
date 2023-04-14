@@ -12,10 +12,6 @@ import {SafeAreaView, StatusBar, StyleSheet, View} from 'react-native';
 
 // import {collection, getDocs} from 'firebase/firestore/lite';
 const Root = () => {
-  useEffect(() => {
-    // setTimeout(() => {
-    // }, 1000);
-  }, []);
   return (
     <FullPage color={commonData.colors.DARK_THEME_COLOR}>
       <MyStatusBar

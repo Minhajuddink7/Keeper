@@ -52,8 +52,8 @@ const BottomActions = ({actions}) => {
       case 'play':
         return (
           <DynamicIcon
-            family="MaterialIcons"
-            name="slideshow"
+            name="book-open"
+            family="FontAwesome5"
             {...iconSizeAndColor}
           />
         );

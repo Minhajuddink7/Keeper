@@ -15,9 +15,9 @@ const commonStyles = StyleSheet.create({
     borderColor: commonData.colors.CHECKER_SECTION_COLOR,
     maxHeight: '70%',
     backgroundColor: '#222',
-    borderTopLeftRadius: 16,
-    borderTopRightRadius: 16,
-    paddingBottom: 30,
+    borderTopLeftRadius: 8,
+    borderTopRightRadius: 8,
+    padding: 10,
   },
 });
 export default commonStyles;

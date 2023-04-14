@@ -27,6 +27,12 @@ const CheckerReducer = (state = INITIAL_STATE, action) => {
     case actionType.checkers.deleteQuote:
       return deleteQuote(state, action.payload);
 
+    //lists
+    case actionType.checkers.setLists:
+      return {...state, lists: action.payload};
+    case actionType.checkers.deleteList:
+      return deleteList(state, action.payload);
+
     default:
       return state;
   }
@@ -57,10 +63,18 @@ const deleteQuote = (state, payload) => {
   const updated = cur.filter(quote => quote.id !== payload);
   return {...state, quotes: updated};
 };
-//quotes
+//affirmations
 const deleteAffirmation = (state, payload) => {
   const cur = [...state.affirmations];
   const updated = cur.filter(affirmation => affirmation.id !== payload);
   return {...state, affirmations: updated};
+};
+
+//lists
+const deleteList = (state, payload) => {
+  console.log('delete');
+  const cur = [...state.lists];
+  const updated = cur.filter(list => list.id !== payload);
+  return {...state, lists: updated};
 };
 export default CheckerReducer;

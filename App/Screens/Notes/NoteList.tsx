@@ -89,7 +89,7 @@ const NoteList = ({navigation}) => {
         <ScrollView
           style={{
             backgroundColor: BLACK_COLOR,
-            paddingTop: 15,
+            paddingTop: 7,
           }}>
           <View style={{paddingBottom: 15}}>
             {staredNotes?.length === 0 ? (

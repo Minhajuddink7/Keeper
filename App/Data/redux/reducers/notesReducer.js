@@ -17,6 +17,8 @@ const NotesReducer = (state = INITIAL_STATE, action) => {
       return toggleStared(state, action.payload);
     case actionType.notes.addNoteLabel:
       return addNoteLabel(state, action.payload);
+    case actionType.notes.changeNoteLabels:
+      return {...state, labels: action.payload};
     default:
       return state;
   }

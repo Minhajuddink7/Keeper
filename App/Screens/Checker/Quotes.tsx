@@ -49,7 +49,7 @@ const Quotes = () => {
   };
   return (
     <View style={{flex: 1}}>
-      <ScrollView style={{paddingTop: 10}}>
+      <ScrollView style={{paddingTop: 7}}>
         {quotes?.length === 0 ? (
           <NoItem
             text="No Quotes found!"
@@ -89,53 +89,53 @@ const Quotes = () => {
       </ScrollView>
       <BottomModal modalOpen={addModalOpen} setModalOpen={setAddModalOpen}>
         <View style={commonStyles.addBottomModal}>
+          <Gap gap={5} />
+          {/* <Container> */}
+          {/* <TextBox placeholder="Enter your quote" /> */}
+          <TextInput
+            multiline={true}
+            placeholder="Enter a new Quote!"
+            placeholderTextColor="#777"
+            value={quote}
+            onChangeText={text => {
+              setQuote(text);
+            }}
+            style={{
+              borderWidth: 1,
+              borderRadius: 8,
+              paddingLeft: 10,
+              backgroundColor: DARK_THEME_COLOR,
+              fontFamily: 'Kalam-Regular',
+              fontSize: 20,
+              color: '#ddd',
+            }}
+            autoFocus={true}
+            // numberOfLines={2}
+          />
+          {/* <AppText text="Confirm Delete?" type="Kalam-Bold,#000,18" /> */}
           <Gap />
-          <Container>
-            {/* <TextBox placeholder="Enter your quote" /> */}
-            <TextInput
-              multiline={true}
-              placeholder="Enter Your Todo!"
-              placeholderTextColor="#777"
-              value={quote}
-              onChangeText={text => {
-                setQuote(text);
-              }}
-              style={{
-                borderWidth: 1,
-                borderRadius: 8,
-                paddingLeft: 10,
-                backgroundColor: DARK_THEME_COLOR,
-                fontFamily: 'Kalam-Regular',
-                fontSize: 20,
-                color: '#ddd',
-              }}
-              autoFocus={true}
-              // numberOfLines={2}
-            />
-            {/* <AppText text="Confirm Delete?" type="Kalam-Bold,#000,18" /> */}
-            <Gap />
-            <HStack justifyContent="space-between">
-              <View style={{flex: 0.47}}>
-                <ActionButton
-                  text="Cancel"
-                  action="cancel"
-                  onPress={() => {
-                    setAddModalOpen(false);
-                  }}
-                />
-              </View>
-              <View style={{flex: 0.47}}>
-                <ActionButton
-                  text="Save"
-                  action="save"
-                  onPress={() => {
-                    addQuote();
-                    setAddModalOpen(false);
-                  }}
-                />
-              </View>
-            </HStack>
-          </Container>
+          <HStack justifyContent="space-between">
+            <View style={{flex: 0.47}}>
+              <ActionButton
+                text="Cancel"
+                action="cancel"
+                onPress={() => {
+                  setAddModalOpen(false);
+                }}
+              />
+            </View>
+            <View style={{flex: 0.47}}>
+              <ActionButton
+                text="Save"
+                action="save"
+                onPress={() => {
+                  addQuote();
+                  setAddModalOpen(false);
+                }}
+              />
+            </View>
+          </HStack>
+          {/* </Container> */}
         </View>
       </BottomModal>
 

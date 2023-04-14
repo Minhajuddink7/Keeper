@@ -58,7 +58,7 @@ const Todos = () => {
       <ScrollView
         style={{
           backgroundColor: commonData.colors.BLACK_COLOR,
-          paddingTop: 10,
+          paddingTop: 7,
         }}>
         {todos?.length === 0 ? (
           <NoItem
@@ -130,53 +130,52 @@ const Todos = () => {
       </ScrollView>
       <BottomModal modalOpen={addModalOpen} setModalOpen={setAddModalOpen}>
         <View style={commonStyles.addBottomModal}>
+          <Gap gap={5} />
+
+          <TextInput
+            multiline={true}
+            placeholder="Enter Your Todo!"
+            placeholderTextColor="#777"
+            value={todo}
+            onChangeText={text => {
+              setTodo(text);
+            }}
+            style={{
+              borderWidth: 1,
+              borderRadius: 8,
+              paddingLeft: 10,
+              backgroundColor: DARK_THEME_COLOR,
+              fontFamily: 'Kalam-Regular',
+              fontSize: 20,
+              color: '#ddd',
+            }}
+            autoFocus={true}
+            // numberOfLines={2}
+          />
+          {/* <AppText text="Confirm Delete?" type="Kalam-Bold,#000,18" /> */}
           <Gap />
-          <Container>
-            {/* <TextBox placeholder="Enter your quote" /> */}
-            <TextInput
-              multiline={true}
-              placeholder="Enter Your Todo!"
-              placeholderTextColor="#777"
-              value={todo}
-              onChangeText={text => {
-                setTodo(text);
-              }}
-              style={{
-                borderWidth: 1,
-                borderRadius: 8,
-                paddingLeft: 10,
-                backgroundColor: DARK_THEME_COLOR,
-                fontFamily: 'Kalam-Regular',
-                fontSize: 20,
-                color: '#ddd',
-              }}
-              autoFocus={true}
-              // numberOfLines={2}
-            />
-            {/* <AppText text="Confirm Delete?" type="Kalam-Bold,#000,18" /> */}
-            <Gap />
-            <HStack justifyContent="space-between">
-              <View style={{flex: 0.47}}>
-                <ActionButton
-                  text="Cancel"
-                  action="cancel"
-                  onPress={() => {
-                    setAddModalOpen(false);
-                  }}
-                />
-              </View>
-              <View style={{flex: 0.47}}>
-                <ActionButton
-                  text="Save"
-                  action="save"
-                  onPress={() => {
-                    addTodo();
-                    setAddModalOpen(false);
-                  }}
-                />
-              </View>
-            </HStack>
-          </Container>
+          <HStack justifyContent="space-between">
+            <View style={{flex: 0.47}}>
+              <ActionButton
+                text="Cancel"
+                action="cancel"
+                onPress={() => {
+                  setAddModalOpen(false);
+                }}
+              />
+            </View>
+            <View style={{flex: 0.47}}>
+              <ActionButton
+                text="Save"
+                action="save"
+                onPress={() => {
+                  addTodo();
+                  setAddModalOpen(false);
+                }}
+              />
+            </View>
+          </HStack>
+          {/* </Container> */}
         </View>
       </BottomModal>
       <AddButton onPress={() => setAddModalOpen(true)} />

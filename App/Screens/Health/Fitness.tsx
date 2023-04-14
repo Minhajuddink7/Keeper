@@ -12,7 +12,7 @@ const {HEALTH_SECTION_COLOR} = commonData.colors;
 const Fitness = ({navigation}) => {
   return (
     <ScrollView>
-      {[1, 2, 3, 4, 5]?.map(() => {
+      {/* {[1, 2, 3, 4, 5]?.map(() => {
         return (
           <TouchableOpacity
             style={styles.card}
@@ -27,7 +27,7 @@ const Fitness = ({navigation}) => {
             <AppText text="3. Hanging and pullups" type="Kalam-Bold,#ddd,16" />
           </TouchableOpacity>
         );
-      })}
+      })} */}
     </ScrollView>
   );
 };
