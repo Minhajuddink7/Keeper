@@ -5,6 +5,7 @@ import {
   TextInput,
   TouchableOpacity,
   View,
+  FlatList,
 } from 'react-native';
 import React, {useState} from 'react';
 import {commonData} from '../../Data/static/commonData';
@@ -25,6 +26,7 @@ import Container from '../../Components/Layouts/Container';
 import ActionButton from '../../Components/Buttons/ActionButton';
 import AddButton from './AddButton';
 import {showToast} from '../../Helpers/utils';
+// import {FlatList} from 'react-native-gesture-handler';
 const {DARK_THEME_COLOR} = commonData.colors;
 const Todos = () => {
   const dispatch = useDispatch();
@@ -55,10 +57,11 @@ const Todos = () => {
   };
   return (
     <View style={{flex: 1}}>
-      <ScrollView
+      <View
         style={{
           backgroundColor: commonData.colors.BLACK_COLOR,
           paddingTop: 7,
+          paddingBottom: 10,
         }}>
         {todos?.length === 0 ? (
           <NoItem
@@ -66,68 +69,62 @@ const Todos = () => {
             color={commonData.colors.CHECKER_SECTION_COLOR}
           />
         ) : (
-          todos?.map((todo, i) => {
-            // console.log(todo);
-            return (
-              <View key={i} style={commonStyles.card}>
-                <HStack alignItems="flex-start">
-                  {/* <TouchableOpacity style={{marginTop: 5, marginRight: 15}}>
-                <DynamicIcon
-                family="FontAwesome"
-                name="reorder"
-                color="#ccc"
-                size={20}
-                />
-              </TouchableOpacity> */}
-                  <AppText
-                    text={`${i + 1}. `}
-                    type={`${commonData.fonts.BOLD},${
-                      !todo.isCompleted ? '#fff' : '#aaa'
-                    },18`}
-                  />
-                  <AppText
-                    td={todo.isCompleted ? 'line-through' : 'none'}
-                    text={todo.title}
-                    //   text={`"${quote.name}"`}
-                    type={`${commonData.fonts.BOLD},${
-                      !todo.isCompleted ? '#fff' : '#aaa'
-                    },18`}
-                  />
-                </HStack>
-                <HStack justifyContent="flex-end">
-                  <TouchableOpacity
-                    onPress={() => toggleCompletedTodo(todo.id)}>
-                    {todo.isCompleted ? (
-                      <DynamicIcon
-                        color="#ccc"
-                        family="FontAwesome"
-                        name="check-square"
-                        size={20}
-                      />
-                    ) : (
-                      <DynamicIcon
-                        color="#ccc"
-                        family="FontAwesome"
-                        name="square-o"
-                        size={20}
-                      />
-                    )}
-                  </TouchableOpacity>
-                  <AppText text="   " />
-                  <TouchableOpacity onPress={() => deleteTodoItem(todo.id)}>
-                    <DynamicIcon
-                      color="#ccc"
-                      family="FontAwesome5"
-                      name="trash"
-                      size={16}
+          <FlatList
+            data={todos}
+            renderItem={({item: todo, index}) => {
+              return (
+                <View style={commonStyles.card}>
+                  <HStack alignItems="flex-start">
+                    <AppText
+                      text={`${index + 1}. `}
+                      type={`${commonData.fonts.BOLD},${
+                        !todo.isCompleted ? '#fff' : '#aaa'
+                      },18`}
                     />
-                  </TouchableOpacity>
-                </HStack>
-              </View>
-            );
-          })
+                    <AppText
+                      td={todo.isCompleted ? 'line-through' : 'none'}
+                      text={todo.title}
+                      //   text={`"${quote.name}"`}
+                      type={`${commonData.fonts.BOLD},${
+                        !todo.isCompleted ? '#fff' : '#aaa'
+                      },18`}
+                    />
+                  </HStack>
+                  <HStack justifyContent="flex-end">
+                    <TouchableOpacity
+                      onPress={() => toggleCompletedTodo(todo.id)}>
+                      {todo.isCompleted ? (
+                        <DynamicIcon
+                          color="#ccc"
+                          family="FontAwesome"
+                          name="check-square"
+                          size={20}
+                        />
+                      ) : (
+                        <DynamicIcon
+                          color="#ccc"
+                          family="FontAwesome"
+                          name="square-o"
+                          size={20}
+                        />
+                      )}
+                    </TouchableOpacity>
+                    <AppText text="   " />
+                    <TouchableOpacity onPress={() => deleteTodoItem(todo.id)}>
+                      <DynamicIcon
+                        color="#ccc"
+                        family="FontAwesome5"
+                        name="trash"
+                        size={16}
+                      />
+                    </TouchableOpacity>
+                  </HStack>
+                </View>
+              );
+            }}
+          />
         )}
-      </ScrollView>
+      </View>
       <BottomModal modalOpen={addModalOpen} setModalOpen={setAddModalOpen}>
         <View style={commonStyles.addBottomModal}>
           <Gap gap={5} />

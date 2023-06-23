@@ -144,7 +144,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 10,
     padding: 7,
     backgroundColor: '#ccd',
-    // backgroundColor: '#eef',
+    // backgroundColor: NOTES_SECTION_COLOR,
     height: 120,
     borderRadius: 8,
     marginBottom: 2,

@@ -126,7 +126,7 @@ const NoteList = ({navigation}) => {
             {
               name: 'write',
               onPress: function () {
-                navigation.goBack();
+                navigation.navigate('TakeNotes');
               },
             },
 
@@ -200,105 +200,6 @@ const NoteList = ({navigation}) => {
         initialLayout={{width: layout.width}}
         renderTabBar={renderTabBar}
       />
-
-      {/* <BackButton
-        navigation={navigation}
-        color={commonData.colors.NOTES_SECTION_COLOR}
-      /> */}
-      {/* <BottomActions
-        actions={[
-          {
-            name: 'back',
-            onPress: function () {
-              navigation.goBack();
-            },
-          },
-          {
-            name: 'filter',
-            onPress: function () {
-              setLabelModalOpen(true);
-              // navigation.navigate('Home');
-            },
-          },
-          {
-            name: 'home',
-            onPress: function () {
-              navigation.navigate('Home');
-            },
-          },
-          // {},
-          // {
-          //   name: 'lists',
-          //   onPress: function () {
-          //     navigation.navigate('NoteList');
-          //   },
-          // },
-        ]}
-      /> */}
-      {/* <BottomModal
-        modalOpen={deleteModalOpen}
-        setModalOpen={setDeleteModalOpen}>
-        <View style={[styles.modalAddRoom]}>
-          <Gap />
-          <Container>
-            <AppText text="Confirm Delete?" type="Kalam-Bold,#ccc,18" />
-            <Gap />
-            <HStack justifyContent="space-between">
-              <View style={{flex: 0.47}}>
-                <ActionButton
-                  text="Delete"
-                  action="delete"
-                  onPress={() => {
-                    dispatch(deleteNote(selectedNote?.id));
-                    setDeleteModalOpen(false);
-                    showToast('Note Deleted!');
-                  }}
-                />
-              </View>
-              <View style={{flex: 0.47}}>
-                <ActionButton
-                  text="Cancel"
-                  action="cancel"
-                  onPress={() => {
-                    setDeleteModalOpen(false);
-                  }}
-                />
-              </View>
-            </HStack>
-          </Container>
-        </View>
-      </BottomModal> */}
-      {/* <NormalModal
-        flex={0}
-        visible={labelModalOpen}
-        setVisible={setLabelModalOpen}>
-        <AppText text="Select Filter" type="Kalam-Bold,,24" ta="center" />
-        <MenuDivider />
-        <MenuDivider />
-        <MenuDivider />
-        <FilterItem text={'All Notes'} onPress={() => filterNotes('')} />
-        {labels.map((label: string, i: number) => {
-          return (
-            <FilterItem
-              text={label}
-              key={i}
-              onPress={() => filterNotes(label)}
-            />
-          );
-        })}
-      </NormalModal> */}
-
-      {/* <NormalModal visible={modalOpen} setVisible={setModalOpen}>
-        <ScrollView>
-          <View style={{padding: 10}}>
-            <AppText
-              text={viewedNote?.body}
-              type="Kalam-Regular,#000,20"
-              ta="justify"
-            />
-          </View>
-        </ScrollView>
-      </NormalModal> */}
     </FullPage>
   );
 };

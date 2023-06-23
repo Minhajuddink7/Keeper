@@ -1,4 +1,5 @@
 import {
+  FlatList,
   ScrollView,
   StyleSheet,
   Text,
@@ -47,46 +48,102 @@ const Quotes = () => {
     showToast('Quote Added');
     setQuote('');
   };
+  const markAsPinned = quote => {
+    console.log('marked', quote);
+    const markedQuote = {...quote, isMarked: true};
+    const newQuotes = [...quotes].filter(q => q.id !== quote.id);
+    newQuotes.unshift(markedQuote);
+    dispatch(changeQuotes(newQuotes));
+    showToast('Quote Pinned');
+    setQuote('');
+  };
   return (
     <View style={{flex: 1}}>
-      <ScrollView style={{paddingTop: 7}}>
+      <View style={{paddingTop: 7, paddingBottom: 10}}>
         {quotes?.length === 0 ? (
           <NoItem
             text="No Quotes found!"
             color={commonData.colors.CHECKER_SECTION_COLOR}
           />
         ) : (
-          quotes?.map((quote, i) => {
-            return (
-              <View key={i} style={commonStyles.card}>
-                <AppText
-                  text={`"${quote.quote}"`}
-                  type={`${commonData.fonts.BOLD},#fff,18`}
-                />
-                <HStack justifyContent="flex-end">
-                  <TouchableOpacity>
-                    <DynamicIcon
-                      color="#ccc"
-                      family="AntDesign"
-                      name="pushpino"
-                      size={16}
-                    />
-                  </TouchableOpacity>
-                  <AppText text="   " />
-                  <TouchableOpacity onPress={() => deleteQuoteItem(quote.id)}>
-                    <DynamicIcon
-                      color="#ccc"
-                      family="FontAwesome5"
-                      name="trash"
-                      size={16}
-                    />
-                  </TouchableOpacity>
-                </HStack>
-              </View>
-            );
-          })
+          <FlatList
+            data={quotes}
+            renderItem={({item: quote}) => {
+              return (
+                <View
+                  style={{
+                    ...commonStyles.card,
+                    // flexDirection: 'row',
+                    // justifyContent: 'space-between',
+                    // alignItems: 'flex-start',
+                  }}>
+                  <AppText
+                    text={`"${quote.quote}"`}
+                    type={`${commonData.fonts.BOLD},#fff,18`}
+                  />
+                  <HStack justifyContent="flex-end">
+                    <TouchableOpacity onPress={() => markAsPinned(quote)}>
+                      {quote.isMarked ? (
+                        <DynamicIcon
+                          color="#ccc"
+                          family="AntDesign"
+                          name="pushpin"
+                          size={16}
+                        />
+                      ) : (
+                        <DynamicIcon
+                          color="#ccc"
+                          family="AntDesign"
+                          name="pushpino"
+                          size={16}
+                        />
+                      )}
+                    </TouchableOpacity>
+                    <AppText text="   " />
+                    <TouchableOpacity onPress={() => deleteQuoteItem(quote.id)}>
+                      <DynamicIcon
+                        color="#ccc"
+                        family="FontAwesome5"
+                        name="trash"
+                        size={16}
+                      />
+                    </TouchableOpacity>
+                  </HStack>
+                </View>
+              );
+            }}
+          />
+          // quotes?.map((quote, i) => {
+          //   return (
+          //     <View key={i} style={commonStyles.card}>
+          //       <AppText
+          //         text={`"${quote.quote}"`}
+          //         type={`${commonData.fonts.BOLD},#fff,18`}
+          //       />
+          //       <HStack justifyContent="flex-end">
+          //         <TouchableOpacity>
+          //           <DynamicIcon
+          //             color="#ccc"
+          //             family="AntDesign"
+          //             name="pushpino"
+          //             size={16}
+          //           />
+          //         </TouchableOpacity>
+          //         <AppText text="   " />
+          //         <TouchableOpacity onPress={() => deleteQuoteItem(quote.id)}>
+          //           <DynamicIcon
+          //             color="#ccc"
+          //             family="FontAwesome5"
+          //             name="trash"
+          //             size={16}
+          //           />
+          //         </TouchableOpacity>
+          //       </HStack>
+          //     </View>
+          //   );
+          // })
         )}
-      </ScrollView>
+      </View>
       <BottomModal modalOpen={addModalOpen} setModalOpen={setAddModalOpen}>
         <View style={commonStyles.addBottomModal}>
           <Gap gap={5} />

@@ -208,7 +208,7 @@ const TakeNotes = ({navigation}) => {
   return (
     <FullPage color={BLACK_COLOR}>
       <NoteWriter
-        autoFocus={false}
+        autoFocus={true}
         noteTitle={noteTitle}
         setNoteTitle={setNoteTitle}
         currentNote={currentNote}
@@ -297,17 +297,18 @@ const TakeNotes = ({navigation}) => {
             />
           </View>
           <Gap gap={10} />
-
-          {labels?.map((label: string, i: number) => {
-            return (
-              <LabelSelector
-                text={label}
-                key={i}
-                selected={selectedLabel}
-                setSelected={setSelectedLabel}
-              />
-            );
-          })}
+          <ScrollView>
+            {labels?.map((label: string, i: number) => {
+              return (
+                <LabelSelector
+                  text={label}
+                  key={i}
+                  selected={selectedLabel}
+                  setSelected={setSelectedLabel}
+                />
+              );
+            })}
+          </ScrollView>
 
           <Gap />
 

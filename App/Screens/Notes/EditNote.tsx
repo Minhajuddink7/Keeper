@@ -11,6 +11,9 @@ import BottomActions from '../../Components/BottomActions/BottomActions';
 
 const EditNote = ({navigation, route}) => {
   const {note} = route.params;
+  // console.log('NOTE', note);
+  // console.log()
+  // return null;
   const dispatch = useDispatch();
   const notes: any = useSelector<RootStateOrAny>(state => state.notes.notes);
   const [noteTitle, setNoteTitle] = useState(note.title);

@@ -1,4 +1,5 @@
 import {
+  FlatList,
   ScrollView,
   StyleSheet,
   Text,
@@ -51,44 +52,46 @@ const Affirmations = () => {
   };
   return (
     <View style={{flex: 1}}>
-      <ScrollView style={{paddingTop: 7}}>
+      <View style={{paddingTop: 7, marginBottom: 10}}>
         {affirmations?.length === 0 ? (
           <NoItem
             text="No Affirmation found!"
             color={commonData.colors.CHECKER_SECTION_COLOR}
           />
         ) : (
-          affirmations?.map((affirmation, i) => {
-            return (
-              <View key={i} style={commonStyles.card}>
-                <AppText
-                  text={affirmation.affirmation}
-                  type={`${commonData.fonts.BOLD},#fff,18`}
-                />
-                <HStack justifyContent="flex-end">
-                  {/* <TouchableOpacity>
-                  <DynamicIcon
-                    color="#ccc"
-                    family="AntDesign"
-                    name="pushpino"
-                    size={16}
+          <FlatList
+            data={affirmations}
+            renderItem={({item: affirmation}) => {
+              return (
+                <View
+                  style={{
+                    ...commonStyles.card,
+                    flexDirection: 'row',
+                    justifyContent: 'space-between',
+                    alignItems: 'flex-start',
+                  }}>
+                  <AppText
+                    text={affirmation.affirmation}
+                    type={`${commonData.fonts.BOLD},#fff,18`}
                   />
-                </TouchableOpacity> */}
-                  <AppText text="   " />
-                  <TouchableOpacity onPress={() => deleteItem(affirmation.id)}>
-                    <DynamicIcon
-                      color="#ccc"
-                      family="FontAwesome5"
-                      name="trash"
-                      size={16}
-                    />
-                  </TouchableOpacity>
-                </HStack>
-              </View>
-            );
-          })
+                  <HStack justifyContent="flex-end">
+                    <AppText text="   " />
+                    <TouchableOpacity
+                      onPress={() => deleteItem(affirmation.id)}>
+                      <DynamicIcon
+                        color="#ccc"
+                        family="FontAwesome5"
+                        name="trash"
+                        size={16}
+                      />
+                    </TouchableOpacity>
+                  </HStack>
+                </View>
+              );
+            }}
+          />
         )}
-      </ScrollView>
+      </View>
       <BottomModal modalOpen={addModalOpen} setModalOpen={setAddModalOpen}>
         <View style={commonStyles.addBottomModal}>
           <Gap gap={5} />

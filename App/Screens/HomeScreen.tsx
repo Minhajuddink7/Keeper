@@ -207,7 +207,7 @@ const HomeScreen = ({navigation}) => {
               backgroundColor: NOTES_SECTION_COLOR,
               borderTopLeftRadius: 8,
             }}
-            onPress={() => navigation.navigate('TakeNotes')}>
+            onPress={() => navigation.navigate('NoteList')}>
             <Menu family="FontAwesome5" name="pen" text="Notes" />
           </TouchableOpacity>
           <TouchableOpacity

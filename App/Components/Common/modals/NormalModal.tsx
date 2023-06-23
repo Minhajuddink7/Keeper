@@ -5,9 +5,9 @@ const NormalModal = ({visible, setVisible, children, flex = 0.5}) => {
   return (
     <View>
       <Modal isVisible={visible} onBackdropPress={() => setVisible(false)}>
-        <View style={{flex: flex, backgroundColor: '#bbb', borderRadius: 8}}>
-          {children}
-        </View>
+        {/* <View style={{flex: flex, backgroundColor: '#bbb', borderRadius: 8}}> */}
+        {children}
+        {/* </View> */}
       </Modal>
     </View>
   );

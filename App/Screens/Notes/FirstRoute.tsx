@@ -1,4 +1,5 @@
 import {
+  FlatList,
   ScrollView,
   StyleSheet,
   Text,
@@ -21,6 +22,7 @@ import NormalModal from '../../Components/Common/modals/NormalModal';
 import {MenuDivider} from 'react-native-material-menu';
 import {RootStateOrAny, useDispatch, useSelector} from 'react-redux';
 import BottomActions from '../../Components/BottomActions/BottomActions';
+
 const {BLACK_COLOR, FINANCE_SECTION_COLOR, NOTES_SECTION_COLOR} =
   commonData.colors;
 const FilterItem = ({text, onPress}) => {
@@ -40,6 +42,7 @@ const FirstRoute = ({navigation, activeFilter, setActiveFilter}) => {
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
   const [labelModalOpen, setLabelModalOpen] = useState(false);
   const labels: any = useSelector<RootStateOrAny>(state => state.notes.labels);
+
   const notes: any = useSelector<RootStateOrAny>(state => state.notes.notes);
   const [filteredNotes, setFilteredNotes] = useState(notes);
   //   const [selectedFilter, setSelectedFilter] = useState();
@@ -64,39 +67,44 @@ const FirstRoute = ({navigation, activeFilter, setActiveFilter}) => {
   }, [activeFilter]);
   return (
     <View style={{flex: 1}}>
-      <ScrollView
+      <View
         style={{
           backgroundColor: BLACK_COLOR,
           paddingTop: 7,
+          paddingBottom: 70,
+          // flex: 1,
+          // height: '95%',
         }}>
-        <View style={{paddingBottom: 15}}>
-          {filteredNotes?.length === 0 ? (
-            <NoItem text="No Notes Found!" color={FINANCE_SECTION_COLOR} />
-          ) : (
-            filteredNotes.map((note: any) => {
-              // console.log(note);
+        {/* <View style={{paddingBottom: 70}}> */}
+        {filteredNotes?.length === 0 ? (
+          <NoItem text="No Notes Found!" color={FINANCE_SECTION_COLOR} />
+        ) : (
+          <FlatList
+            data={filteredNotes}
+            renderItem={({item}) => {
               return (
                 <NoteCard
-                  key={note.id}
-                  onEdit={() => navigation.navigate('EditNote', {note})}
-                  note={note}
+                  // key={note.id}
+                  onEdit={() => navigation.navigate('EditNote', {note: item})}
+                  note={item}
                   onPeek={() => {
-                    setViewedNote(note);
+                    setViewedNote(item);
                     setModalOpen(true);
                   }}
                   onDelete={() => {
                     setDeleteModalOpen(true);
-                    setSelectedNote(note);
+                    setSelectedNote(item);
                   }}
                   onSelect={() => {
-                    navigation.navigate('NoteView', {viewedNote: note});
+                    navigation.navigate('NoteView', {viewedNote: item});
                   }}
                 />
               );
-            })
-          )}
-        </View>
-      </ScrollView>
+            }}
+          />
+        )}
+        {/* </View> */}
+      </View>
       <BottomModal
         modalOpen={deleteModalOpen}
         setModalOpen={setDeleteModalOpen}>
@@ -131,7 +139,7 @@ const FirstRoute = ({navigation, activeFilter, setActiveFilter}) => {
         </View>
       </BottomModal>
       <NormalModal
-        flex={0}
+        flex={0.8}
         visible={labelModalOpen}
         setVisible={setLabelModalOpen}>
         {/* <Gap /> */}
@@ -139,13 +147,14 @@ const FirstRoute = ({navigation, activeFilter, setActiveFilter}) => {
           style={{
             borderWidth: 0.2,
             borderColor: NOTES_SECTION_COLOR,
-            // maxHeight: '70%',
+            maxHeight: '70%',
             backgroundColor: '#222',
             borderRadius: 6,
-            // flex: 1,
+            // flex: 0,
           }}>
           <Gap />
-          <AppText text="Select Filter" type="Kalam-Bold,#fff,24" ta="center" />
+          <AppText text="Select Label" type="Kalam-Bold,#fff,24" ta="center" />
+          <MenuDivider color={NOTES_SECTION_COLOR} />
           <MenuDivider color={NOTES_SECTION_COLOR} />
           <MenuDivider color={NOTES_SECTION_COLOR} />
           <MenuDivider color={NOTES_SECTION_COLOR} />
@@ -159,7 +168,21 @@ const FirstRoute = ({navigation, activeFilter, setActiveFilter}) => {
               setActiveFilter('All Notes');
             }}
           />
-          {labels.map((label: string, i: number) => {
+          <FlatList
+            data={labels}
+            renderItem={({item}) => {
+              return (
+                <FilterItem
+                  text={item}
+                  // key={i}
+                  onPress={() => {
+                    setActiveFilter(item);
+                  }}
+                />
+              );
+            }}
+          />
+          {/* {labels.map((label: string, i: number) => {
             return (
               <FilterItem
                 text={label}
@@ -169,44 +192,49 @@ const FirstRoute = ({navigation, activeFilter, setActiveFilter}) => {
                 }}
               />
             );
-          })}
+          })} */}
         </View>
       </NormalModal>
 
-      <NormalModal visible={modalOpen} setVisible={setModalOpen} flex={0}>
-        <ScrollView>
-          <View style={{padding: 10, backgroundColor: '#222', flex: 1}}>
-            <AppText
-              text={viewedNote?.body}
-              type="Kalam-Regular,#fff,20"
-              ta="justify"
-            />
-          </View>
-        </ScrollView>
+      <NormalModal visible={modalOpen} setVisible={setModalOpen} flex={0.5}>
+        <View style={{flex: 0.7}}>
+          <ScrollView>
+            <View style={{padding: 10, backgroundColor: '#222', flex: 1}}>
+              <AppText
+                text={viewedNote?.body}
+                type="Kalam-Regular,#fff,20"
+                ta="justify"
+              />
+            </View>
+          </ScrollView>
+        </View>
       </NormalModal>
-      <BottomActions
-        actions={[
-          {
-            name: 'write',
-            onPress: function () {
-              navigation.goBack();
+      <View style={{marginTop: 'auto'}}>
+        <BottomActions
+          actions={[
+            {
+              name: 'write',
+              onPress: function () {
+                navigation.navigate('TakeNotes');
+                // navigation.goBack();
+              },
             },
-          },
-          {
-            name: 'filter',
-            onPress: function () {
-              setLabelModalOpen(true);
-              // navigation.navigate('Home');
+            {
+              name: 'filter',
+              onPress: function () {
+                setLabelModalOpen(true);
+                // navigation.navigate('Home');
+              },
             },
-          },
-          {
-            name: 'home',
-            onPress: function () {
-              navigation.navigate('Home');
+            {
+              name: 'home',
+              onPress: function () {
+                navigation.navigate('Home');
+              },
             },
-          },
-        ]}
-      />
+          ]}
+        />
+      </View>
     </View>
   );
 };
@@ -215,6 +243,7 @@ export default FirstRoute;
 
 const styles = StyleSheet.create({
   modal: {
+    // flex: 0.5,
     maxHeight: '70%',
     backgroundColor: commonData.colors.BLACK_COLOR,
     borderWidth: 0.5,
