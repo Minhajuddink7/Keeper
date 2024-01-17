@@ -80,6 +80,9 @@ const NoteList = ({navigation}) => {
       />
     );
   }
+  useEffect(() => {
+    setActiveFilter('All Notes');
+  }, [labels]);
 
   const SecondRoute = () => {
     const notes: any = useSelector<RootStateOrAny>(state => state.notes.notes);

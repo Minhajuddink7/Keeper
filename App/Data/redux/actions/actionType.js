@@ -7,6 +7,7 @@ export const actionType = {
     toggleStared: 'TOGGLE_STARED',
     changeNoteLabels: 'CHANGE_LABELS',
     addNoteLabel: 'ADD_NOTE_LABEL',
+    removeNoteLabel: 'REMOVE_NOTE_LABEL',
   },
   checkers: {
     //todos

@@ -72,7 +72,7 @@ const deleteAffirmation = (state, payload) => {
 
 //lists
 const deleteList = (state, payload) => {
-  console.log('delete');
+  // console.log('delete');
   const cur = [...state.lists];
   const updated = cur.filter(list => list.id !== payload);
   return {...state, lists: updated};

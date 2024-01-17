@@ -17,6 +17,7 @@ import {
   addNoteLabel,
   changeCurrentNote,
   changeNotes,
+  removeNoteLabel,
 } from '../../Data/redux/actions/notesActions';
 import moment from 'moment';
 import {showToast} from '../../Helpers/utils';
@@ -35,6 +36,7 @@ import BottomModal from '../../Components/Common/modals/BottomModal';
 import HStack from '../../Components/Layouts/HStack';
 const {NOTES_SECTION_COLOR} = commonData.colors;
 const LabelSelector = ({text, selected, setSelected}) => {
+  const dispatch = useDispatch();
   return (
     <>
       <View
@@ -47,14 +49,17 @@ const LabelSelector = ({text, selected, setSelected}) => {
         <AppText text={text} type="Kalam-Regular,#fff,18" ta="center" mr={10} />
         {/* {selected === text ? ( */}
         <HStack>
-          {/* <TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
+              dispatch(removeNoteLabel(text));
+            }}>
             <DynamicIcon
               color="#fff"
               family="FontAwesome5"
               name="trash"
               size={18}
             />
-          </TouchableOpacity> */}
+          </TouchableOpacity>
           <TouchableOpacity
             style={{
               height: 25,
@@ -69,7 +74,8 @@ const LabelSelector = ({text, selected, setSelected}) => {
               backgroundColor: selected === text ? NOTES_SECTION_COLOR : '#fff',
             }}
             onPress={() => {
-              setSelected(text);
+              if (selected === text) setSelected('');
+              else setSelected(text);
             }}>
             <DynamicIcon color="#fff" family="FontAwesome5" name="check" />
           </TouchableOpacity>
@@ -194,7 +200,7 @@ const TakeNotes = ({navigation}) => {
       return;
     }
     setLabelModalOpen(true);
-    console.log('saved');
+    // console.log('saved');
   };
 
   const addLabel = () => {

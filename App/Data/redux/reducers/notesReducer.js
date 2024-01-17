@@ -17,6 +17,8 @@ const NotesReducer = (state = INITIAL_STATE, action) => {
       return toggleStared(state, action.payload);
     case actionType.notes.addNoteLabel:
       return addNoteLabel(state, action.payload);
+    case actionType.notes.removeNoteLabel:
+      return RemoveNoteLabel(state, action.payload);
     case actionType.notes.changeNoteLabels:
       return {...state, labels: action.payload};
     default:
@@ -48,5 +50,10 @@ const toggleStared = (state, payload) => {
 const addNoteLabel = (state, payload) => {
   const curLabels = [...state.labels];
   const updatedLabels = [...curLabels, payload];
+  return {...state, labels: updatedLabels};
+};
+const RemoveNoteLabel = (state, payload) => {
+  const curLabels = [...state.labels];
+  const updatedLabels = curLabels.filter(cur => cur !== payload);
   return {...state, labels: updatedLabels};
 };

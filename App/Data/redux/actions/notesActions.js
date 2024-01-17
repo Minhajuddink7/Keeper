@@ -24,3 +24,7 @@ export const addNoteLabel = payload => ({
   type: actionType.notes.addNoteLabel,
   payload: payload,
 });
+export const removeNoteLabel = payload => ({
+  type: actionType.notes.removeNoteLabel,
+  payload: payload,
+});

@@ -66,18 +66,16 @@ const Affirmations = () => {
                 <View
                   style={{
                     ...commonStyles.card,
-                    flexDirection: 'row',
-                    justifyContent: 'space-between',
-                    alignItems: 'flex-start',
+                    // flexDirection: 'row',
+                    // justifyContent: 'space-between',
+                    // alignItems: 'flex-start',
+                    // flex: 1,
                   }}>
-                  <AppText
-                    text={affirmation.affirmation}
-                    type={`${commonData.fonts.BOLD},#fff,18`}
-                  />
                   <HStack justifyContent="flex-end">
-                    <AppText text="   " />
+                    {/* <AppText text="   " /> */}
                     <TouchableOpacity
-                      onPress={() => deleteItem(affirmation.id)}>
+                      onPress={() => deleteItem(affirmation.id)}
+                      style={{paddingBottom: 5}}>
                       <DynamicIcon
                         color="#ccc"
                         family="FontAwesome5"
@@ -86,6 +84,11 @@ const Affirmations = () => {
                       />
                     </TouchableOpacity>
                   </HStack>
+                  <AppText
+                    text={affirmation.affirmation}
+                    type={`${commonData.fonts.BOLD},#fff,18`}
+                    // mr={10}
+                  />
                 </View>
               );
             }}

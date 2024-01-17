@@ -65,6 +65,11 @@ const FirstRoute = ({navigation, activeFilter, setActiveFilter}) => {
   useEffect(() => {
     filterNotes(activeFilter);
   }, [activeFilter]);
+
+  // useEffect(() => {
+  //   setActiveFilter('All Notes');
+  //   // console.log('ssss');
+  // }, []);
   return (
     <View style={{flex: 1}}>
       <View

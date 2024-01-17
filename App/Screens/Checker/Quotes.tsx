@@ -49,7 +49,7 @@ const Quotes = () => {
     setQuote('');
   };
   const markAsPinned = quote => {
-    console.log('marked', quote);
+    // console.log('marked', quote);
     const markedQuote = {...quote, isMarked: true};
     const newQuotes = [...quotes].filter(q => q.id !== quote.id);
     newQuotes.unshift(markedQuote);
