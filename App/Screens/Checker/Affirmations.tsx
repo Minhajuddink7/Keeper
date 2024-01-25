@@ -66,10 +66,6 @@ const Affirmations = () => {
                 <View
                   style={{
                     ...commonStyles.card,
-                    // flexDirection: 'row',
-                    // justifyContent: 'space-between',
-                    // alignItems: 'flex-start',
-                    // flex: 1,
                   }}>
                   <HStack justifyContent="flex-end">
                     {/* <AppText text="   " /> */}
@@ -98,8 +94,7 @@ const Affirmations = () => {
       <BottomModal modalOpen={addModalOpen} setModalOpen={setAddModalOpen}>
         <View style={commonStyles.addBottomModal}>
           <Gap gap={5} />
-          {/* <Container> */}
-          {/* <TextBox placeholder="Enter your quote" /> */}
+
           <TextInput
             multiline={true}
             placeholder="Enter a new Affirmation!"
@@ -120,7 +115,7 @@ const Affirmations = () => {
             autoFocus={true}
             // numberOfLines={2}
           />
-          {/* <AppText text="Confirm Delete?" type="Kalam-Bold,#000,18" /> */}
+
           <Gap />
           <HStack justifyContent="space-between">
             <View style={{flex: 0.47}}>
@@ -143,10 +138,8 @@ const Affirmations = () => {
               />
             </View>
           </HStack>
-          {/* </Container> */}
         </View>
       </BottomModal>
-      <AddButton onPress={() => setAddModalOpen(true)} />
     </View>
   );
 };

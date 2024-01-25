@@ -163,7 +163,7 @@ const Todos = () => {
             </View>
             <View style={{flex: 0.47}}>
               <ActionButton
-                text="Save"
+                text="Saveddf"
                 action="save"
                 onPress={() => {
                   addTodo();
@@ -175,7 +175,7 @@ const Todos = () => {
           {/* </Container> */}
         </View>
       </BottomModal>
-      <AddButton onPress={() => setAddModalOpen(true)} />
+      {/* <AddButton onPress={() => setAddModalOpen(true)} /> */}
     </View>
   );
 };

@@ -49,7 +49,6 @@ const Quotes = () => {
     setQuote('');
   };
   const markAsPinned = quote => {
-    // console.log('marked', quote);
     const markedQuote = {...quote, isMarked: true};
     const newQuotes = [...quotes].filter(q => q.id !== quote.id);
     newQuotes.unshift(markedQuote);
@@ -73,9 +72,6 @@ const Quotes = () => {
                 <View
                   style={{
                     ...commonStyles.card,
-                    // flexDirection: 'row',
-                    // justifyContent: 'space-between',
-                    // alignItems: 'flex-start',
                   }}>
                   <AppText
                     text={`"${quote.quote}"`}
@@ -113,42 +109,12 @@ const Quotes = () => {
               );
             }}
           />
-          // quotes?.map((quote, i) => {
-          //   return (
-          //     <View key={i} style={commonStyles.card}>
-          //       <AppText
-          //         text={`"${quote.quote}"`}
-          //         type={`${commonData.fonts.BOLD},#fff,18`}
-          //       />
-          //       <HStack justifyContent="flex-end">
-          //         <TouchableOpacity>
-          //           <DynamicIcon
-          //             color="#ccc"
-          //             family="AntDesign"
-          //             name="pushpino"
-          //             size={16}
-          //           />
-          //         </TouchableOpacity>
-          //         <AppText text="   " />
-          //         <TouchableOpacity onPress={() => deleteQuoteItem(quote.id)}>
-          //           <DynamicIcon
-          //             color="#ccc"
-          //             family="FontAwesome5"
-          //             name="trash"
-          //             size={16}
-          //           />
-          //         </TouchableOpacity>
-          //       </HStack>
-          //     </View>
-          //   );
-          // })
         )}
       </View>
       <BottomModal modalOpen={addModalOpen} setModalOpen={setAddModalOpen}>
         <View style={commonStyles.addBottomModal}>
           <Gap gap={5} />
-          {/* <Container> */}
-          {/* <TextBox placeholder="Enter your quote" /> */}
+
           <TextInput
             multiline={true}
             placeholder="Enter a new Quote!"
@@ -169,7 +135,7 @@ const Quotes = () => {
             autoFocus={true}
             // numberOfLines={2}
           />
-          {/* <AppText text="Confirm Delete?" type="Kalam-Bold,#000,18" /> */}
+
           <Gap />
           <HStack justifyContent="space-between">
             <View style={{flex: 0.47}}>
@@ -192,11 +158,8 @@ const Quotes = () => {
               />
             </View>
           </HStack>
-          {/* </Container> */}
         </View>
       </BottomModal>
-
-      <AddButton onPress={() => setAddModalOpen(true)} />
     </View>
   );
 };

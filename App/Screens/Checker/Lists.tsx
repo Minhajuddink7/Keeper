@@ -21,7 +21,7 @@ import {RootStateOrAny, useDispatch, useSelector} from 'react-redux';
 import NoItem from '../../Components/Common/NoItem';
 import {showToast} from '../../Helpers/utils';
 import {changeList, deleteList} from '../../Data/redux/actions/checkerActions';
-type ListItem = {id: number; listHeader: string; listItems: string};
+
 const {
   BLACK_COLOR,
   DARK_THEME_COLOR,
@@ -84,9 +84,7 @@ const Lists = () => {
         } else return list;
       });
       dispatch(changeList(updatedLists));
-      // const newList = {id: Date.now(), header, body};
-      // const newLists = [...lists, newList];
-      // dispatch(changeList(newLists));
+
       showToast('List Updated');
       setHeader('');
       setBody('');
@@ -95,12 +93,6 @@ const Lists = () => {
     console.log('sdfsdf', selectedList?.id);
   };
 
-  // const handleKeyPress = ({nativeEvent: {key: keyValue}}) => {
-  //   console.log(keyValue);
-  //   if (keyValue === 'Enter') {
-  //     console.log('enter');
-  //   }
-  // };
   return (
     <View style={{flex: 1}}>
       <View>
@@ -147,10 +139,7 @@ const Lists = () => {
         <BottomModal modalOpen={listModalOpen} setModalOpen={setListModalOpen}>
           <View style={[styles.modal]}>
             <Gap gap={5} />
-            {/* <Container> */}
-            {/* <TextBox placeholder="Enter your quote" /> */}
 
-            {/* <View style={{margin: 10, backgroundColor: 'red', height: '100%'}}> */}
             <TextInput
               placeholder={'Enter the list title!'}
               placeholderTextColor="#777"
@@ -180,7 +169,6 @@ const Lists = () => {
                 onChangeText={text => {
                   setBody(text);
                 }}
-                // onKeyPress={handleKeyPress}
                 style={{
                   borderWidth: 1,
                   borderBottomLeftRadius: 8,
@@ -219,22 +207,9 @@ const Lists = () => {
                 />
               </View>
             </HStack>
-            {/* </View> */}
-
-            {/* </Container> */}
           </View>
         </BottomModal>
       </View>
-      {/* <View style={{position: 'absolute', right: 15, bottom: 15}}> */}
-      <AddButton
-        onPress={() => {
-          setHeader('');
-          setBody('');
-          setIsUpdateMode(false);
-          setListModalOpen(true);
-        }}
-      />
-      {/* </View> */}
     </View>
   );
 };

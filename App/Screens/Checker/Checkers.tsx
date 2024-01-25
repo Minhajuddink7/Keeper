@@ -35,6 +35,7 @@ import FullPage from '../../Components/Layouts/FullPage';
 import Todos from './Todos';
 import {
   changeAffirmations,
+  changeList,
   changeQuotes,
   changeTodos,
 } from '../../Data/redux/actions/checkerActions';
@@ -69,10 +70,14 @@ const Checkers = ({navigation}) => {
   const [selectedNote, setSelectedNote] = useState({id: ''});
   const [affirmationMode, setAffirmationMode] = useState(false);
   const [affirmationIndex, setAffirmationIndex] = useState(0);
+
+  const [isUpdateMode, setIsUpdateMode] = useState(false);
+  const [header, setHeader] = useState('');
+  const [body, setBody] = useState('');
   const placeholder =
     index === 0
       ? 'Enter your todo!'
-      : index === 2
+      : index === 1
       ? 'Enter a new Affirmation!'
       : 'Enter a new Quote!';
 
@@ -83,6 +88,13 @@ const Checkers = ({navigation}) => {
     {key: 'third', title: 'Lists'},
     {key: 'fourth', title: 'Quotes'},
   ]);
+  const lists: any = useSelector<RootStateOrAny>(state => state.checker.lists);
+
+  const [selectedList, setSelectedList] = useState({
+    id: '',
+    header: '',
+    body: '',
+  });
 
   const addTodo = () => {
     if (!todo) {
@@ -126,7 +138,7 @@ const Checkers = ({navigation}) => {
       case 0:
         addTodo();
         break;
-      case 2:
+      case 1:
         addAffirmation();
         break;
       case 3:
@@ -244,12 +256,62 @@ const Checkers = ({navigation}) => {
     fourth: FourthRoute,
   });
 
-  // const addNew = () => {
-  //   if (index === 1) {
-  //     setListModalOpen(true);
-  //   } else setAddModalOpen(true);
-  // };
+  const addNew = () => {
+    if (index === 2) {
+      console.log('sdfsdf');
+      setListModalOpen(true);
+    } else setAddModalOpen(true);
+  };
 
+  const addList = () => {
+    if (!header) {
+      showToast('Please enter a header!');
+      return;
+    } else if (!body) {
+      showToast('Please enter list items!');
+      return;
+    } else {
+      const newList = {id: Date.now(), header, body};
+      const newLists = [...lists, newList];
+      dispatch(changeList(newLists));
+      showToast('List Added');
+      setHeader('');
+      setBody('');
+      setListModalOpen(false);
+    }
+  };
+
+  const updateList = () => {
+    if (!header) {
+      showToast('Please enter a header!');
+      return;
+    } else if (!body) {
+      showToast('Please enter list items!');
+      return;
+    } else {
+      // const OldList = {id: selectedList?.id, header, body};
+      const newLists = [...lists];
+      const selectedItem = [...lists].find(
+        list => list.id === selectedList?.id,
+      );
+      selectedItem.header = header;
+      selectedItem.body = body;
+      const updatedLists = newLists.map(list => {
+        if (list.id === selectedList?.id) {
+          return selectedItem;
+        } else return list;
+      });
+      dispatch(changeList(updatedLists));
+      // const newList = {id: Date.now(), header, body};
+      // const newLists = [...lists, newList];
+      // dispatch(changeList(newLists));
+      showToast('List Updated');
+      setHeader('');
+      setBody('');
+      setListModalOpen(false);
+    }
+    console.log('sdfsdf', selectedList?.id);
+  };
   const renderTabBar = props => {
     return (
       <TabBar
@@ -261,15 +323,6 @@ const Checkers = ({navigation}) => {
             {route.title}
           </Text>
         )}
-        // renderIcon={({route, focused, color}) => {
-        //   return (
-        //     <DynamicIcon
-        //       color={color}
-        //       family="FontAwesome"
-        //       name={route.key === 'first' ? 'th-list' : 'star'}
-        //     />
-        //   );
-        // }}
       />
     );
   };
@@ -283,24 +336,6 @@ const Checkers = ({navigation}) => {
         renderTabBar={renderTabBar}
       />
 
-      {/* <BackButton navigation={navigation} color={CHECKER_SECTION_COLOR} /> */}
-
-      {/* <TouchableOpacity
-        style={{
-          height: 50,
-          width: 50,
-          borderRadius: 50,
-          position: 'absolute',
-          right: 30,
-          bottom: 30,
-          backgroundColor: NOTES_SECTION_COLOR,
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}
-        onPress={addNew}>
-        <DynamicIcon family="Entypo" name="plus" size={18} />
-      </TouchableOpacity> */}
-
       <BottomModal modalOpen={addModalOpen} setModalOpen={setAddModalOpen}>
         <View style={[styles.modalAddRoom]}>
           <Gap />
@@ -310,13 +345,11 @@ const Checkers = ({navigation}) => {
               multiline={true}
               placeholder={placeholder}
               placeholderTextColor="#777"
-              value={index === 0 ? todo : index === 2 ? affirmation : quote}
+              value={index === 0 ? todo : index === 1 ? affirmation : quote}
               onChangeText={text => {
                 if (index === 0) {
                   setTodo(text);
                 } else if (index === 1) {
-                  // setAffirmation(text);
-                } else if (index === 2) {
                   setAffirmation(text);
                 } else {
                   setQuote(text);
@@ -379,10 +412,10 @@ const Checkers = ({navigation}) => {
                     else showToast('Add affirmations to read!');
                   },
                 },
-                // {
-                //   name: 'add',
-                //   onPress: addNew,
-                // },
+                {
+                  name: 'add',
+                  onPress: addNew,
+                },
               ]
             : [
                 {
@@ -392,10 +425,10 @@ const Checkers = ({navigation}) => {
                   },
                 },
 
-                // {
-                //   name: 'add',
-                //   onPress: addNew,
-                // },
+                {
+                  name: 'add',
+                  onPress: addNew,
+                },
               ]
         }
       />
@@ -411,6 +444,87 @@ const Checkers = ({navigation}) => {
           </View>
         </ScrollView>
       </NormalModal>
+
+      <BottomModal modalOpen={listModalOpen} setModalOpen={setListModalOpen}>
+        <View style={[styles.modal]}>
+          <Gap gap={5} />
+          {/* <Container> */}
+          {/* <TextBox placeholder="Enter your quote" /> */}
+
+          {/* <View style={{margin: 10, backgroundColor: 'red', height: '100%'}}> */}
+          <TextInput
+            placeholder={'Enter the list title!'}
+            placeholderTextColor="#777"
+            value={header}
+            onChangeText={text => {
+              setHeader(text);
+            }}
+            style={{
+              borderWidth: 1,
+              borderTopLeftRadius: 8,
+              borderTopRightRadius: 8,
+              paddingLeft: 10,
+              backgroundColor: DARK_THEME_COLOR,
+              fontFamily: 'Kalam-Bold',
+              fontSize: 22,
+              color: '#ddd',
+            }}
+            autoFocus={true}
+            // numberOfLines={2}
+          />
+          <ScrollView>
+            <TextInput
+              multiline={true}
+              placeholder={'Add List Items'}
+              placeholderTextColor="#777"
+              value={body}
+              onChangeText={text => {
+                setBody(text);
+              }}
+              // onKeyPress={handleKeyPress}
+              style={{
+                borderWidth: 1,
+                borderBottomLeftRadius: 8,
+                borderBottomRightRadius: 8,
+                paddingLeft: 10,
+                backgroundColor: DARK_THEME_COLOR,
+                fontFamily: 'Kalam-Regular',
+                fontSize: 20,
+                color: '#ddd',
+                height: 'auto',
+              }}
+              autoFocus={true}
+              // numberOfLines={3}
+            />
+          </ScrollView>
+          <Gap />
+          <HStack justifyContent="space-between">
+            <View style={{flex: 0.47}}>
+              <ActionButton
+                text="Cancel"
+                action="cancel"
+                onPress={() => {
+                  setListModalOpen(false);
+                }}
+              />
+            </View>
+            <View style={{flex: 0.47}}>
+              <ActionButton
+                text={isUpdateMode ? 'Update' : 'Save'}
+                action="save"
+                onPress={() => {
+                  {
+                    isUpdateMode ? updateList() : addList();
+                  }
+                }}
+              />
+            </View>
+          </HStack>
+          {/* </View> */}
+
+          {/* </Container> */}
+        </View>
+      </BottomModal>
     </FullPage>
   );
 };
@@ -440,5 +554,15 @@ const styles = StyleSheet.create({
     // marginTop: 'auto',
     // alignSelf: 'center',
     marginBottom: 15,
+  },
+  modal: {
+    borderWidth: 0.2,
+    borderColor: commonData.colors.CHECKER_SECTION_COLOR,
+    maxHeight: '70%',
+    backgroundColor: '#222',
+    borderTopLeftRadius: 8,
+    borderTopRightRadius: 8,
+    // paddingBottom: 30,
+    padding: 10,
   },
 });
