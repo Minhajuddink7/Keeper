@@ -122,6 +122,7 @@ const FirstRoute = ({navigation, activeFilter, setActiveFilter}) => {
             <View style={{flex: 0.47}}>
               <ActionButton
                 text="Delete"
+                source="notes"
                 action="delete"
                 onPress={() => {
                   dispatch(deleteNote(selectedNote?.id));
@@ -132,6 +133,7 @@ const FirstRoute = ({navigation, activeFilter, setActiveFilter}) => {
             </View>
             <View style={{flex: 0.47}}>
               <ActionButton
+                source="notes"
                 text="Cancel"
                 action="cancel"
                 onPress={() => {

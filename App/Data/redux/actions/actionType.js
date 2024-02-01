@@ -27,4 +27,9 @@ export const actionType = {
     setLists: 'SET_LISTS',
     deleteList: 'DELETE_LIST',
   },
+  finance: {
+    //stocks
+    setStocksList: 'SET_STOCKS_LIST',
+    deleteStocksList: 'DELETE_STOCKS_LIST',
+  },
 };

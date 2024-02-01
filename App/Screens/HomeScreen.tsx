@@ -77,6 +77,8 @@ const HomeScreen = ({navigation}) => {
   // );
 
   const signOutUser = () => {
+    console.log('sdf');
+    dispatch(changeUserState(false));
     // signOut(authentication)
     //   .then(res => {
     //     dispatch(changeUserState(false));
@@ -216,7 +218,9 @@ const HomeScreen = ({navigation}) => {
               backgroundColor: FINANCE_SECTION_COLOR,
               borderTopRightRadius: 8,
             }}
-            onPress={comingSoon}>
+            // onPress={comingSoon}>
+
+            onPress={() => navigation.navigate('Finance')}>
             <Menu family="FontAwesome5" name="money-bill-wave" text="Finance" />
           </TouchableOpacity>
         </HStack>

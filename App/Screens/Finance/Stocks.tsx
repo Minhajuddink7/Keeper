@@ -8,7 +8,7 @@ import {
   View,
 } from 'react-native';
 import React, {useState} from 'react';
-import commonStyles from './commonStyles';
+// import commonStyles from './commonStyles';
 import Gap from '../../Components/Common/Gap';
 import AppText from '../../Components/Typography/AppText';
 import DynamicIcon from '../../Components/Common/DynamicIcon';
@@ -16,21 +16,28 @@ import HStack from '../../Components/Layouts/HStack';
 import BottomModal from '../../Components/Common/modals/BottomModal';
 import {commonData} from '../../Data/static/commonData';
 import ActionButton from '../../Components/Buttons/ActionButton';
-import AddButton from './AddButton';
+// import AddButton from './AddButton';
 import {RootStateOrAny, useDispatch, useSelector} from 'react-redux';
 import NoItem from '../../Components/Common/NoItem';
 import {showToast} from '../../Helpers/utils';
-import {changeList, deleteList} from '../../Data/redux/actions/checkerActions';
+
+import commonStyles from '../Checker/commonStyles';
+
+import {
+  changeStockList,
+  deleteStockList,
+} from '../../Data/redux/actions/financeAction';
 
 const {
-  BLACK_COLOR,
   DARK_THEME_COLOR,
-  CHECKER_SECTION_COLOR,
-  NOTES_SECTION_COLOR,
+  // CHECKER_SECTION_COLOR,
+  FINANCE_SECTION_COLOR,
 } = commonData.colors;
-const Lists = () => {
+const Stocks = () => {
   const dispatch = useDispatch();
-  const lists: any = useSelector<RootStateOrAny>(state => state.checker.lists);
+  const stocksList: any = useSelector<RootStateOrAny>(
+    state => state.finance.stocksList,
+  );
   const [listModalOpen, setListModalOpen] = useState(false);
   const [selectedList, setSelectedList] = useState({
     id: '',
@@ -42,7 +49,7 @@ const Lists = () => {
   const [body, setBody] = useState('');
 
   const deleteSingleList = id => {
-    dispatch(deleteList(id));
+    dispatch(deleteStockList(id));
   };
 
   const addList = () => {
@@ -54,8 +61,9 @@ const Lists = () => {
       return;
     } else {
       const newList = {id: Date.now(), header, body};
-      const newLists = [newList, ...lists];
-      dispatch(changeList(newLists));
+      const newLists = [newList, ...stocksList];
+      console.log('New Lists: ', JSON.stringify(newLists));
+      dispatch(changeStockList(newLists));
       showToast('List Added');
       setHeader('');
       setBody('');
@@ -72,8 +80,8 @@ const Lists = () => {
       return;
     } else {
       // const OldList = {id: selectedList?.id, header, body};
-      const newLists = [...lists];
-      const selectedItem = [...lists].find(
+      const newLists = [...stocksList];
+      const selectedItem = [...stocksList].find(
         list => list.id === selectedList?.id,
       );
       selectedItem.header = header;
@@ -83,7 +91,7 @@ const Lists = () => {
           return selectedItem;
         } else return list;
       });
-      dispatch(changeList(updatedLists));
+      dispatch(changeStockList(updatedLists));
 
       showToast('List Updated');
       setHeader('');
@@ -97,9 +105,9 @@ const Lists = () => {
     <View style={{flex: 1}}>
       <View>
         <Gap gap={7} />
-        {lists?.length > 0 ? (
+        {stocksList?.length > 0 ? (
           <FlatList
-            data={lists}
+            data={stocksList}
             renderItem={({item}) => {
               return (
                 <TouchableOpacity
@@ -134,7 +142,7 @@ const Lists = () => {
             }}
           />
         ) : (
-          <NoItem color={CHECKER_SECTION_COLOR} text="No lists found!" />
+          <NoItem color={FINANCE_SECTION_COLOR} text="No lists found!" />
         )}
         <BottomModal modalOpen={listModalOpen} setModalOpen={setListModalOpen}>
           <View style={[styles.modal]}>
@@ -188,7 +196,7 @@ const Lists = () => {
             <HStack justifyContent="space-between">
               <View style={{flex: 0.47}}>
                 <ActionButton
-                  source="checkers"
+                  source="finance"
                   text="Cancel"
                   action="cancel"
                   onPress={() => {
@@ -198,7 +206,7 @@ const Lists = () => {
               </View>
               <View style={{flex: 0.47}}>
                 <ActionButton
-                  source="checkers"
+                  source="finance"
                   text={isUpdateMode ? 'Update' : 'Save'}
                   action="save"
                   onPress={() => {
@@ -216,7 +224,7 @@ const Lists = () => {
   );
 };
 
-export default Lists;
+export default Stocks;
 
 const styles = StyleSheet.create({
   modal: {

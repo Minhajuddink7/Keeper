@@ -14,6 +14,8 @@ import {useSelector} from 'react-redux';
 import Fitness from '../Health/Health';
 import Health from '../Health/Health';
 import HealthDetails from '../Health/HealthDetails';
+import ValidatePin from '../ValidatePin';
+import Finance from '../Finance/Finance';
 
 const RootNavigator = () => {
   const userLoggedIn = useSelector(state => state.ui.userLoggedIn);
@@ -23,38 +25,38 @@ const RootNavigator = () => {
   return (
     <NavigationContainer onReady={() => RNBootSplash.hide()}>
       <Stack.Navigator>
-        {/* {userLoggedIn ? (
+        {userLoggedIn ? (
           <>
             <Stack.Screen
               name="Home"
               component={HomeScreen}
               options={{headerShown: false}}
             />
-            <Stack.Screen
-              name="LoginScreen"
-              component={LoginScreen}
+            {/* <Stack.Screen
+              name="ValidatePin"
+              component={ValidatePin}
               options={{headerShown: false}}
-            />
+            /> */}
           </>
         ) : (
           <>
             <Stack.Screen
-              name="LoginScreen"
-              component={LoginScreen}
+              name="ValidatePin"
+              component={ValidatePin}
               options={{headerShown: false}}
             />
-            <Stack.Screen
+            {/* <Stack.Screen
               name="Home"
               component={HomeScreen}
               options={{headerShown: false}}
-            />
+            /> */}
           </>
-        )} */}
-        <Stack.Screen
+        )}
+        {/* <Stack.Screen
           name="Home"
           component={HomeScreen}
           options={{headerShown: false}}
-        />
+        /> */}
         {/* Notes */}
         <Stack.Screen
           name="TakeNotes"
@@ -94,6 +96,14 @@ const RootNavigator = () => {
         <Stack.Screen
           name="HealthDetails"
           component={HealthDetails}
+          options={{headerShown: false}}
+        />
+
+        {/*  */}
+        {/* Health */}
+        <Stack.Screen
+          name="Finance"
+          component={Finance}
           options={{headerShown: false}}
         />
 

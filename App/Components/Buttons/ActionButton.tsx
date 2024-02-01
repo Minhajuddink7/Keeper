@@ -6,7 +6,7 @@ import AppText from '../Typography/AppText';
 import DynamicIcon from '../Common/DynamicIcon';
 import HStack from '../Layouts/HStack';
 
-const ActionButton = ({text, action, onPress}) => {
+const ActionButton = ({text, action, onPress, source}) => {
   const {
     FINANCE_SECTION_COLOR,
     LIGHT_TEXT_COLOR,
@@ -21,7 +21,9 @@ const ActionButton = ({text, action, onPress}) => {
           action === 'delete'
             ? DANGER_COLOR
             : action === 'save'
-            ? CHECKER_SECTION_COLOR
+            ? source == 'finance'
+              ? FINANCE_SECTION_COLOR
+              : CHECKER_SECTION_COLOR
             : 'gray',
       }}
       onPress={onPress}>

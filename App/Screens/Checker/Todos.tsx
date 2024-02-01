@@ -50,7 +50,7 @@ const Todos = () => {
       title: todo,
       isCompleted: false,
     };
-    const newTodos = [...todos, newTodo];
+    const newTodos = [newTodo, ...todos];
     dispatch(changeTodos(newTodos));
     showToast('Todo Added!');
     setTodo('');
@@ -154,6 +154,7 @@ const Todos = () => {
           <HStack justifyContent="space-between">
             <View style={{flex: 0.47}}>
               <ActionButton
+                source="checkers"
                 text="Cancel"
                 action="cancel"
                 onPress={() => {
@@ -163,6 +164,7 @@ const Todos = () => {
             </View>
             <View style={{flex: 0.47}}>
               <ActionButton
+                source="checkers"
                 text="Saveddf"
                 action="save"
                 onPress={() => {

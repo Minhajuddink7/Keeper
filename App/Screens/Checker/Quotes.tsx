@@ -43,7 +43,7 @@ const Quotes = () => {
       return;
     }
     const newQuote = {id: Date.now(), quote};
-    const newQuotes = [...quotes, newQuote];
+    const newQuotes = [newQuote, ...quotes];
     dispatch(changeQuotes(newQuotes));
     showToast('Quote Added');
     setQuote('');
@@ -140,6 +140,7 @@ const Quotes = () => {
           <HStack justifyContent="space-between">
             <View style={{flex: 0.47}}>
               <ActionButton
+                source="checkers"
                 text="Cancel"
                 action="cancel"
                 onPress={() => {
@@ -149,6 +150,7 @@ const Quotes = () => {
             </View>
             <View style={{flex: 0.47}}>
               <ActionButton
+                source="checkers"
                 text="Save"
                 action="save"
                 onPress={() => {

@@ -106,7 +106,7 @@ const Checkers = ({navigation}) => {
       title: todo,
       isCompleted: false,
     };
-    const newTodos = [...todos, newTodo];
+    const newTodos = [newTodo, ...todos];
     dispatch(changeTodos(newTodos));
     showToast('Todo Added!');
     setTodo('');
@@ -117,7 +117,7 @@ const Checkers = ({navigation}) => {
       return;
     }
     const newAffirmation = {id: Date.now(), affirmation};
-    const newAffirmations = [...affirmations, newAffirmation];
+    const newAffirmations = [newAffirmation, ...affirmations];
     dispatch(changeAffirmations(newAffirmations));
     showToast('Affirmation Added');
     setAffirmation('');
@@ -128,7 +128,7 @@ const Checkers = ({navigation}) => {
       return;
     }
     const newQuote = {id: Date.now(), quote};
-    const newQuotes = [...quotes, newQuote];
+    const newQuotes = [newQuote, ...quotes];
     dispatch(changeQuotes(newQuotes));
     showToast('Quote Added');
     setQuote('');
@@ -258,7 +258,7 @@ const Checkers = ({navigation}) => {
 
   const addNew = () => {
     if (index === 2) {
-      console.log('sdfsdf');
+      // console.log('sdfsdf');
       setListModalOpen(true);
     } else setAddModalOpen(true);
   };
@@ -272,7 +272,7 @@ const Checkers = ({navigation}) => {
       return;
     } else {
       const newList = {id: Date.now(), header, body};
-      const newLists = [...lists, newList];
+      const newLists = [newList, ...lists];
       dispatch(changeList(newLists));
       showToast('List Added');
       setHeader('');
@@ -372,6 +372,7 @@ const Checkers = ({navigation}) => {
             <HStack justifyContent="space-between">
               <View style={{flex: 0.47}}>
                 <ActionButton
+                  source="checkers"
                   text="Cancel"
                   action="cancel"
                   onPress={() => {
@@ -381,6 +382,7 @@ const Checkers = ({navigation}) => {
               </View>
               <View style={{flex: 0.47}}>
                 <ActionButton
+                  source="checkers"
                   text="Save"
                   action="save"
                   onPress={() => {
@@ -501,6 +503,7 @@ const Checkers = ({navigation}) => {
           <HStack justifyContent="space-between">
             <View style={{flex: 0.47}}>
               <ActionButton
+                source="checkers"
                 text="Cancel"
                 action="cancel"
                 onPress={() => {
@@ -510,6 +513,7 @@ const Checkers = ({navigation}) => {
             </View>
             <View style={{flex: 0.47}}>
               <ActionButton
+                source="checkers"
                 text={isUpdateMode ? 'Update' : 'Save'}
                 action="save"
                 onPress={() => {
